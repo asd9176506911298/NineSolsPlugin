@@ -20,6 +20,7 @@
 ![](/img/SkillPoint.png)
 ![](/img/Jades.png)
 ![](/img/Fov.png)
+![](/img/command.png)
 
 # 控制台指令
 - all-commands 顯示所有指令 有些指令用了沒作用 或會卡住 需自行測試
