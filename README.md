@@ -21,5 +21,5 @@
 ![](/img/Fov.png)
 
 # 控制台指令
-- all-commands 顯示所有指令 有些指令用了沒作用
-- 或會卡住 只列出一些指令 其餘放在commands.txt 裡面
+- all-commands 顯示所有指令 有些指令用了沒作用 或會卡住 需自行測試
+- 只列出一些指令 放在commands.txt 裡面
