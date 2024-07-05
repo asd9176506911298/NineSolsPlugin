@@ -1,4 +1,4 @@
-all-commands 查詢全部指令 有些指令用了沒作用 或會卡住
+all-commands 查詢全部指令 有些指令用了沒作用 或會卡住 自行測試
 
 [Command("tutorial.lear.disable", "關閉所有古樹跟李耳教學"
 [Command("tutorial.lear.enable", "開啟所有古樹跟李耳教學"
