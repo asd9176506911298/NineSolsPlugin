@@ -30,7 +30,7 @@ namespace NineSolsPlugin
             Debug.Log("九日修改器");
             Instance = this;
 
-            MenuToggleKey = Config.Bind<KeyCode>("Menu", "MenuToggleKey", KeyCode.F3, "開啟選快捷鍵");
+            MenuToggleKey = Config.Bind<KeyCode>("Menu", "MenuToggleKey", KeyCode.F3, "開啟選單快捷鍵");
             SpeedToggleKey = Config.Bind<KeyCode>("Menu", "SpeedToggleKey", KeyCode.F4, "加速快捷鍵");
             MouseTeleportKey = Config.Bind<KeyCode>("Menu", "MouseTeleportKey", KeyCode.F2, "滑鼠移動快捷鍵");
             isEnableConsole = Config.Bind<bool>("Menu", "isEnableConsole", true, "是否開啟控制台 F1開啟控制台");
