@@ -114,7 +114,7 @@ namespace NineSolsPlugin
                 isSpeed = GUILayout.Toggle(isSpeed, "加速");
                 speedInput = GUILayout.TextField(speedInput);
                 float.TryParse(speedInput, out speed);
-                if (GUILayout.Button("開啟/關閉 地圖亮"))
+                if (GUILayout.Button("開啟/關閉 地圖亮(關閉特效)"))
                     FullLight();
             }
             GUILayout.EndArea();
