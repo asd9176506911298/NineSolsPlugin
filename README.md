@@ -27,4 +27,4 @@
 - 只列出一些指令 放在commands.txt 裡面
 
 # 影片
-- https://youtu.be/TPiZjkn2k-M
+- https://youtu.be/dQ2cZJOv2z8
