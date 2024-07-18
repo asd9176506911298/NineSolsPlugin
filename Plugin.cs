@@ -32,7 +32,7 @@ namespace NineSolsPlugin
 
             MenuToggleKey = Config.Bind<KeyCode>("Menu", "MenuToggleKey", KeyCode.F3, "Open Cheat Menu ShortCut");
             SpeedToggleKey = Config.Bind<KeyCode>("Menu", "SpeedToggleKey", KeyCode.F4, "Timer ShortCut");
-            MouseTeleportKey = Config.Bind<KeyCode>("Menu", "MouseTeleportKey", KeyCode.F2, "Mouse Move Chacter ShortCut");
+            MouseTeleportKey = Config.Bind<KeyCode>("Menu", "MouseTeleportKey", KeyCode.F2, "Mouse Move Character ShortCut");
             isEnableConsole = Config.Bind<bool>("Menu", "isEnableConsole", true, "Is Enable Console? F1 Open Console");
 
             Harmony.CreateAndPatchAll(typeof(Patch));
@@ -114,7 +114,7 @@ namespace NineSolsPlugin
                 isSpeed = GUILayout.Toggle(isSpeed, "Timer");
                 speedInput = GUILayout.TextField(speedInput);
                 float.TryParse(speedInput, out speed);
-                if (GUILayout.Button("Enable/Disable Map Light(Disable Effect)"))
+                if (GUILayout.Button("Enable/Disable Map Full Bright(Disable Effect)"))
                     FullLight();
             }
             GUILayout.EndArea();
