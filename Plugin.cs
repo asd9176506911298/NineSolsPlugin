@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace NineSolsPlugin
 {
-    [BepInPlugin("NineSols.Yukikaco.plugin", "Nine Sols 作弊選單 Made By Yuki.kaco", "1.0.0")]
+    [BepInPlugin("NineSols.Yukikaco.plugin", "Nine Sols Cheat Menu Made By Yuki.kaco", "1.0.0")]
     public class Plugin : BaseUnityPlugin
     {
         public static Plugin Instance { get; private set; }
@@ -30,10 +30,10 @@ namespace NineSolsPlugin
             Debug.Log("九日修改器");
             Instance = this;
 
-            MenuToggleKey = Config.Bind<KeyCode>("Menu", "MenuToggleKey", KeyCode.F3, "開啟選單快捷鍵");
-            SpeedToggleKey = Config.Bind<KeyCode>("Menu", "SpeedToggleKey", KeyCode.F4, "加速快捷鍵");
-            MouseTeleportKey = Config.Bind<KeyCode>("Menu", "MouseTeleportKey", KeyCode.F2, "滑鼠移動快捷鍵");
-            isEnableConsole = Config.Bind<bool>("Menu", "isEnableConsole", true, "是否開啟控制台 F1開啟控制台");
+            MenuToggleKey = Config.Bind<KeyCode>("Menu", "MenuToggleKey", KeyCode.F3, "Open Cheat Menu ShortCut");
+            SpeedToggleKey = Config.Bind<KeyCode>("Menu", "SpeedToggleKey", KeyCode.F4, "Timer ShortCut");
+            MouseTeleportKey = Config.Bind<KeyCode>("Menu", "MouseTeleportKey", KeyCode.F2, "Mouse Move Chacter ShortCut");
+            isEnableConsole = Config.Bind<bool>("Menu", "isEnableConsole", true, "Is Enable Console? F1 Open Console");
 
             Harmony.CreateAndPatchAll(typeof(Patch));
 
@@ -99,7 +99,7 @@ namespace NineSolsPlugin
         {
             if (showMenu)
             {
-                windowRect = GUI.Window(156789, windowRect, DoMyWindow, "Nine Sols 作弊選單 Made By Yuki.kaco");
+                windowRect = GUI.Window(156789, windowRect, DoMyWindow, "Nine Sols Cheat Menu Made By Yuki.kaco");
             }
         }
 
@@ -107,14 +107,14 @@ namespace NineSolsPlugin
         {
             GUILayout.BeginArea(new Rect(10, 20, windowRect.width - 20, windowRect.height - 30));
             {
-                isInvincible = GUILayout.Toggle(isInvincible, "無敵");
-                isOneHitKill = GUILayout.Toggle(isOneHitKill, "一擊必殺");
-                isFov = GUILayout.Toggle(isFov, "調整視野距離");
+                isInvincible = GUILayout.Toggle(isInvincible, "Invincible");
+                isOneHitKill = GUILayout.Toggle(isOneHitKill, "One Hit Kill");
+                isFov = GUILayout.Toggle(isFov, "FOV");
                 fov = GUILayout.HorizontalSlider(fov, 1f, 170f, GUILayout.Width(200));
-                isSpeed = GUILayout.Toggle(isSpeed, "加速");
+                isSpeed = GUILayout.Toggle(isSpeed, "Timer");
                 speedInput = GUILayout.TextField(speedInput);
                 float.TryParse(speedInput, out speed);
-                if (GUILayout.Button("開啟/關閉 地圖亮(關閉特效)"))
+                if (GUILayout.Button("Enable/Disable Map Light(Disable Effect)"))
                     FullLight();
             }
             GUILayout.EndArea();

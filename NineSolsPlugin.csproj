@@ -32,7 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="0Harmony">
-      <HintPath>..\..\..\Games\Nine Sols v20240602-P2P\BepInEx\core\0Harmony.dll</HintPath>
+      <HintPath>assembly-libaries\0Harmony.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Assembly-CSharp">
@@ -40,11 +40,11 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="BepInEx.Core">
-      <HintPath>..\..\..\Games\Nine Sols v20240602-P2P\BepInEx\core\BepInEx.Core.dll</HintPath>
+      <HintPath>assembly-libaries\BepInEx.Core.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="BepInEx.Unity">
-      <HintPath>..\..\..\Games\Nine Sols v20240602-P2P\BepInEx\core\BepInEx.Unity.dll</HintPath>
+      <HintPath>assembly-libaries\BepInEx.Unity.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="QFSW.QC">
@@ -73,6 +73,7 @@
     </Reference>
     <Reference Include="UnityEngine.IMGUIModule">
       <HintPath>..\..\..\Games\Nine Sols v20240602-P2P\NineSols_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.InputLegacyModule">
       <HintPath>assembly-libaries\UnityEngine.InputLegacyModule.dll</HintPath>
