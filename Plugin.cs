@@ -43,12 +43,26 @@ namespace NineSolsPlugin
             windowRect = new Rect((Screen.width - width) / 2, (Screen.height - height) / 2, width, height);
         }
 
+        private void OnDestory()
+        {
+            Harmony.UnpatchAll();
+        }
+
         private void Update()
         {
+            if(isFov)
+            {
+                if((fov - Input.GetAxis("Mouse ScrollWheel") * 30f > 0))
+                    fov -= Input.GetAxis("Mouse ScrollWheel") * 30f;
+            }
+
+            if (showMenu || Input.GetKey(MouseTeleportKey.Value))
+                Cursor.visible = true;
+
             if (Input.GetKey(MouseTeleportKey.Value))
             {
                 var cheatManagerInstance = CheatManager.Instance;
-                if (cheatManagerInstance != null)
+                if (cheatManagerInstance != null &&  Player.i != null)
                 {
                     Traverse.Create(cheatManagerInstance).Method("DropPlayerAtMousePosition").GetValue();
                 }
@@ -110,7 +124,7 @@ namespace NineSolsPlugin
                 isInvincible = GUILayout.Toggle(isInvincible, "Invincible");
                 isOneHitKill = GUILayout.Toggle(isOneHitKill, "One Hit Kill");
                 isFov = GUILayout.Toggle(isFov, "FOV");
-                fov = GUILayout.HorizontalSlider(fov, 1f, 170f, GUILayout.Width(200));
+                fov = GUILayout.HorizontalSlider(fov, 1f, 180f, GUILayout.Width(200));
                 isSpeed = GUILayout.Toggle(isSpeed, "Timer");
                 speedInput = GUILayout.TextField(speedInput);
                 float.TryParse(speedInput, out speed);
