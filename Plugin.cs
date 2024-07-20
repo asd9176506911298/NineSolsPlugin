@@ -21,8 +21,8 @@ namespace NineSolsPlugin
         public bool isInvincible = false;
         public bool isSpeed = false;
         public float fov = 68f;
-        public float speed = 1f;
-        private string speedInput = "1";
+        public float speed = 2f;
+        private string speedInput = "2";
         private Rect windowRect;
 
         private void Awake()
