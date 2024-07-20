@@ -39,12 +39,8 @@
       <HintPath>assembly-libaries\Assembly-CSharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="BepInEx.Core">
-      <HintPath>assembly-libaries\BepInEx.Core.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="BepInEx.Unity">
-      <HintPath>assembly-libaries\BepInEx.Unity.dll</HintPath>
+    <Reference Include="BepInEx">
+      <HintPath>assembly-libaries\BepInEx.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="QFSW.QC">
@@ -72,7 +68,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.IMGUIModule">
-      <HintPath>..\..\..\Games\Nine Sols v20240602-P2P\NineSols_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
+      <HintPath>assembly-libaries\UnityEngine.IMGUIModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.InputLegacyModule">
