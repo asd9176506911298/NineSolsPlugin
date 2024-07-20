@@ -1,27 +1,30 @@
 # NineSolsPlugin
-# ¤E¤é§@¹ú¿ï³æ
+# ä¹æ—¥ä½œå¼Šé¸å–®
 
 # BepInEx 6.0.0-pre.1
 
-# §Ö±¶Áä³]©w
-- BepinEx/config/NineSols.Yukikaco.plugin.cfg ¸Ì­±¥i¥H³]©w§Ö±¶Áä
-- ±±¨î¥x¥u¯à³]©w¬O§_¶}±Ò ¶}±ÒF1¤~·|¥X²{ Ãö³¬F1·|¨S¤ÏÀ³
+# å¿«æ·éµè¨­å®š
+- BepinEx/config/NineSols.Yukikaco.plugin.cfg è£¡é¢å¯ä»¥è¨­å®šå¿«æ·éµ
+- æŽ§åˆ¶å°åªèƒ½è¨­å®šæ˜¯å¦é–‹å•Ÿ é–‹å•ŸF1æ‰æœƒå‡ºç¾ é—œé–‰F1æœƒæ²’åæ‡‰
 
-# ¥\¯à
-- µL¼Ä
-- ¤@À»¥²±þ
-- ·Æ¹«²¾°Ê F2
-- ½Õ¾ãµø³¥¶ZÂ÷
-- ¥[³t F4
-- ¦a¹Ï«G(Ãö³¬¯S®Ä)
-- ±±¨î¥x F1
+# åŠŸèƒ½
+- ç„¡æ•µ
+- ä¸€æ“Šå¿…æ®º
+- æ»‘é¼ ç§»å‹• F2
+- èª¿æ•´è¦–é‡Žè·é›¢
+- åŠ é€Ÿ F4
+- åœ°åœ–äº®(é—œé–‰ç‰¹æ•ˆ)
+- æŽ§åˆ¶å° F1
 
-# ·Ó¤ù
+# ç…§ç‰‡
 ![](/img/SkillPoint.png)
 ![](/img/Jades.png)
 ![](/img/Fov.png)
 ![](/img/command.png)
 
-# ±±¨î¥x«ü¥O
-- all-commands Åã¥Ü©Ò¦³«ü¥O ¦³¨Ç«ü¥O¥Î¤F¨S§@¥Î ©Î·|¥d¦í »Ý¦Û¦æ´ú¸Õ
-- ¥u¦C¥X¤@¨Ç«ü¥O ©ñ¦bcommands.txt ¸Ì­±
+# æŽ§åˆ¶å°æŒ‡ä»¤
+- all-commands é¡¯ç¤ºæ‰€æœ‰æŒ‡ä»¤ æœ‰äº›æŒ‡ä»¤ç”¨äº†æ²’ä½œç”¨ æˆ–æœƒå¡ä½ éœ€è‡ªè¡Œæ¸¬è©¦
+- åªåˆ—å‡ºä¸€äº›æŒ‡ä»¤ æ”¾åœ¨commands.txt è£¡é¢
+
+# å½±ç‰‡
+- https://youtu.be/dQ2cZJOv2z8
