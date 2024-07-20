@@ -52,7 +52,7 @@ namespace NineSolsPlugin
         {
             if(isFov)
             {
-                if((fov - Input.GetAxis("Mouse ScrollWheel") * 30f > 0))
+                if ((fov - Input.GetAxis("Mouse ScrollWheel") * 30f > 0) && (fov - Input.GetAxis("Mouse ScrollWheel") * 30f < 180))
                     fov -= Input.GetAxis("Mouse ScrollWheel") * 30f;
             }
 
