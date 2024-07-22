@@ -1,6 +1,7 @@
 ﻿using BepInEx;
 using BepInEx.Configuration;
 using HarmonyLib;
+using RCGUI;
 using UnityEngine;
 
 namespace NineSolsPlugin
@@ -27,6 +28,7 @@ namespace NineSolsPlugin
 
         private void Awake()
         {
+            RCGLifeCycle.DontDestroyForever(gameObject);
             Debug.Log("九日修改器");
             Instance = this;
 
