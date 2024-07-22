@@ -1,7 +1,7 @@
 # NineSolsPlugin
 # Nine Sols Cheat Menu
 
-# BepInEx 6.0.0-pre.1
+# BepInEx 5.4.23.2
 
 # ShortCut Setting
 - BepinEx/config/NineSols.Yukikaco.plugin.cfg inside can setting shortcut
@@ -11,7 +11,7 @@
 - Invincible
 - One Hit Kill
 - Mouse Move Character F2
-- FOV
+- FOV (Mouse Wheel Adjust Zoom) F5
 - Timer F4
 - Map Full Bright(Disable Effect)
 - Developer Console F1
