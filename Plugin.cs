@@ -1,6 +1,7 @@
 ﻿using BepInEx;
 using BepInEx.Configuration;
 using HarmonyLib;
+using System.Runtime.InteropServices.ComTypes;
 using UnityEngine;
 
 namespace NineSolsPlugin
@@ -31,8 +32,6 @@ namespace NineSolsPlugin
 
         private void Awake()
         {
-            
-
             RCGLifeCycle.DontDestroyForever(gameObject);
             Debug.Log("九日修改器");
             Instance = this;
@@ -105,6 +104,18 @@ namespace NineSolsPlugin
                 TimePauseManager.GlobalSimulationSpeed = 1f;
             }
 
+            if (isInvincible)
+            {
+                if(Player.i != null && Player.i.GetHealth != null)
+                    Player.i.GetHealth.isInvincibleVote.Vote(Player.i.gameObject, true);
+            }
+            else
+            {
+                if (Player.i != null && Player.i.GetHealth != null)
+                    Player.i.GetHealth.isInvincibleVote.Vote(Player.i.gameObject, false);
+            }
+
+
         }
 
         private void FullLight()
@@ -164,9 +175,40 @@ namespace NineSolsPlugin
                         Language.Value = "zh-cn";
                         localizationManager.SetLanguage(Language.Value);
                     }
+
                 }
                 GUILayout.EndHorizontal();
+                if (GUILayout.Button(localizationManager.GetString("Unlock All Skill Jade")))
+                {
+                    if (Player.i != null)
+                    {
+                        var player = Player.i;
+                        Traverse.Create(player).Method("UnlockAll").GetValue();
+                        Traverse.Create(player).Method("AddSkillPoint").GetValue();
+                        Traverse.Create(player).Method("AddMoney").GetValue();
+                        Traverse.Create(player).Method("GetAllJades").GetValue();
+                        Traverse.Create(player).Method("GetAllJadeSlots").GetValue();
+                        Traverse.Create(player.mainAbilities.PlayerMaxJadePowerStat.Stat).Field("_value").SetValue(500.0f);
+                    }
+
+                    GameObject Jade = GameObject.Find("GameCore(Clone)/RCG LifeCycle/UIManager/GameplayUICamera/UI-Canvas/[Tab] MenuTab/CursorProvider/Menu Vertical Layout/Panels/[Jade 玉] Multiple Collection Select Panel/[Condition] 在存檔點");
+                    GameObject JadeSlot = GameObject.Find("GameCore(Clone)/RCG LifeCycle/UIManager/GameplayUICamera/UI-Canvas/[Tab] MenuTab/CursorProvider/Menu Vertical Layout/Panels/[Jade 玉] Multiple Collection Select Panel/[Condition] 算力還沒滿/Max JadePower");
+                    GameObject Skill = GameObject.Find("GameCore(Clone)/RCG LifeCycle/UIManager/GameplayUICamera/UI-Canvas/[Tab] MenuTab/CursorProvider/Menu Vertical Layout/Panels/[經絡]SkillTreeUI Manager/[Condition] 不在存檔點不能點技能");
+                    if (Jade != null)
+                        Jade.SetActive(false);
+                    if (Skill != null)
+                        Skill.SetActive(false);
+                }
+                if (GUILayout.Button(localizationManager.GetString("BOSS")))
+                {
+                    if(StartMenuLogic.Instance != null)
+                        StartMenuLogic.Instance.StartGame("A11_S0_Boss_YiGung_回蓬萊");
+                }
+
+                if (GUILayout.Button(localizationManager.GetString("Skip")))
+                    SkippableManager.Instance.TrySkip();
             }
+
             GUILayout.EndArea();
             GUI.DragWindow();
         }

@@ -21,26 +21,6 @@ namespace NineSolsPlugin
             return false;
         }
 
-        //無敵
-        [HarmonyPrefix, HarmonyPatch(typeof(PlayerHealth), "ReceiveDamage")]
-        public static bool ReceiveDamage()
-        {
-            if (Plugin.Instance.isInvincible)
-                return false;
-            else
-                return true;
-        }
-
-        //無敵格檔不扣寫
-        [HarmonyPrefix, HarmonyPatch(typeof(PlayerHealth), "ReceiveRecoverableDamage")]
-        public static bool ReceiveRecoverableDamage()
-        {
-            if (Plugin.Instance.isInvincible)
-                return false;
-            else
-                return true;
-        }
-
         //秒殺
         [HarmonyPrefix, HarmonyPatch(typeof(MonsterBase), "DecreasePosture")]
         public static bool DecreasePosture(ref EffectHitData data, ref float scale)
