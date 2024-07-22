@@ -12,7 +12,7 @@ public class LocalizationManager
 
     public LocalizationManager()
     {
-        _currentLanguage = "zh-tw"; // Default language
+        _currentLanguage = "zh-cn"; // Default language
         LoadLocalizationStrings(_currentLanguage);
     }
 

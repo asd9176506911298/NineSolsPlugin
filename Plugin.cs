@@ -16,6 +16,7 @@ namespace NineSolsPlugin
         private ConfigEntry<KeyCode> SpeedToggleKey;
         private ConfigEntry<KeyCode> FovToggleKey;
         private ConfigEntry<KeyCode> MouseTeleportKey;
+        private ConfigEntry<string> Language;
         public ConfigEntry<bool> isEnableConsole;
 
         private bool showMenu = false;
@@ -30,7 +31,8 @@ namespace NineSolsPlugin
 
         private void Awake()
         {
-            localizationManager = new LocalizationManager();
+            
+
             RCGLifeCycle.DontDestroyForever(gameObject);
             Debug.Log("九日修改器");
             Instance = this;
@@ -40,6 +42,10 @@ namespace NineSolsPlugin
             FovToggleKey = Config.Bind<KeyCode>("Menu", "FOVToggleKey", KeyCode.F5, "FOV ShortCut\nFOV快捷鍵\nFOV热键");
             MouseTeleportKey = Config.Bind<KeyCode>("Menu", "MouseTeleportKey", KeyCode.F2, "Mouse Move Character ShortCut\n滑鼠移動快捷鍵\n滑鼠移动热键");
             isEnableConsole = Config.Bind<bool>("Menu", "isEnableConsole", true, "Is Enable Console? F1 Open Console\n是否開啟控制台 F1開啟控制台\n是否开启控制台 F1开启控制台");
+            Language = Config.Bind<string>("Menu", "MenuLanguage", "en-us", "Menu Language\n選單語言\n选单语言\nen-us, zh-tw, zh-cn");
+
+            localizationManager = new LocalizationManager();
+            localizationManager.SetLanguage(Language.Value);
 
             Harmony.CreateAndPatchAll(typeof(Patch));
 
@@ -141,6 +147,25 @@ namespace NineSolsPlugin
                 float.TryParse(speedInput, out speed);
                 if (GUILayout.Button(localizationManager.GetString("FullBright")))
                     FullLight();
+                GUILayout.BeginHorizontal();
+                {
+                    if (GUILayout.Button(localizationManager.GetString("English")))
+                    {
+                        Language.Value = "en-us";
+                        localizationManager.SetLanguage(Language.Value);
+                    }
+                    if (GUILayout.Button(localizationManager.GetString("繁體中文")))
+                    {
+                        Language.Value = "zh-tw";
+                        localizationManager.SetLanguage(Language.Value);
+                    }
+                    if (GUILayout.Button(localizationManager.GetString("简体中文")))
+                    {
+                        Language.Value = "zh-cn";
+                        localizationManager.SetLanguage(Language.Value);
+                    }
+                }
+                GUILayout.EndHorizontal();
             }
             GUILayout.EndArea();
             GUI.DragWindow();
