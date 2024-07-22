@@ -1,7 +1,6 @@
 ﻿using BepInEx;
 using BepInEx.Configuration;
 using HarmonyLib;
-using RCGUI;
 using UnityEngine;
 
 namespace NineSolsPlugin
@@ -10,6 +9,8 @@ namespace NineSolsPlugin
     public class Plugin : BaseUnityPlugin
     {
         public static Plugin Instance { get; private set; }
+
+        private LocalizationManager localizationManager;
 
         private ConfigEntry<KeyCode> MenuToggleKey;
         private ConfigEntry<KeyCode> SpeedToggleKey;
@@ -28,6 +29,7 @@ namespace NineSolsPlugin
 
         private void Awake()
         {
+            localizationManager = new LocalizationManager();
             RCGLifeCycle.DontDestroyForever(gameObject);
             Debug.Log("九日修改器");
             Instance = this;
@@ -115,7 +117,7 @@ namespace NineSolsPlugin
         {
             if (showMenu)
             {
-                windowRect = GUI.Window(156789, windowRect, DoMyWindow, "Nine Sols Cheat Menu Made By Yuki.kaco");
+                windowRect = GUI.Window(156789, windowRect, DoMyWindow, localizationManager.GetString("title"));
             }
         }
 
@@ -123,14 +125,14 @@ namespace NineSolsPlugin
         {
             GUILayout.BeginArea(new Rect(10, 20, windowRect.width - 20, windowRect.height - 30));
             {
-                isInvincible = GUILayout.Toggle(isInvincible, "Invincible");
-                isOneHitKill = GUILayout.Toggle(isOneHitKill, "One Hit Kill");
-                isFov = GUILayout.Toggle(isFov, "FOV");
+                isInvincible = GUILayout.Toggle(isInvincible, localizationManager.GetString("invincible"));
+                isOneHitKill = GUILayout.Toggle(isOneHitKill, localizationManager.GetString("OHK"));
+                isFov = GUILayout.Toggle(isFov, localizationManager.GetString("FOV"));
                 fov = GUILayout.HorizontalSlider(fov, 1f, 180f, GUILayout.Width(200));
-                isSpeed = GUILayout.Toggle(isSpeed, "Timer");
+                isSpeed = GUILayout.Toggle(isSpeed, localizationManager.GetString("Timer"));
                 speedInput = GUILayout.TextField(speedInput);
                 float.TryParse(speedInput, out speed);
-                if (GUILayout.Button("Enable/Disable Map Full Bright(Disable Effect)"))
+                if (GUILayout.Button(localizationManager.GetString("FullBright")))
                     FullLight();
             }
             GUILayout.EndArea();
