@@ -1,8 +1,18 @@
 {
-    "title": "九日作弊选单 Made By Yuki.kaco",
-    "invincible": "无敌",
-    "OHK":"一击必杀",
-    "FOV":"调整视野距离(滚轮调整大小)",
-    "Timer":"加速",
-    "FullBright":"开启/关闭 地图亮(关闭特效)"
+  "title": "九日作弊选单 Made By Yuki.kaco",
+  "invincible": "无敌",
+  "OHK": "一击必杀",
+  "FOV": "调整视野距离(滚轮调整大小)",
+  "Timer": "加速",
+  "FullBright": "开启/关闭 地图亮(关闭特效)",
+  "UnlockAll": "解锁全部 技能 玉石 非存档点换玉石学技能",
+  "Skip": "跳过",
+  "A2_S5_BossHorseman_Final": "英招",
+  "A3_S5_BossGouMang_Final": "勾芒",
+  "A4_S5_DaoTrapHouse_Final": "奄老",
+  "A5_S5_JieChuanHall": "截全",
+  "A7_S5_Boss_ButterFly": "蚨蝶",
+  "A9_S5_風氏": "伏羲",
+  "A10_S5_Boss_Jee": "姬",
+  "A11_S0_Boss_YiGung_回蓬萊": "易公"
 }

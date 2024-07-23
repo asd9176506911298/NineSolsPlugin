@@ -1,8 +1,10 @@
 ﻿using BepInEx;
 using BepInEx.Configuration;
 using HarmonyLib;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices.ComTypes;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace NineSolsPlugin
 {
@@ -11,12 +13,25 @@ namespace NineSolsPlugin
     {
         public static Plugin Instance { get; private set; }
 
+        private bool isInit = false;
+        private Vector2Int lastScreenSize;
+        private GUIStyle titleStyle;
+        private GUIStyle toggleStyle;
+        private GUIStyle textFieldStyle;
+        private GUIStyle buttonStyle;
+        private float basetitleSize = 24.0f;
+        private float baseToggleSize = 24.0f;
+        private float baseTextFieldSize = 24.0f;
+        private float baseButtonSize = 24.0f;
+
+
         private LocalizationManager localizationManager;
 
         private ConfigEntry<KeyCode> MenuToggleKey;
         private ConfigEntry<KeyCode> SpeedToggleKey;
         private ConfigEntry<KeyCode> FovToggleKey;
         private ConfigEntry<KeyCode> MouseTeleportKey;
+        private ConfigEntry<KeyCode> SkipKey;
         private ConfigEntry<string> Language;
         public ConfigEntry<bool> isEnableConsole;
 
@@ -40,6 +55,7 @@ namespace NineSolsPlugin
             SpeedToggleKey = Config.Bind<KeyCode>("Menu", "SpeedToggleKey", KeyCode.F4, "Timer ShortCut\n加速快捷鍵\n加速热键");
             FovToggleKey = Config.Bind<KeyCode>("Menu", "FOVToggleKey", KeyCode.F5, "FOV ShortCut\nFOV快捷鍵\nFOV热键");
             MouseTeleportKey = Config.Bind<KeyCode>("Menu", "MouseTeleportKey", KeyCode.F2, "Mouse Move Character ShortCut\n滑鼠移動快捷鍵\n滑鼠移动热键");
+            SkipKey = Config.Bind<KeyCode>("Menu", "SkilKey", KeyCode.LeftControl, "Skip ShortCut\n跳過快捷鍵\n跳過热键");
             isEnableConsole = Config.Bind<bool>("Menu", "isEnableConsole", true, "Is Enable Console? F1 Open Console\n是否開啟控制台 F1開啟控制台\n是否开启控制台 F1开启控制台");
             Language = Config.Bind<string>("Menu", "MenuLanguage", "en-us", "Menu Language\n選單語言\n选单语言\nen-us, zh-tw, zh-cn");
 
@@ -49,9 +65,40 @@ namespace NineSolsPlugin
             Harmony.CreateAndPatchAll(typeof(Patch));
 
             // Initialize window size based on screen dimensions
-            float width = Screen.width * 0.3f;
-            float height = Screen.height * 0.3f;
+            float width = Screen.width * 0.5f;
+            float height = Screen.height * 0.6f;
             windowRect = new Rect((Screen.width - width) / 2, (Screen.height - height) / 2, width, height);
+        }
+
+        private void Start()
+        {
+            
+        }
+
+        void OnScreenSizeChanged(float width, float height)
+        {
+            width *= 0.5f;
+            height *= 0.6f;
+            windowRect = new Rect((Screen.width - width) / 2, (Screen.height - height) / 2, width, height);
+            // Implement your logic here when screen size changes
+            Debug.Log($"Screen size changed to: {width}x{height}");
+            if(isInit)
+                UpdateGUIStyle();
+        }
+
+        void UpdateGUIStyle()
+        {
+            float scaleFactor = Mathf.Min(Screen.width / 1920f, Screen.height / 1080f);
+            int toggleSize = Mathf.RoundToInt(baseToggleSize * scaleFactor);
+            int buttonSize = Mathf.RoundToInt(baseButtonSize * scaleFactor);
+            int textFieldSize = Mathf.RoundToInt(baseTextFieldSize * scaleFactor);
+
+            toggleStyle.fontSize = toggleSize;
+            toggleStyle.padding = new RectOffset(toggleSize * 2, toggleSize * 2, toggleSize / 2, toggleSize / 2);
+            textFieldStyle.fontSize = textFieldSize;
+            buttonStyle.fontSize = buttonSize;
+            buttonStyle.padding = new RectOffset(buttonSize / 3, buttonSize / 3, buttonSize / 3, buttonSize / 3);
+            titleStyle.fontSize = Mathf.RoundToInt(basetitleSize * scaleFactor);
         }
 
         private void OnDestory()
@@ -61,7 +108,18 @@ namespace NineSolsPlugin
 
         private void Update()
         {
-            if(isFov)
+            if (Screen.width != lastScreenSize.x || Screen.height != lastScreenSize.y)
+            {
+                // Update lastScreenSize with the current screen dimensions
+                lastScreenSize.x = Screen.width;
+                lastScreenSize.y = Screen.height;
+
+
+                // Call a method or raise an event indicating screen size change
+                OnScreenSizeChanged(lastScreenSize.x, lastScreenSize.y);
+            }
+
+            if (isFov)
             {
                 if ((fov - Input.GetAxis("Mouse ScrollWheel") * 30f > 0) && (fov - Input.GetAxis("Mouse ScrollWheel") * 30f < 180))
                     fov -= Input.GetAxis("Mouse ScrollWheel") * 30f;
@@ -94,6 +152,11 @@ namespace NineSolsPlugin
                 isFov = !isFov;
             }
 
+            if (Input.GetKeyDown(SkipKey.Value))
+            {
+                SkippableManager.Instance.TrySkip();
+            }
+
             if (isSpeed)
             {
                 if (speed > 0)
@@ -115,6 +178,7 @@ namespace NineSolsPlugin
                     Player.i.GetHealth.isInvincibleVote.Vote(Player.i.gameObject, false);
             }
 
+            
 
         }
 
@@ -139,9 +203,29 @@ namespace NineSolsPlugin
 
         private void OnGUI()
         {
+            if (!isInit)
+            {
+                titleStyle = new GUIStyle(GUI.skin.window);
+                toggleStyle = new GUIStyle(GUI.skin.toggle);
+                textFieldStyle = new GUIStyle(GUI.skin.textField);
+                buttonStyle = new GUIStyle(GUI.skin.button);
+                float scaleFactor = Mathf.Min(Screen.width / 1920f, Screen.height / 1080f);
+                int toggleSize = Mathf.RoundToInt(baseToggleSize * scaleFactor);
+                int buttonSize = Mathf.RoundToInt(baseButtonSize * scaleFactor);
+                int textFieldSize = Mathf.RoundToInt(baseTextFieldSize * scaleFactor);
+
+                toggleStyle.fontSize = toggleSize;
+                toggleStyle.padding = new RectOffset(toggleSize * 2, toggleSize * 2, toggleSize / 2, toggleSize / 2);
+                textFieldStyle.fontSize = textFieldSize;
+                buttonStyle.fontSize = buttonSize;
+                buttonStyle.padding = new RectOffset(buttonSize / 3, buttonSize / 3, buttonSize / 3, buttonSize / 3);
+                titleStyle.fontSize = Mathf.RoundToInt(basetitleSize * scaleFactor);
+                isInit = true;
+            }
+
             if (showMenu)
             {
-                windowRect = GUI.Window(156789, windowRect, DoMyWindow, localizationManager.GetString("title"));
+                windowRect = GUI.Window(156789, windowRect, DoMyWindow, localizationManager.GetString("title"), titleStyle);
             }
         }
 
@@ -149,28 +233,28 @@ namespace NineSolsPlugin
         {
             GUILayout.BeginArea(new Rect(10, 20, windowRect.width - 20, windowRect.height - 30));
             {
-                isInvincible = GUILayout.Toggle(isInvincible, localizationManager.GetString("invincible"));
-                isOneHitKill = GUILayout.Toggle(isOneHitKill, localizationManager.GetString("OHK"));
-                isFov = GUILayout.Toggle(isFov, localizationManager.GetString("FOV"));
+                isInvincible = GUILayout.Toggle(isInvincible, localizationManager.GetString("invincible"), toggleStyle);
+                isOneHitKill = GUILayout.Toggle(isOneHitKill, localizationManager.GetString("OHK"), toggleStyle);
+                isFov = GUILayout.Toggle(isFov, localizationManager.GetString("FOV"), toggleStyle);
                 fov = GUILayout.HorizontalSlider(fov, 1f, 180f, GUILayout.Width(200));
-                isSpeed = GUILayout.Toggle(isSpeed, localizationManager.GetString("Timer"));
-                speedInput = GUILayout.TextField(speedInput);
+                isSpeed = GUILayout.Toggle(isSpeed, localizationManager.GetString("Timer"), toggleStyle);
+                speedInput = GUILayout.TextField(speedInput, textFieldStyle);
                 float.TryParse(speedInput, out speed);
-                if (GUILayout.Button(localizationManager.GetString("FullBright")))
+                if (GUILayout.Button(localizationManager.GetString("FullBright"), buttonStyle))
                     FullLight();
                 GUILayout.BeginHorizontal();
                 {
-                    if (GUILayout.Button(localizationManager.GetString("English")))
+                    if (GUILayout.Button(localizationManager.GetString("English"), buttonStyle))
                     {
                         Language.Value = "en-us";
                         localizationManager.SetLanguage(Language.Value);
                     }
-                    if (GUILayout.Button(localizationManager.GetString("繁體中文")))
+                    if (GUILayout.Button(localizationManager.GetString("繁體中文"), buttonStyle))
                     {
                         Language.Value = "zh-tw";
                         localizationManager.SetLanguage(Language.Value);
                     }
-                    if (GUILayout.Button(localizationManager.GetString("简体中文")))
+                    if (GUILayout.Button(localizationManager.GetString("简体中文"), buttonStyle))
                     {
                         Language.Value = "zh-cn";
                         localizationManager.SetLanguage(Language.Value);
@@ -178,7 +262,7 @@ namespace NineSolsPlugin
 
                 }
                 GUILayout.EndHorizontal();
-                if (GUILayout.Button(localizationManager.GetString("Unlock All Skill Jade")))
+                if (GUILayout.Button(localizationManager.GetString("UnlockAll"), buttonStyle))
                 {
                     if (Player.i != null)
                     {
@@ -199,18 +283,61 @@ namespace NineSolsPlugin
                     if (Skill != null)
                         Skill.SetActive(false);
                 }
-                if (GUILayout.Button(localizationManager.GetString("BOSS")))
+                GUILayout.BeginHorizontal();
                 {
-                    if(StartMenuLogic.Instance != null)
-                        StartMenuLogic.Instance.StartGame("A11_S0_Boss_YiGung_回蓬萊");
+                    if (GUILayout.Button(localizationManager.GetString("A2_S5_BossHorseman_Final"), buttonStyle))
+                        GotoScene("A2_S5_BossHorseman_Final");
+                    if (GUILayout.Button(localizationManager.GetString("A3_S5_BossGouMang_Final"), buttonStyle))
+                        GotoScene("A3_S5_BossGouMang_Final");
+                    if (GUILayout.Button(localizationManager.GetString("A4_S5_DaoTrapHouse_Final"), buttonStyle))
+                        GotoScene("A4_S5_DaoTrapHouse_Final");
+                    if (GUILayout.Button(localizationManager.GetString("A5_S5_JieChuanHall"), buttonStyle))
+                        GotoScene("A5_S5_JieChuanHall");
+                    
                 }
+                GUILayout.EndHorizontal();
+                GUILayout.BeginHorizontal();
+                {
+                    if (GUILayout.Button(localizationManager.GetString("A7_S5_Boss_ButterFly"), buttonStyle))
+                        GotoScene("A7_S5_Boss_ButterFly");
+                    if (GUILayout.Button(localizationManager.GetString("A9_S5_風氏"), buttonStyle))
+                        GotoScene("A9_S5_風氏");
+                    if (GUILayout.Button(localizationManager.GetString("A10_S5_Boss_Jee"), buttonStyle))
+                        GotoScene("A10_S5_Boss_Jee");
+                    if (GUILayout.Button(localizationManager.GetString("A11_S0_Boss_YiGung_回蓬萊"), buttonStyle))
+                        GotoScene("A11_S0_Boss_YiGung_回蓬萊");
+                }
+                GUILayout.EndHorizontal();
 
-                if (GUILayout.Button(localizationManager.GetString("Skip")))
+
+                    if (GUILayout.Button(localizationManager.GetString("Skip"), buttonStyle))
                     SkippableManager.Instance.TrySkip();
             }
 
             GUILayout.EndArea();
             GUI.DragWindow();
+        }
+
+        private void GotoScene(string SceneName)
+        {
+            if (Player.i == null)
+            {
+                if (StartMenuLogic.Instance != null && SceneManager.GetActiveScene().name == "TitleScreenMenu")
+                {
+                    StartMenuLogic.Instance.StartGame(SceneName);
+                }
+            }
+            else
+            {
+                if (GameCore.Instance != null)
+                {
+                    if (GameCore.Instance.currentCoreState == GameCore.GameCoreState.Playing)
+                    {
+                        GameCore.Instance.GoToScene(SceneName);
+                        GameCore.Instance.DiscardUnsavedFlagsAndReset();
+                    }
+                }
+            }
         }
     }
 }
