@@ -3,6 +3,12 @@
 
 # BepInEx 5.4.23.2
 
+# Install
+- On Steam Right Click Nine Sols -> Manage -> Browse local files
+- will see NineSols.exe unzip here
+- will look like this
+![](/img/install.png)
+
 # ShortCut Setting
 - BepinEx/config/NineSols.Yukikaco.plugin.cfg inside can setting shortcut
 - Developer Console just Setting Enable or Disable Enable F1 Will Show Disable F1 Will Not Show

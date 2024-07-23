@@ -3,6 +3,13 @@
 
 # BepInEx 5.4.23.2
 
+# 安裝
+- Steam 右鍵 九日 -> 管理 -> 瀏覽本機檔案
+- 會看到NineSols.exe解壓縮到這裡
+- 應該會長這樣
+![](/img/install.png)
+
+
 # 快捷鍵設定
 - BepinEx/config/NineSols.Yukikaco.plugin.cfg 裡面可以設定快捷鍵
 - 控制台只能設定是否開啟 開啟F1才會出現 關閉F1會沒反應
