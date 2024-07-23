@@ -7,6 +7,7 @@
 - Steam 右鍵 九日 -> 管理 -> 瀏覽本機檔案
 - 會看到NineSols.exe解壓縮到這裡
 - 應該會長這樣
+
 ![](/img/install.png)
 
 

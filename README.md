@@ -7,6 +7,7 @@
 - On Steam Right Click Nine Sols -> Manage -> Browse local files
 - will see NineSols.exe unzip here
 - will look like this
+
 ![](/img/install.png)
 
 # ShortCut Setting
