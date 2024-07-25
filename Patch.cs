@@ -1,8 +1,4 @@
-﻿using Battlehub.RTHandles;
-using HarmonyLib;
-using System;
-using System.Collections.Generic;
-using System.Reflection;
+﻿using HarmonyLib;
 using UnityEngine;
 
 namespace NineSolsPlugin
@@ -46,6 +42,16 @@ namespace NineSolsPlugin
                 Traverse.Create(__instance).Field("mCamera").GetValue<Camera>().fieldOfView = __instance.followCamera.fieldOfView;
 
             return false;
+        }
+
+        [HarmonyPrefix, HarmonyPatch(typeof(SkillTreeUI), "UpgradeCheck")]
+        public static bool UpgradeCheck(ref SkillTreeUI __instance)
+        {
+            if(Plugin.Instance.isFastLearnSkill)
+                __instance.longPressSubmit.submitTime = 0f;
+            else
+                __instance.longPressSubmit.submitTime = 1f;
+            return true;
         }
     }
 }

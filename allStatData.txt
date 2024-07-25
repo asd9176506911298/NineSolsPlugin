@@ -1,0 +1,85 @@
+key:JieChuan Posture value:3000
+key:Computing Power 0_Generate Rate 每分鐘算力產生量 value:5
+key:Computing Power 1_Consume Rate 每分鐘算力消耗量 value:0
+key:MaxComputing Power Deposit 最大額外算力存量 value:100
+key:Player Max Level 玩家最高等級 value:30
+key:Defence value:0
+key:DefenceRate value:0
+key:SturdyResetTime value:30
+key:SturdyTriggerThreshold value:40
+key:FooPowerMaxCount 最大氣量 value:1
+key:PotionContainterMaxCount 藥水數量 value:2
+key:PotionHealValue 藥水恢復量 value:60
+key:Internal InjuryRecoverPerSecond 每秒回多少內傷 value:4
+key:Internal InjuryStartRecoverAfter 幾秒後開始回內傷 value:5
+key:MaxJadeEnergyPowerStat 最大玉能量 算力 value:2
+key:PlayerCurrentJadePower 目前使用算力 value:0
+key:PlayerOverChargeJadePowerStat 過載玉能量 算力 value:0
+key:MaxHealth 主角最大血量 value:120
+key:MaxHealthToBaseRatio 最大血量加成倍率結果 value:1
+key:MaxRun value:150
+key:超載的Total Debuff value:0
+key:0_PlayerAttackBaseDamageRatio 主角攻擊的基礎倍率 value:1
+key:1_PlayerTakeDamageRatio 主角受傷倍率 value:1
+key:[BaseRatio] 0_AttackDamageRatio 氣刃傷害倍率 value:1
+key:[BaseRatio] 0_FooBaseDamageRatio 符咒傷害倍率 value:1
+key:[BaseRatio] 0_PlayerArrowBaseDamageRatio 弓箭傷害倍率 value:1
+key:[Stat] ChargeAttackDmg 蓄力攻擊(爆劍玉) value:116
+key:[Stat] ChargeAttackDmg 蓄力攻擊傷害 value:64
+key:[Stat] NormalAttackDmg 普攻傷害 value:20
+key:[Stat] NormalAttackDmg 第三刀 chid Blade 氣刃 value:100
+key:BreakShieldDmg value:18
+key:ChargeAttackChargeTime 重擊集氣時間 value:1
+key:NormalAttackDmg_3rd 第三刀傷害 value:40
+key:1_NormalArrowBaseDmg 貫通箭傷害 value:136
+key:2_Explode Arrow BaseDmg 爆破箭傷害 value:18
+key:3_ChasingArrowBaseDmg 追蹤箭傷害 value:30
+key:ArrowConsume 射箭蒼砂消耗量 value:10
+key:FooExplodeDmg_4_5_extra value:0
+key:FooExplodeDmg_AllVer_Lv1 value:64
+key:FooExplodeDmg_AllVer_Lv2 value:96
+key:FooExplodeDmg_AllVer_Lv3 value:128
+key:FooExplodeDmg_AllVer_Lv4 value:152
+key:FooExplodeDmg_AllVer_Lv5 value:176
+key:FooExplodeDmg_AutoVer value:60
+key:FooExplodeDmg_MultiVer_Lv1 value:40
+key:FooExplodeDmg_MultiVer_Lv2 value:80
+key:FooExplodeDmg_MultiVer_Lv3 value:128
+key:FooExplodeDmg_MultiVer_Lv4 value:160
+key:FooExplodeDmg_MultiVer_Lv5 value:196
+key:FooExplodeDmg_MultiVer_Ultimate value:256
+key:FooHitDmg value:32
+key:_Deprecated_BackStabDmg value:0
+key:_Deprecated_BackStabGainHealth value:0
+key:BossFightZGunDamage value:10
+key:TrapKillEnemyDamage value:100000
+key:TrapMidDamage(雷射預設) value:300
+key:TrapSmallDamage value:40
+key:屍爆傷害_ZombieExplodeDamage value:500
+key:ArrowShotAmmoCost 弓箭消耗量 value:1
+key:MaxAmmoRepository value:99999
+key:MaxAmmo最大蒼砂量 value:2
+key:Roll_Weak_主角虛弱 value:0
+key:RollCoolDown 閃避CD value:1
+key:[Stat] ParryAccurate Reflect Internal Dmg 精準反內傷 value:20
+key:[Stat] ParryCounterReflectDmg 大反內傷 value:80
+key:[Stat] ParryCounterTransferDmg 大反轉移內傷 value:80
+key:[Stat] ParryJumpDeflectDmg 識破內傷 value:60
+key:ParryDuration value:0.25
+key:JumpDeflectGainPower 識破回氣 value:1
+key:ParryCounterGainPower 大反回氣 value:1
+key:AttackChipDamageRecovery value:5
+key:ChipDamage InternalDamageRatio 主角內傷倍率 value:0.5
+key:FooExplodeChipDamageRecovery value:4
+key:[StatData] deathPenaltyRate 死亡懲罰掉落率 value:1
+key:[StatData] expRate value:1
+key:[StatData] FooKill DropRate 咒滅倍率 value:1
+key:__Depre[StatData] reviveHPRate value:0
+key:_StatData_ monster Gold Drop Rate 怪物金錢掉落率 value:1
+key:Hurt Internal Dmg Ratio 受傷轉內傷比例 value:0
+key:藥學玉回血持續時間 value:5
+key:藥學玉回血頻率 value:0.1
+key:Player Accurate Parry Knockback Reduce Ratio 精準格檔擊退減少倍率 value:1
+key:Reflect Projectile DamageRatio反彈子彈倍率 value:1
+key:[StatData] Foo Freeze Effect Level 貼符定身效果 value:0
+key:[StatData] Foo Multiple Hit Count 符貼數量 value:1
