@@ -507,7 +507,17 @@ namespace NineSolsPlugin
 
                     //HandleTeleportButtonClick("A9_S1_Remake_4wei", new Vector3(-3330, 352, 0f)); //巨錘機兵－
 
-                    //HandleTeleportButtonClick("A9_S1_Remake_4wei", new Vector3(-3330, 352, 0f)); //巨錘機兵－
+                    //HandleTeleportButtonClick("A1_S3_InnerHumanDisposal_Final", new Vector3(-5590, -608, 0f)); //天綱影者－山鬼
+
+                    //HandleTeleportButtonClick("A0_S9_AltarReturned", new Vector3(-95, -64, 0f)); //赤虎刀校－獵官： 從監獄脫逃後將能觸發神農支線任務， 使用神農給予的古礦坑鑰匙卡從古礦坑右上角返回桃花村。
+
+                    //HandleTeleportButtonClick("A6_S3_Tutorial_And_SecretBoss_Remake", new Vector3(5457, -6288, 0f)); //天綱侍衛－隱月
+
+                    //HandleTeleportButtonClick("A6_S1_AbandonMine_Remake_4wei", new Vector3(5151, -7488, 0f)); //赤虎刀校－魁岩
+
+                    //HandleTeleportButtonClick("A4_S2_RouteToControlRoom_Final", new Vector3(-3950, -3040, 0f)); //天綱法使－鐵焰
+
+                    HandleTeleportButtonClick("A5_S4_CastleMid_Remake_5wei", new Vector3(4033, -4528, 0f)); //天綱步衛－武槍
 
                     //ChangeSceneData data = new ChangeSceneData();
                     //data.sceneName = "A1_S2_ConnectionToElevator_Final";
