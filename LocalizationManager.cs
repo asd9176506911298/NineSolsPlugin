@@ -25,7 +25,12 @@ public class LocalizationManager
     private void LoadLocalizationStrings(string languageCode)
     {
         _localizationStrings = new Dictionary<string, string>();
-        string ASSEMBLY_DIR = "D:\\Games\\Nine Sols\\BepInEx\\scripts";// Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+        string ASSEMBLY_DIR;
+        #if DEBUG
+            ASSEMBLY_DIR = "D:\\Games\\Nine Sols\\BepInEx\\scripts";// Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+        #else
+            ASSEMBLY_DIR = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+        #endif
         string path = Path.Combine(ASSEMBLY_DIR, $"strings_{languageCode}.json");
         if (File.Exists(path))
         {

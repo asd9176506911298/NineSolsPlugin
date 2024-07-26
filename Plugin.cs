@@ -55,6 +55,7 @@ namespace NineSolsPlugin
         public bool isGetAllWithoutActiveSkill = false;
         public bool isSpeed = false;
         public bool isFastLearnSkill = false;
+        public bool isAutoHeal = false;
         public bool isInfiniteChi = false;
         public bool isInfinitePotion = false;
         public bool isInfiniteAmmo = false;
@@ -84,13 +85,44 @@ namespace NineSolsPlugin
 
             // Initialize window size based on screen dimensions
             float width = Screen.width * 0.5f;
-            float height = Screen.height * 0.7f;
+            float height = Screen.height * 0.75f;
             windowRect = new Rect((Screen.width - width) / 2, (Screen.height - height) / 2, width, height);
         }
 
         private void Start()
         {
             
+        }
+
+        async void PerformActionsAfterTeleport(string SceneName, Vector3 teleportPostion, List<string> flags = null)
+        {
+            HandleTeleportButtonClick(SceneName, teleportPostion);
+
+            //HandleTeleportButtonClick("A2_S2_ReactorRight_Final", new Vector3(-4690, -1968, 0f)); // 天綱步衛－角端
+            //ModifyFlag("574d3e20-47c5-4841-a21c-121d7806ed6e_c3c3f30fb046d9743aea48eb8f4833bcScriptableDataBool", 1);
+            //ModifyFlag("5d67c34b-0553-482f-8e4d-dd4c02d0c359_c3c3f30fb046d9743aea48eb8f4833bcScriptableDataBool", 1);
+            //ModifyFlag("ff553e6df36c89644ae08124aaa2913eScriptableDataBool", 1);
+            if(flags != null)
+            {
+                foreach (var flag in flags)
+                {
+                    ModifyFlag(flag, 1);
+                }
+            }
+
+            await checkMove();
+
+            // Now that the player is on the ground, call KillAllEnemies
+            KillAllEnemiesExcept(MonsterLevel.MiniBoss);
+        }
+
+        async UniTask checkMove()
+        {
+            // Wait until the player is instantiated and on the ground
+            while (Player.i == null || Player.i.moveVec.x == 0)
+            {
+                await UniTask.Yield();
+            }
         }
 
         private async UniTaskVoid PrePrecoess(string sceneName, TeleportPointData teleportPointData)
@@ -134,7 +166,7 @@ namespace NineSolsPlugin
         void OnScreenSizeChanged(float width, float height)
         {
             width *= 0.5f;
-            height *= 0.7f;
+            height *= 0.75f;
             windowRect = new Rect((Screen.width - width) / 2, (Screen.height - height) / 2, width, height);
             // Implement your logic here when screen size changes
             Debug.Log($"Screen size changed to: {width}x{height}");
@@ -243,6 +275,14 @@ namespace NineSolsPlugin
                     Player.i.GetHealth.isInvincibleVote.Vote(Player.i.gameObject, false);
             }
 
+            if (isAutoHeal)
+            {
+                if (Player.i != null && Player.i.health != null)
+                {
+                    Player.i.health.GainFull();
+                }
+            }
+
             if (isInfiniteChi)
             {
                 if(Player.i != null && Player.i.chiContainer != null){
@@ -267,15 +307,52 @@ namespace NineSolsPlugin
             }
         }
 
+        private void KillAllEnemies()
+        {
+            foreach (MonsterLevel level in Enum.GetValues(typeof(MonsterLevel)))
+            {
+                KillAllEnemies(level);
+            }
+        }
+
+        private void KillAllEnemiesExcept(MonsterLevel killType)
+        {
+            foreach (MonsterLevel level in Enum.GetValues(typeof(MonsterLevel)))
+            {
+                if(killType != level)
+                    KillAllEnemies(level);
+            }
+        }
+
+        private void KillAllEnemies(MonsterLevel killType)
+        {
+
+            foreach (MonsterBase monsterBase in UnityEngine.Object.FindObjectsOfType<MonsterBase>())
+            {
+                bool flag = monsterBase != null && monsterBase.IsAlive() && monsterBase.isActiveAndEnabled && monsterBase.gameObject.activeInHierarchy && monsterBase.gameObject.activeSelf && monsterBase.monsterStat.monsterLevel == killType;
+                if (flag)
+                {
+                    if (monsterBase != null)
+                    {
+                        monsterBase.DieSelfDesctruction();
+                    }
+                }
+            }
+        }
+
         private void Update()
         {
             CheckScreenSize();
             ProcessShortCut();
             TickLogic();
 
+            #if DEBUG
             if (Input.GetKeyDown(KeyCode.Insert))
             {
-
+                //KillAllEnemies();
+                //KillAllEnemiesExcept(MonsterLevel.MiniBoss);
+                KillAllEnemies(MonsterLevel.Minion);
+                KillAllEnemies(MonsterLevel.Elite);
                 //var flagDict = SaveManager.Instance.allFlags.FlagDict;
                 //if (flagDict.TryGetValue("740a8b30-e3cc-4acc-9f5f-da3aaae1df5e_51c211e21fecd9e4c92f41d8d72aa395ScriptableDataBool", out var value)){
                 //    Logger.LogInfo(value.GetType().Name);
@@ -290,14 +367,14 @@ namespace NineSolsPlugin
                 //    {
                 //        case "ScriptableDataBool":
                 //            var scriptableDataBool = x.Value as ScriptableDataBool;
-                //            Logger.LogInfo($"key:{x.Key} value:{x.Value} bool:{scriptableDataBool.isValid}");
+                //            Logger.LogInfo($"{x.Key}
                 //            break;
                 //        case "InterestPointData":
                 //            var interestPointData = x.Value as InterestPointData;
-                //            Logger.LogInfo($"key:{x.Key} value:{x.Value} bool:{interestPointData.IsSolved}");
+                //            Logger.LogInfo($"{x.Key}
                 //            break;
                 //                //var scriptableDataBool = x.Value as ScriptableDataBool;
-                //                //Logger.LogInfo($"key:{x.Key} value:{x.Value} bool:{scriptableDataBool.isValid}");
+                //                //Logger.LogInfo($"{x.Key}
                 //        }
                 //}
                 //Logger.LogInfo("---------------------------------------");
@@ -326,7 +403,9 @@ namespace NineSolsPlugin
                 //PrintFlag("t", "740a8b30-e3cc-4acc-9f5f-da3aaae1df5e_51c211e21fecd9e4c92f41d8d72aa395InterestPointData");
                 //PrintFlag("t", "51c211e21fecd9e4c92f41d8d72aa395b3d34dc1-c360-4e0c-863b-446c45bade1aInterestPointData");
             }
+            #endif
         }
+
 
         void PrintFlag(string key)
         {
@@ -390,16 +469,17 @@ namespace NineSolsPlugin
             {
                 GUILayout.BeginHorizontal();
                 {
-                    isInvincible = GUILayout.Toggle(isInvincible, localizationManager.GetString("invincible"), toggleStyle);
+                    isInvincible = GUILayout.Toggle(isInvincible, localizationManager.GetString("Invincible"), toggleStyle);
                     isOneHitKill = GUILayout.Toggle(isOneHitKill, localizationManager.GetString("OHK"), toggleStyle);
-                    isFastLearnSkill = GUILayout.Toggle(isFastLearnSkill, localizationManager.GetString("isFastLearnSkill"), toggleStyle);
+                    isFastLearnSkill = GUILayout.Toggle(isFastLearnSkill, localizationManager.GetString("FastLearnSkill"), toggleStyle);
                 }
                 GUILayout.EndHorizontal();
                 GUILayout.BeginHorizontal();
                 {
-                    isInfiniteChi = GUILayout.Toggle(isInfiniteChi, localizationManager.GetString("isInfiniteChi"), toggleStyle);
-                    isInfinitePotion = GUILayout.Toggle(isInfinitePotion, localizationManager.GetString("isInfinitePotion"), toggleStyle);
-                    isInfiniteAmmo = GUILayout.Toggle(isInfiniteAmmo, localizationManager.GetString("isInfiniteAmmo"), toggleStyle);
+                    isAutoHeal = GUILayout.Toggle(isAutoHeal, localizationManager.GetString("AutoHeal"), toggleStyle);
+                    isInfiniteChi = GUILayout.Toggle(isInfiniteChi, localizationManager.GetString("InfiniteChi"), toggleStyle);
+                    isInfinitePotion = GUILayout.Toggle(isInfinitePotion, localizationManager.GetString("InfinitePotion"), toggleStyle);
+                    isInfiniteAmmo = GUILayout.Toggle(isInfiniteAmmo, localizationManager.GetString("InfiniteAmmo"), toggleStyle);
                 }
                 GUILayout.EndHorizontal();
                 GUILayout.BeginHorizontal();
@@ -452,20 +532,20 @@ namespace NineSolsPlugin
                 GUILayout.EndHorizontal();
                 GUILayout.BeginHorizontal();
                 {
-                    isGetAll = GUILayout.Toggle(isGetAll, localizationManager.GetString("Boss Apply GetAllMax"), toggleStyle);
-                    isGetAllWithoutActiveSkill = GUILayout.Toggle(isGetAllWithoutActiveSkill, localizationManager.GetString("Boss Apply GetAllMaxWithoutActiveSkill"), toggleStyle);
+                    isGetAll = GUILayout.Toggle(isGetAll, localizationManager.GetString("AutoGetAllMax"), toggleStyle);
+                    isGetAllWithoutActiveSkill = GUILayout.Toggle(isGetAllWithoutActiveSkill, localizationManager.GetString("AutoGetAllMaxWithoutActiveSkill"), toggleStyle);
                 }
                 GUILayout.EndHorizontal();
                 GUILayout.BeginHorizontal();
                 {
                     if (GUILayout.Button(localizationManager.GetString("A2_S5_BossHorseman_Final"), buttonStyle))
-                        HandleTeleportButtonClick("A2_S5_BossHorseman_Final", new Vector3(-5195f, -2288f, 0f));
+                        HandleTeleportButtonClick("A2_S5_BossHorseman_Final", new Vector3(-4790, -2288f, 0f));
                     if (GUILayout.Button(localizationManager.GetString("A3_S5_BossGouMang_Final"), buttonStyle))
-                        HandleTeleportButtonClick("A3_S5_BossGouMang_Final", new Vector3(-4287f, -2288f, 0f));
+                        HandleTeleportButtonClick("A3_S5_BossGouMang_Final", new Vector3(-4430, -2288f, 0f));
                     if (GUILayout.Button(localizationManager.GetString("A4_S5_DaoTrapHouse_Final"), buttonStyle))
                         HandleTeleportButtonClick("A4_S5_DaoTrapHouse_Final", new Vector3(1833f, -3744f, 0f));
                     if (GUILayout.Button(localizationManager.GetString("A5_S5_JieChuanHall"), buttonStyle))
-                        HandleTeleportButtonClick("A5_S5_JieChuanHall", new Vector3(-4500f, -2288f, 0f));
+                        HandleTeleportButtonClick("A5_S5_JieChuanHall", new Vector3(-4784, -2288f, 0f));
 
                 }
                 GUILayout.EndHorizontal();
@@ -474,11 +554,79 @@ namespace NineSolsPlugin
                     if (GUILayout.Button(localizationManager.GetString("A7_S5_Boss_ButterFly"), buttonStyle))
                         HandleTeleportButtonClick("A7_S5_Boss_ButterFly", new Vector3(-2640f, -1104f, 0f));
                     if (GUILayout.Button(localizationManager.GetString("A9_S5_風氏"), buttonStyle))
-                        HandleTeleportButtonClick("A9_S5_風氏", new Vector3(-2340f, -1264f, 0f));
+                        HandleTeleportButtonClick("A9_S5_風氏", new Vector3(-2370f, -1264f, 0f));
                     if (GUILayout.Button(localizationManager.GetString("A10_S5_Boss_Jee"), buttonStyle))
-                        HandleTeleportButtonClick("A10_S5_Boss_Jee", new Vector3(-90f, -64f, 0f));
+                        HandleTeleportButtonClick("A10_S5_Boss_Jee", new Vector3(-48f, -64f, 0f));
                     if (GUILayout.Button(localizationManager.GetString("A11_S0_Boss_YiGung_回蓬萊"), buttonStyle))
                         HandleTeleportButtonClick("A11_S0_Boss_YiGung_回蓬萊", new Vector3(-2686f, -1104f, 0f));
+                }
+                GUILayout.EndHorizontal();
+                GUILayout.BeginHorizontal();
+                {
+                    if (GUILayout.Button(localizationManager.GetString("赤虎－百長"), buttonStyle))
+                        HandleTeleportButtonClick("A1_S2_ConnectionToElevator_Final", new Vector3(1820f, -4432f, 0f)); //赤虎刀校－百長
+                    if (GUILayout.Button(localizationManager.GetString("赤虎－炎刃"), buttonStyle))
+                        HandleTeleportButtonClick("A2_S6_LogisticCenter_Final", new Vector3(5030, -6768, 0f)); //赤虎刀校－炎刃
+                    if (GUILayout.Button(localizationManager.GetString("赤虎－獵官"), buttonStyle))
+                        PerformActionsAfterTeleport("A0_S9_AltarReturned", new Vector3(-95, -64, 0f)); //赤虎刀校－獵官： 從監獄脫逃後將能觸發神農支線任務， 使用神農給予的古礦坑鑰匙卡從古礦坑右上角返回桃花村。
+                    if (GUILayout.Button(localizationManager.GetString("赤虎－魁岩"), buttonStyle))
+                        HandleTeleportButtonClick("A6_S1_AbandonMine_Remake_4wei", new Vector3(5151, -7488, 0f)); //赤虎刀校－魁岩
+                    
+                }
+                GUILayout.EndHorizontal();
+                GUILayout.BeginHorizontal();
+                {
+                    if (GUILayout.Button(localizationManager.GetString("魂守－刺行"), buttonStyle))
+                    {
+                        HandleTeleportButtonClick("A10_S4_HistoryTomb_Left", new Vector3(-690, -368, 0f)); //魂守－刺行：完成三間密室內的考驗，此BOSS才會出現。
+                        ModifyFlag("44bc69bd40a7f6d45a2b8784cc8ebbd1ScriptableDataBool", 1); //A10_SG1_Cave1_[Variable] 看過天尊棺材演出_科技天尊 (ScriptableDataBool)
+                        ModifyFlag("118f725174ccdf5498af6386d4987482ScriptableDataBool", 1); //A10_SG2_Cave2_[Variable] 看過天尊棺材演出_經濟天尊 (ScriptableDataBool)
+                        ModifyFlag("d7a444315eab0b74fb0ed1e8144edf73ScriptableDataBool", 1); //A10_SG3_Cave4_[Variable] 看過天尊棺材演出_軍事天尊 (ScriptableDataBool)
+                    }
+                    if (GUILayout.Button(localizationManager.GetString("機兵－天守"), buttonStyle))
+                    {
+                        HandleTeleportButtonClick("A9_S1_Remake_4wei", new Vector3(-3330, 352, 0f)); //巨錘機兵－天守
+                        ModifyFlag("a2dba9e5-61cf-453a-8981-efb081fb0b11_4256ef2ec22f942dc9f70607bb00391fScriptableDataBool", 1); // 跳過Butterfly Hack SimpleCutScenePlayeda2dba9e5-61cf-453a-8981-efb081fb0b11 (ScriptableDataBool)
+                    }
+                    if (GUILayout.Button(localizationManager.GetString("步衛－角端"), buttonStyle))
+                    {
+                        //HandleTeleportButtonClick("A2_S2_ReactorRight_Final", new Vector3(-4690, -1968, 0f)); // 天綱步衛－角端
+                        List<string> flags = new List<string> { 
+                            "574d3e20-47c5-4841-a21c-121d7806ed6e_c3c3f30fb046d9743aea48eb8f4833bcScriptableDataBool",
+                            "ff553e6df36c89644ae08124aaa2913eScriptableDataBool",
+                            "5d67c34b-0553-482f-8e4d-dd4c02d0c359_c3c3f30fb046d9743aea48eb8f4833bcScriptableDataBool"};
+
+                        PerformActionsAfterTeleport("A2_S2_ReactorRight_Final", new Vector3(-4690, -1968, 0f), flags);
+                        if (Player.i != null)
+                            Traverse.Create(Player.i).Method("SkipFooMiniGame").GetValue();
+                            
+                        //HandleTeleportButtonClick("A2_S2_ReactorRight_Final", new Vector3(-4642, -1968, 0f)); //天綱步衛－角端
+                        //ModifyFlag("574d3e20-47c5-4841-a21c-121d7806ed6e_c3c3f30fb046d9743aea48eb8f4833bcScriptableDataBool", 1);
+                        //ModifyFlag("ff553e6df36c89644ae08124aaa2913eScriptableDataBool", 1);
+                        //ModifyFlag("5d67c34b-0553-482f-8e4d-dd4c02d0c359_c3c3f30fb046d9743aea48eb8f4833bcScriptableDataBool", 1);
+
+
+                    }
+                    if (GUILayout.Button(localizationManager.GetString("影者－水鬼"), buttonStyle))
+                    {
+                        HandleTeleportButtonClick("A3_S2_GreenHouse_Final", new Vector3(-4530, -1216, 0f)); //天綱影者－水鬼
+                        if (Player.i != null)
+                            Traverse.Create(Player.i).Method("UnlockChargedAttack").GetValue();
+
+                        ModifyFlag("a4657cbd-5219-45fb-9401-3780b41e8cbe_efdc8e91e5eb76347b87b832ac07330cScriptableDataBool", 1); // 關閉水 A3_S2_GreenHouse_Final_[Variable] SimpleCutScenePlayeda4657cbd-5219-45fb-9401-3780b41e8cbe (ScriptableDataBool)
+                    }
+                }
+                GUILayout.EndHorizontal();
+                GUILayout.BeginHorizontal();
+                {
+                    if (GUILayout.Button(localizationManager.GetString("影者－山鬼"), buttonStyle))
+                        HandleTeleportButtonClick("A1_S3_InnerHumanDisposal_Final", new Vector3(-5590, -608, 0f)); //天綱影者－山鬼
+                    if (GUILayout.Button(localizationManager.GetString("侍衛－隱月"), buttonStyle))
+                        HandleTeleportButtonClick("A6_S3_Tutorial_And_SecretBoss_Remake", new Vector3(5457, -6288, 0f)); //天綱侍衛－隱月
+                    if (GUILayout.Button(localizationManager.GetString("法使－鐵焰"), buttonStyle))
+                        HandleTeleportButtonClick("A4_S2_RouteToControlRoom_Final", new Vector3(-3950, -3040, 0f)); //天綱法使－鐵焰
+                    if (GUILayout.Button(localizationManager.GetString("步衛－武槍"), buttonStyle))
+                        PerformActionsAfterTeleport("A5_S4_CastleMid_Remake_5wei", new Vector3(4430, -4224, 0f)); //天綱步衛－武槍
                 }
                 GUILayout.EndHorizontal();
 
@@ -486,91 +634,95 @@ namespace NineSolsPlugin
                 {
                     SkippableManager.Instance.TrySkip();
                 }
-                if (GUILayout.Button(localizationManager.GetString("故意放棄進度 reset這個場景"), buttonStyle))
-                {
-                    if (GameCore.Instance != null)
-                        GameCore.Instance.DiscardUnsavedFlagsAndReset();
-                }
-                if (GUILayout.Button(localizationManager.GetString("Test"), buttonStyle))
-                {
-                    //HandleTeleportButtonClick("A1_S2_ConnectionToElevator_Final", new Vector3(1820f, -4432f, 0f)); //赤虎刀校－百長
-                    //HandleTeleportButtonClick("A2_S6_LogisticCenter_Final", new Vector3(4370, -6768, 0f)); //赤虎刀校－炎刃
-                    //HandleTeleportButtonClick("A2_S2_ReactorRight_Final", new Vector3(-4642, -1968, 0f)); //天綱步衛－角端
+                #if DEBUG
+                    if (GUILayout.Button(localizationManager.GetString("故意放棄進度 reset這個場景"), buttonStyle))
+                    {
+                        if (GameCore.Instance != null)
+                            GameCore.Instance.DiscardUnsavedFlagsAndReset();
+                    }
+                    if (GUILayout.Button(localizationManager.GetString("Test"), buttonStyle))
+                    {
+                        //HandleTeleportButtonClick("A1_S2_ConnectionToElevator_Final", new Vector3(1820f, -4432f, 0f)); //赤虎刀校－百長
+                        //HandleTeleportButtonClick("A2_S6_LogisticCenter_Final", new Vector3(4370, -6768, 0f)); //赤虎刀校－炎刃
+                        //HandleTeleportButtonClick("A2_S2_ReactorRight_Final", new Vector3(-4642, -1968, 0f)); //天綱步衛－角端
 
-                    //HandleTeleportButtonClick("A10_S4_HistoryTomb_Left", new Vector3(-690, -368, 0f)); //魂守－刺行：完成三間密室內的考驗，此BOSS才會出現。
-                    //ModifyFlag("44bc69bd40a7f6d45a2b8784cc8ebbd1ScriptableDataBool", 1); //A10_SG1_Cave1_[Variable] 看過天尊棺材演出_科技天尊 (ScriptableDataBool)
-                    //ModifyFlag("118f725174ccdf5498af6386d4987482ScriptableDataBool", 1); //A10_SG2_Cave2_[Variable] 看過天尊棺材演出_經濟天尊 (ScriptableDataBool)
-                    //ModifyFlag("d7a444315eab0b74fb0ed1e8144edf73ScriptableDataBool", 1); //A10_SG3_Cave4_[Variable] 看過天尊棺材演出_軍事天尊 (ScriptableDataBool)
+                        //HandleTeleportButtonClick("A10_S4_HistoryTomb_Left", new Vector3(-690, -368, 0f)); //魂守－刺行：完成三間密室內的考驗，此BOSS才會出現。
+                        //ModifyFlag("44bc69bd40a7f6d45a2b8784cc8ebbd1ScriptableDataBool", 1); //A10_SG1_Cave1_[Variable] 看過天尊棺材演出_科技天尊 (ScriptableDataBool)
+                        //ModifyFlag("118f725174ccdf5498af6386d4987482ScriptableDataBool", 1); //A10_SG2_Cave2_[Variable] 看過天尊棺材演出_經濟天尊 (ScriptableDataBool)
+                        //ModifyFlag("d7a444315eab0b74fb0ed1e8144edf73ScriptableDataBool", 1); //A10_SG3_Cave4_[Variable] 看過天尊棺材演出_軍事天尊 (ScriptableDataBool)
 
-                    //HandleTeleportButtonClick("A3_S2_GreenHouse_Final", new Vector3(-4530, -1216, 0f)); //天綱影者－水鬼
-                    //Traverse.Create(Player.i).Method("UnlockChargedAttack").GetValue();
+                        //HandleTeleportButtonClick("A3_S2_GreenHouse_Final", new Vector3(-4530, -1216, 0f)); //天綱影者－水鬼
+                        //Traverse.Create(Player.i).Method("UnlockChargedAttack").GetValue();
 
-                    //HandleTeleportButtonClick("A9_S1_Remake_4wei", new Vector3(-3330, 352, 0f)); //巨錘機兵－
+                        //HandleTeleportButtonClick("A9_S1_Remake_4wei", new Vector3(-3330, 352, 0f)); //巨錘機兵－天守
 
-                    //HandleTeleportButtonClick("A1_S3_InnerHumanDisposal_Final", new Vector3(-5590, -608, 0f)); //天綱影者－山鬼
+                        //HandleTeleportButtonClick("A1_S3_InnerHumanDisposal_Final", new Vector3(-5590, -608, 0f)); //天綱影者－山鬼
 
-                    //HandleTeleportButtonClick("A0_S9_AltarReturned", new Vector3(-95, -64, 0f)); //赤虎刀校－獵官： 從監獄脫逃後將能觸發神農支線任務， 使用神農給予的古礦坑鑰匙卡從古礦坑右上角返回桃花村。
+                        //HandleTeleportButtonClick("A0_S9_AltarReturned", new Vector3(-95, -64, 0f)); //赤虎刀校－獵官： 從監獄脫逃後將能觸發神農支線任務， 使用神農給予的古礦坑鑰匙卡從古礦坑右上角返回桃花村。
 
-                    //HandleTeleportButtonClick("A6_S3_Tutorial_And_SecretBoss_Remake", new Vector3(5457, -6288, 0f)); //天綱侍衛－隱月
+                        //HandleTeleportButtonClick("A6_S3_Tutorial_And_SecretBoss_Remake", new Vector3(5457, -6288, 0f)); //天綱侍衛－隱月
 
-                    //HandleTeleportButtonClick("A6_S1_AbandonMine_Remake_4wei", new Vector3(5151, -7488, 0f)); //赤虎刀校－魁岩
+                        //HandleTeleportButtonClick("A6_S1_AbandonMine_Remake_4wei", new Vector3(5151, -7488, 0f)); //赤虎刀校－魁岩
 
-                    //HandleTeleportButtonClick("A4_S2_RouteToControlRoom_Final", new Vector3(-3950, -3040, 0f)); //天綱法使－鐵焰
+                        //HandleTeleportButtonClick("A4_S2_RouteToControlRoom_Final", new Vector3(-3950, -3040, 0f)); //天綱法使－鐵焰
 
-                    HandleTeleportButtonClick("A5_S4_CastleMid_Remake_5wei", new Vector3(4033, -4528, 0f)); //天綱步衛－武槍
+                        HandleTeleportButtonClick("A5_S4_CastleMid_Remake_5wei", new Vector3(4033, -4528, 0f)); //天綱步衛－武槍
 
-                    //ChangeSceneData data = new ChangeSceneData();
-                    //data.sceneName = "A1_S2_ConnectionToElevator_Final";
-                    //data.fadeColor = default(Color);
-                    //GameCore.Instance.ChangeScene(data);
+                        //ChangeSceneData data = new ChangeSceneData();
+                        //data.sceneName = "A1_S2_ConnectionToElevator_Final";
+                        //data.fadeColor = default(Color);
+                        //GameCore.Instance.ChangeScene(data);
 
-                    //TeleportPointData t = ScriptableObject.CreateInstance<TeleportPointData>();
-                    //t.sceneName = "A2_S5_BossHorseman_Final";
-                    //t.TeleportPosition = new Vector3(-5195f, -2288f, 0f);
-                    //GameCore.Instance.TeleportToSavePoint(t);
+                        //TeleportPointData t = ScriptableObject.CreateInstance<TeleportPointData>();
+                        //t.sceneName = "A2_S5_BossHorseman_Final";
+                        //t.TeleportPosition = new Vector3(-5195f, -2288f, 0f);
+                        //GameCore.Instance.TeleportToSavePoint(t);
 
 
-                    //if(Player.i != null)
-                    //{
-                    //    //Player.i.transform.position = new Vector3(-5195f,-2288f,0f);
-                    //}
-                    //Traverse.Create(Player.i).Method("AddSkillPoint").GetValue();
-                    //NotAtSavePoint();
+                        //if(Player.i != null)
+                        //{
+                        //    //Player.i.transform.position = new Vector3(-5195f,-2288f,0f);
+                        //}
+                        //Traverse.Create(Player.i).Method("AddSkillPoint").GetValue();
+                        //NotAtSavePoint();
 
-                    //var dic = SaveManager.Instance.allFlags.flagDict;
+                        //var dic = SaveManager.Instance.allFlags.flagDict;
 
-                    //var d = new List<string>
-                    //{
-                    //    "af9cb112a715e4955afaa3e740f4fe5aSkillNodeData",
-                    //    "261c03bb170884f0084f3d4a8c17f708SkillNodeData",
-                    //    "9f05ad4510c4f4526bcf9facc75e1370SkillNodeData",
-                    //    "d57a70d600fb34edbbfa503acf81b85eSkillNodeData",
-                    //    "19b09ad0c66d84337826a5c0184625edSkillNodeData",
-                    //    "d8cbeba2a689a422abdb956743a07891SkillNodeData"
-                    //};
+                        //var d = new List<string>
+                        //{
+                        //    "af9cb112a715e4955afaa3e740f4fe5aSkillNodeData",
+                        //    "261c03bb170884f0084f3d4a8c17f708SkillNodeData",
+                        //    "9f05ad4510c4f4526bcf9facc75e1370SkillNodeData",
+                        //    "d57a70d600fb34edbbfa503acf81b85eSkillNodeData",
+                        //    "19b09ad0c66d84337826a5c0184625edSkillNodeData",
+                        //    "d8cbeba2a689a422abdb956743a07891SkillNodeData"
+                        //};
 
-                    //foreach (var x in dic)
-                    //{
-                    //    if(x.Value.GetType().Name == "SkillNodeData")
-                    //    {
-                    //        if (d.Contains(x.Value.FinalSaveID))
-                    //            ModifyFlag(x.Value.FinalSaveID, 1);
-                    //    }
-                    //}
-                    //ModifyFlag("af9cb112a715e4955afaa3e740f4fe5aSkillNodeData", 1); //0_閃避 (SkillNodeData)
-                    //ModifyFlag("261c03bb170884f0084f3d4a8c17f708SkillNodeData", 1); // 流派 Foo 1_一氣貫通 (SkillNodeData)
-                    //ModifyFlag("9f05ad4510c4f4526bcf9facc75e1370SkillNodeData", 1); // 0_輕功 (SkillNodeData)
-                    //ModifyFlag("d57a70d600fb34edbbfa503acf81b85eSkillNodeData", 1); // 0_輕功招式 (SkillNodeData)
-                    //ModifyFlag("19b09ad0c66d84337826a5c0184625edSkillNodeData", 1); // 0_parry 格擋 (SkillNodeData)
-                    //ModifyFlag("d8cbeba2a689a422abdb956743a07891SkillNodeData", 1); // 0_攻擊 (SkillNodeData)
-                    //ModifyFlag("b3e48a60ad0b84648952dc21712b27c0SkillNodeData", 1); // Foo Power +1 內力提升 LV1 (SkillNodeData)
+                        //foreach (var x in dic)
+                        //{
+                        //    if(x.Value.GetType().Name == "SkillNodeData")
+                        //    {
+                        //        if (d.Contains(x.Value.FinalSaveID))
+                        //            ModifyFlag(x.Value.FinalSaveID, 1);
+                        //    }
+                        //}
+                        //ModifyFlag("af9cb112a715e4955afaa3e740f4fe5aSkillNodeData", 1); //0_閃避 (SkillNodeData)
+                        //ModifyFlag("261c03bb170884f0084f3d4a8c17f708SkillNodeData", 1); // 流派 Foo 1_一氣貫通 (SkillNodeData)
+                        //ModifyFlag("9f05ad4510c4f4526bcf9facc75e1370SkillNodeData", 1); // 0_輕功 (SkillNodeData)
+                        //ModifyFlag("d57a70d600fb34edbbfa503acf81b85eSkillNodeData", 1); // 0_輕功招式 (SkillNodeData)
+                        //ModifyFlag("19b09ad0c66d84337826a5c0184625edSkillNodeData", 1); // 0_parry 格擋 (SkillNodeData)
+                        //ModifyFlag("d8cbeba2a689a422abdb956743a07891SkillNodeData", 1); // 0_攻擊 (SkillNodeData)
+                        //ModifyFlag("b3e48a60ad0b84648952dc21712b27c0SkillNodeData", 1); // Foo Power +1 內力提升 LV1 (SkillNodeData)
 
-                }
+                    }
+                #endif
             }
 
             GUILayout.EndArea();
             GUI.DragWindow();
         }
+
+
 
         private void GetAllMax()
         {
