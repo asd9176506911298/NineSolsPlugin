@@ -17,20 +17,26 @@
 # Feature
 - Invincible
 - One Hit Kill
+- FastLearnSkill
 - Developer Console F1
 - Mouse Move Character F2
 - Open Cheat Menu F3
 - Timer F4
 - FOV (Mouse Wheel Adjust Zoom) F5
+- AutoHeal
+- InfiniteChi
+- InfinitePotion
+- InfiniteAmmo
+- GetAllMax (Active Skill)
 - Map Full Bright(Disable Effect)
 - Skip LeftCtrl
-- Goto Boss
-- Unlock All Skill Jade Unlimited Jade Slot No at savePoint can learn skill and Equip Jade
+- Goto Boss and Mini Boss
 
-# Use Goto Boss Will Override last Save Slot
+# Use Goto Boss, Mini Boss Will Override last Save Slot
 
 # Picture
 ![](/img/Menu.png)
+![](/img/AllMax.png)
 ![](/img/SkillPoint.png)
 ![](/img/Jades.png)
 ![](/img/Fov.png)
