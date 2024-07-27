@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\Games\Nine Sols\BepInEx\scripts\</OutputPath>
+    <OutputPath>bin\debug\</OutputPath>
     <DefineConstants>TRACE;DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -111,7 +111,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>move /Y "$(TargetDir)NineSolsPlugin.dll" "D:\Games\Nine Sols\BepInEx\scripts\"
+</PostBuildEvent>
   </PropertyGroup>
 </Project>

@@ -18,11 +18,12 @@
   "A2_S5_BossHorseman_Final": "Yingzhao",
   "A3_S5_BossGouMang_Final": "GouMang",
   "A4_S5_DaoTrapHouse_Final": "Yanlao",
-  "A5_S5_JieChuanHall": "JieChuan",
+  "A5_S5_JieChuanHall": "Jiequan",
   "A7_S5_Boss_ButterFly": "Lady Ethereal",
   "A9_S5_風氏": "Fuxi",
   "A10_S5_Boss_Jee": "Jee",
-  "A11_S0_Boss_YiGung_回蓬萊": "Eigong",
+  "A11_S0_Boss_YiGung_回蓬萊": "Eigong2",
+  "A11_S0_Boss_YiGung": "Eigong3",
   "赤虎－百長": "Baichang",
   "赤虎－炎刃": "Yanren",
   "赤虎－獵官": "Lieguan",
@@ -34,5 +35,9 @@
   "影者－山鬼": "Shangui",
   "侍衛－隱月": "Yinyue",
   "法使－鐵焰": "Tieyan",
-  "步衛－武槍": "Wuqiang"
+  "法使－幻仙": "Huanxian",
+  "步衛－武槍": "Wuqiang",
+  "康回": "Kanghui",
+  "刑天": "Xingtian",
+  "無頭刑天": "Headless Xingtian"
 }

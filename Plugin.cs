@@ -17,6 +17,7 @@ using System.Collections;
 using Cysharp.Threading.Tasks;
 using XInputDotNetPure;
 using static SceneConnectionPoint;
+using RCGFSM.PlayerAbility;
 
 namespace NineSolsPlugin
 {
@@ -85,13 +86,33 @@ namespace NineSolsPlugin
 
             // Initialize window size based on screen dimensions
             float width = Screen.width * 0.5f;
-            float height = Screen.height * 0.75f;
+            float height = Screen.height * 0.8f;
             windowRect = new Rect((Screen.width - width) / 2, (Screen.height - height) / 2, width, height);
         }
 
         private void Start()
         {
             
+        }
+
+        async void Kanghui(string SceneName, Vector3 teleportPostion, List<string> flags = null)
+        {
+            HandleTeleportButtonClick(SceneName, teleportPostion);
+
+            if (flags != null)
+            {
+                foreach (var flag in flags)
+                {
+                    ModifyFlag(flag, 1);
+                }
+            }
+
+            await checkMove();
+
+            foreach (PlayerAbilityModifyPackApplyAction playerAbilityModifyPackApplyAction in UnityEngine.Object.FindObjectsOfType<PlayerAbilityModifyPackApplyAction>())
+            {
+                playerAbilityModifyPackApplyAction.ExitLevelAndDestroy(); //A5 Jail Debuff Pack 虛弱監獄 (PlayerAbilityScenarioModifyPack)
+            }
         }
 
         async void PerformActionsAfterTeleport(string SceneName, Vector3 teleportPostion, List<string> flags = null)
@@ -166,7 +187,7 @@ namespace NineSolsPlugin
         void OnScreenSizeChanged(float width, float height)
         {
             width *= 0.5f;
-            height *= 0.75f;
+            height *= 0.8f;
             windowRect = new Rect((Screen.width - width) / 2, (Screen.height - height) / 2, width, height);
             // Implement your logic here when screen size changes
             Debug.Log($"Screen size changed to: {width}x{height}");
@@ -351,8 +372,8 @@ namespace NineSolsPlugin
             {
                 //KillAllEnemies();
                 //KillAllEnemiesExcept(MonsterLevel.MiniBoss);
-                KillAllEnemies(MonsterLevel.Minion);
-                KillAllEnemies(MonsterLevel.Elite);
+                //KillAllEnemies(MonsterLevel.Minion);
+                //KillAllEnemies(MonsterLevel.Elite);
                 //var flagDict = SaveManager.Instance.allFlags.FlagDict;
                 //if (flagDict.TryGetValue("740a8b30-e3cc-4acc-9f5f-da3aaae1df5e_51c211e21fecd9e4c92f41d8d72aa395ScriptableDataBool", out var value)){
                 //    Logger.LogInfo(value.GetType().Name);
@@ -545,7 +566,10 @@ namespace NineSolsPlugin
                     if (GUILayout.Button(localizationManager.GetString("A4_S5_DaoTrapHouse_Final"), buttonStyle))
                         HandleTeleportButtonClick("A4_S5_DaoTrapHouse_Final", new Vector3(1833f, -3744f, 0f));
                     if (GUILayout.Button(localizationManager.GetString("A5_S5_JieChuanHall"), buttonStyle))
+                    {
                         HandleTeleportButtonClick("A5_S5_JieChuanHall", new Vector3(-4784, -2288f, 0f));
+                        ModifyFlag("c4a79371b6ba3ce47bbdda684236f7b5ItemData", 1); //(重要道具)04_截全毒藥 (ItemData)
+                    }
 
                 }
                 GUILayout.EndHorizontal();
@@ -559,35 +583,24 @@ namespace NineSolsPlugin
                         HandleTeleportButtonClick("A10_S5_Boss_Jee", new Vector3(-48f, -64f, 0f));
                     if (GUILayout.Button(localizationManager.GetString("A11_S0_Boss_YiGung_回蓬萊"), buttonStyle))
                         HandleTeleportButtonClick("A11_S0_Boss_YiGung_回蓬萊", new Vector3(-2686f, -1104f, 0f));
+                    if (GUILayout.Button(localizationManager.GetString("A11_S0_Boss_YiGung"), buttonStyle))
+                        HandleTeleportButtonClick("A11_S0_Boss_YiGung", new Vector3(-2686f, -1104f, 0f));
                 }
                 GUILayout.EndHorizontal();
                 GUILayout.BeginHorizontal();
                 {
                     if (GUILayout.Button(localizationManager.GetString("赤虎－百長"), buttonStyle))
                         HandleTeleportButtonClick("A1_S2_ConnectionToElevator_Final", new Vector3(1820f, -4432f, 0f)); //赤虎刀校－百長
+                    if (GUILayout.Button(localizationManager.GetString("赤虎－魁岩"), buttonStyle))
+                        HandleTeleportButtonClick("A6_S1_AbandonMine_Remake_4wei", new Vector3(5151, -7488, 0f)); //赤虎刀校－魁岩
                     if (GUILayout.Button(localizationManager.GetString("赤虎－炎刃"), buttonStyle))
                         HandleTeleportButtonClick("A2_S6_LogisticCenter_Final", new Vector3(5030, -6768, 0f)); //赤虎刀校－炎刃
                     if (GUILayout.Button(localizationManager.GetString("赤虎－獵官"), buttonStyle))
                         PerformActionsAfterTeleport("A0_S9_AltarReturned", new Vector3(-95, -64, 0f)); //赤虎刀校－獵官： 從監獄脫逃後將能觸發神農支線任務， 使用神農給予的古礦坑鑰匙卡從古礦坑右上角返回桃花村。
-                    if (GUILayout.Button(localizationManager.GetString("赤虎－魁岩"), buttonStyle))
-                        HandleTeleportButtonClick("A6_S1_AbandonMine_Remake_4wei", new Vector3(5151, -7488, 0f)); //赤虎刀校－魁岩
-                    
                 }
                 GUILayout.EndHorizontal();
                 GUILayout.BeginHorizontal();
                 {
-                    if (GUILayout.Button(localizationManager.GetString("魂守－刺行"), buttonStyle))
-                    {
-                        HandleTeleportButtonClick("A10_S4_HistoryTomb_Left", new Vector3(-690, -368, 0f)); //魂守－刺行：完成三間密室內的考驗，此BOSS才會出現。
-                        ModifyFlag("44bc69bd40a7f6d45a2b8784cc8ebbd1ScriptableDataBool", 1); //A10_SG1_Cave1_[Variable] 看過天尊棺材演出_科技天尊 (ScriptableDataBool)
-                        ModifyFlag("118f725174ccdf5498af6386d4987482ScriptableDataBool", 1); //A10_SG2_Cave2_[Variable] 看過天尊棺材演出_經濟天尊 (ScriptableDataBool)
-                        ModifyFlag("d7a444315eab0b74fb0ed1e8144edf73ScriptableDataBool", 1); //A10_SG3_Cave4_[Variable] 看過天尊棺材演出_軍事天尊 (ScriptableDataBool)
-                    }
-                    if (GUILayout.Button(localizationManager.GetString("機兵－天守"), buttonStyle))
-                    {
-                        HandleTeleportButtonClick("A9_S1_Remake_4wei", new Vector3(-3330, 352, 0f)); //巨錘機兵－天守
-                        ModifyFlag("a2dba9e5-61cf-453a-8981-efb081fb0b11_4256ef2ec22f942dc9f70607bb00391fScriptableDataBool", 1); // 跳過Butterfly Hack SimpleCutScenePlayeda2dba9e5-61cf-453a-8981-efb081fb0b11 (ScriptableDataBool)
-                    }
                     if (GUILayout.Button(localizationManager.GetString("步衛－角端"), buttonStyle))
                     {
                         //HandleTeleportButtonClick("A2_S2_ReactorRight_Final", new Vector3(-4690, -1968, 0f)); // 天綱步衛－角端
@@ -604,9 +617,9 @@ namespace NineSolsPlugin
                         //ModifyFlag("574d3e20-47c5-4841-a21c-121d7806ed6e_c3c3f30fb046d9743aea48eb8f4833bcScriptableDataBool", 1);
                         //ModifyFlag("ff553e6df36c89644ae08124aaa2913eScriptableDataBool", 1);
                         //ModifyFlag("5d67c34b-0553-482f-8e4d-dd4c02d0c359_c3c3f30fb046d9743aea48eb8f4833bcScriptableDataBool", 1);
-
-
                     }
+                    if (GUILayout.Button(localizationManager.GetString("步衛－武槍"), buttonStyle))
+                        PerformActionsAfterTeleport("A5_S4_CastleMid_Remake_5wei", new Vector3(4430, -4224, 0f)); //天綱步衛－武槍
                     if (GUILayout.Button(localizationManager.GetString("影者－水鬼"), buttonStyle))
                     {
                         HandleTeleportButtonClick("A3_S2_GreenHouse_Final", new Vector3(-4530, -1216, 0f)); //天綱影者－水鬼
@@ -615,26 +628,51 @@ namespace NineSolsPlugin
 
                         ModifyFlag("a4657cbd-5219-45fb-9401-3780b41e8cbe_efdc8e91e5eb76347b87b832ac07330cScriptableDataBool", 1); // 關閉水 A3_S2_GreenHouse_Final_[Variable] SimpleCutScenePlayeda4657cbd-5219-45fb-9401-3780b41e8cbe (ScriptableDataBool)
                     }
+                    if (GUILayout.Button(localizationManager.GetString("影者－山鬼"), buttonStyle))
+                        HandleTeleportButtonClick("A1_S3_InnerHumanDisposal_Final", new Vector3(-5590, -608, 0f)); //天綱影者－山鬼
                 }
                 GUILayout.EndHorizontal();
                 GUILayout.BeginHorizontal();
                 {
-                    if (GUILayout.Button(localizationManager.GetString("影者－山鬼"), buttonStyle))
-                        HandleTeleportButtonClick("A1_S3_InnerHumanDisposal_Final", new Vector3(-5590, -608, 0f)); //天綱影者－山鬼
-                    if (GUILayout.Button(localizationManager.GetString("侍衛－隱月"), buttonStyle))
-                        HandleTeleportButtonClick("A6_S3_Tutorial_And_SecretBoss_Remake", new Vector3(5457, -6288, 0f)); //天綱侍衛－隱月
                     if (GUILayout.Button(localizationManager.GetString("法使－鐵焰"), buttonStyle))
                         HandleTeleportButtonClick("A4_S2_RouteToControlRoom_Final", new Vector3(-3950, -3040, 0f)); //天綱法使－鐵焰
-                    if (GUILayout.Button(localizationManager.GetString("步衛－武槍"), buttonStyle))
-                        PerformActionsAfterTeleport("A5_S4_CastleMid_Remake_5wei", new Vector3(4430, -4224, 0f)); //天綱步衛－武槍
+                    if (GUILayout.Button(localizationManager.GetString("法使－幻仙"), buttonStyle))
+                        HandleTeleportButtonClick("A7_S2_SectionF_MiniBossFight", new Vector3(-4004, -1888, 0f)); //法使-幻仙
+                    if (GUILayout.Button(localizationManager.GetString("機兵－天守"), buttonStyle))
+                    {
+                        HandleTeleportButtonClick("A9_S1_Remake_4wei", new Vector3(-3330, 352, 0f)); //巨錘機兵－天守
+                        ModifyFlag("a2dba9e5-61cf-453a-8981-efb081fb0b11_4256ef2ec22f942dc9f70607bb00391fScriptableDataBool", 1); // 跳過Butterfly Hack SimpleCutScenePlayeda2dba9e5-61cf-453a-8981-efb081fb0b11 (ScriptableDataBool)
+                    }
+                    if (GUILayout.Button(localizationManager.GetString("魂守－刺行"), buttonStyle))
+                    {
+                        HandleTeleportButtonClick("A10_S4_HistoryTomb_Left", new Vector3(-690, -368, 0f)); //魂守－刺行：完成三間密室內的考驗，此BOSS才會出現。
+                        ModifyFlag("44bc69bd40a7f6d45a2b8784cc8ebbd1ScriptableDataBool", 1); //A10_SG1_Cave1_[Variable] 看過天尊棺材演出_科技天尊 (ScriptableDataBool)
+                        ModifyFlag("118f725174ccdf5498af6386d4987482ScriptableDataBool", 1); //A10_SG2_Cave2_[Variable] 看過天尊棺材演出_經濟天尊 (ScriptableDataBool)
+                        ModifyFlag("d7a444315eab0b74fb0ed1e8144edf73ScriptableDataBool", 1); //A10_SG3_Cave4_[Variable] 看過天尊棺材演出_軍事天尊 (ScriptableDataBool)
+                    }
                 }
                 GUILayout.EndHorizontal();
+                GUILayout.BeginHorizontal();
+                {
+                    if (GUILayout.Button(localizationManager.GetString("侍衛－隱月"), buttonStyle))
+                        HandleTeleportButtonClick("A6_S3_Tutorial_And_SecretBoss_Remake", new Vector3(5457, -6288, 0f)); //天綱侍衛－隱月
+                    if (GUILayout.Button(localizationManager.GetString("康回"), buttonStyle))
+                        Kanghui("A5_S2_Jail_Remake_Final", new Vector3(-464f, -4624f, 0f)); //康回
+                    if (GUILayout.Button(localizationManager.GetString("刑天"), buttonStyle))
+                        HandleTeleportButtonClick("A4_S3_ControlRoom_Final", new Vector3(-4155, -5776f, 0f)); //刑天
+                    if (GUILayout.Button(localizationManager.GetString("無頭刑天"), buttonStyle))
+                        HandleTeleportButtonClick("A11_SG1_ShinTenRoom", new Vector3(-5827, -464f, 0f)); //無頭刑天
+                }
+                GUILayout.EndHorizontal();
+
+                
 
                 if (GUILayout.Button(localizationManager.GetString("Skip"), buttonStyle))
                 {
                     SkippableManager.Instance.TrySkip();
                 }
                 #if DEBUG
+                {
                     if (GUILayout.Button(localizationManager.GetString("故意放棄進度 reset這個場景"), buttonStyle))
                     {
                         if (GameCore.Instance != null)
@@ -666,7 +704,21 @@ namespace NineSolsPlugin
 
                         //HandleTeleportButtonClick("A4_S2_RouteToControlRoom_Final", new Vector3(-3950, -3040, 0f)); //天綱法使－鐵焰
 
-                        HandleTeleportButtonClick("A5_S4_CastleMid_Remake_5wei", new Vector3(4033, -4528, 0f)); //天綱步衛－武槍
+                        //HandleTeleportButtonClick("A5_S4_CastleMid_Remake_5wei", new Vector3(4033, -4528, 0f)); //天綱步衛－武槍
+
+                        //HandleTeleportButtonClick("A4_S3_ControlRoom_Final", new Vector3(-4155, -5776f, 0f)); //刑天
+
+                        //HandleTeleportButtonClick("A11_SG1_ShinTenRoom", new Vector3(-5827, -464f, 0f)); //無頭刑天
+
+                        //HandleTeleportButtonClick("A5_S2_Jail_Remake_Final", new Vector3(-464f, -4624f, 0f)); //康回
+                        
+                        //foreach (PlayerAbilityModifyPackApplyAction playerAbilityModifyPackApplyAction in UnityEngine.Object.FindObjectsOfType<PlayerAbilityModifyPackApplyAction>())
+                        //{
+                        //    playerAbilityModifyPackApplyAction.ExitLevelAndDestroy(); //A5 Jail Debuff Pack 虛弱監獄 (PlayerAbilityScenarioModifyPack)
+                        //}
+
+                        //HandleTeleportButtonClick("A7_S2_SectionF_MiniBossFight", new Vector3(-4004, -1888, 0f)); //法使-幻仙
+
 
                         //ChangeSceneData data = new ChangeSceneData();
                         //data.sceneName = "A1_S2_ConnectionToElevator_Final";
@@ -715,6 +767,7 @@ namespace NineSolsPlugin
                         //ModifyFlag("b3e48a60ad0b84648952dc21712b27c0SkillNodeData", 1); // Foo Power +1 內力提升 LV1 (SkillNodeData)
 
                     }
+                }
                 #endif
             }
 
