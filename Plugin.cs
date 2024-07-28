@@ -115,6 +115,24 @@ namespace NineSolsPlugin
             }
         }
 
+        async void Jee(string SceneName, Vector3 teleportPostion, List<string> flags = null)
+        {
+            HandleTeleportButtonClick(SceneName, teleportPostion);
+
+            if (flags != null)
+            {
+                foreach (var flag in flags)
+                {
+                    ModifyFlag(flag, 1);
+                }
+            }
+
+            await checkMove();
+
+            if (Player.i != null)
+                Traverse.Create(Player.i).Method("UnlockParryJumpKickAbility").GetValue();
+        }
+
         async void PerformActionsAfterTeleport(string SceneName, Vector3 teleportPostion, List<string> flags = null)
         {
             HandleTeleportButtonClick(SceneName, teleportPostion);
@@ -580,7 +598,7 @@ namespace NineSolsPlugin
                     if (GUILayout.Button(localizationManager.GetString("A9_S5_風氏"), buttonStyle))
                         HandleTeleportButtonClick("A9_S5_風氏", new Vector3(-2370f, -1264f, 0f));
                     if (GUILayout.Button(localizationManager.GetString("A10_S5_Boss_Jee"), buttonStyle))
-                        HandleTeleportButtonClick("A10_S5_Boss_Jee", new Vector3(-48f, -64f, 0f));
+                        Jee("A10_S5_Boss_Jee", new Vector3(-48f, -64f, 0f));
                     if (GUILayout.Button(localizationManager.GetString("A11_S0_Boss_YiGung_回蓬萊"), buttonStyle))
                         HandleTeleportButtonClick("A11_S0_Boss_YiGung_回蓬萊", new Vector3(-2686f, -1104f, 0f));
                     if (GUILayout.Button(localizationManager.GetString("A11_S0_Boss_YiGung"), buttonStyle))
