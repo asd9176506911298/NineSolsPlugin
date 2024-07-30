@@ -32,6 +32,8 @@
 - 地圖亮(關閉特效)
 - 跳過 LeftCtrl
 - 直接打Boss 和 小Boss
+- 修改BOSS速度
+- 預測攻擊
 
 # 直接打Boss,小Boss 會覆蓋最後一個存檔槽
 

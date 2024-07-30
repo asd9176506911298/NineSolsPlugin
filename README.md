@@ -31,6 +31,8 @@
 - Map Full Bright(Disable Effect)
 - Skip LeftCtrl
 - Goto Boss and Mini Boss
+- Modify Boss Speed
+- Predict Attack
 
 # Use Goto Boss, Mini Boss Will Override last Save Slot
 

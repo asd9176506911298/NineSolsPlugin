@@ -32,6 +32,8 @@
 - 地图亮(关闭特效)
 - 跳过 LeftCtrl
 - 直接打Boss 和 小Boss
+- 修改BOSS速度
+- 预测攻击
 
 # 直接打Boss,小Boss 会覆盖最后一个存档槽
 
