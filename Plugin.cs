@@ -359,6 +359,14 @@ namespace NineSolsPlugin
                         monsterBase.animator.speed = 1;
                 }
             }
+            else
+            {
+                foreach (MonsterBase monsterBase in UnityEngine.Object.FindObjectsOfType<MonsterBase>())
+                {
+                    if (monsterBase.monsterStat.monsterLevel == MonsterLevel.Boss || monsterBase.monsterStat.monsterLevel == MonsterLevel.MiniBoss)
+                        monsterBase.animator.speed = 1;
+                }
+            }
         }
 
         private void KillAllEnemies()
