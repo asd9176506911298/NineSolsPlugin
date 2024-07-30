@@ -1,23 +1,14 @@
 ﻿using BepInEx;
 using BepInEx.Configuration;
-using EasyEditor;
 using HarmonyLib;
-using RCGMaker.Core;
 using System;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices.ComTypes;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using static Linefy.PolygonalMesh;
 using System.Collections.Generic;
-using System.Reflection;
-using RCGMaker.Runtime.Character;
-using System.Collections;
 using Cysharp.Threading.Tasks;
-using XInputDotNetPure;
-using static SceneConnectionPoint;
 using RCGFSM.PlayerAbility;
+using UnityEngine.UI;
 
 namespace NineSolsPlugin
 {
@@ -32,6 +23,7 @@ namespace NineSolsPlugin
         private GUIStyle toggleStyle;
         private GUIStyle textFieldStyle;
         private GUIStyle buttonStyle;
+        private GUIStyle supportTextStyle;
         private float basetitleSize = 24.0f;
         private float baseToggleSize = 24.0f;
         private float baseTextFieldSize = 24.0f;
@@ -60,10 +52,18 @@ namespace NineSolsPlugin
         public bool isInfiniteChi = false;
         public bool isInfinitePotion = false;
         public bool isInfiniteAmmo = false;
+        public bool isBossSpeed = false;
         public float fov = 68f;
         public float speed = 2f;
+        public float bossSpeed = 1f;
         private string speedInput = "2";
+        private string bossSpeedInput = "1";
         private Rect windowRect;
+        private Rect supportRect;
+
+        public bool showSupportWindow = false;
+        public string SupportText = "test";
+        private bool isShowSupportWindowNoBackGround = false;
 
         private void Awake()
         {
@@ -88,6 +88,7 @@ namespace NineSolsPlugin
             float width = Screen.width * 0.5f;
             float height = Screen.height * 0.8f;
             windowRect = new Rect((Screen.width - width) / 2, (Screen.height - height) / 2, width, height);
+            supportRect = new Rect((Screen.width - width) / 2, (Screen.height - height) / 2, width, height / 6);
         }
 
         private void Start()
@@ -207,6 +208,7 @@ namespace NineSolsPlugin
             width *= 0.5f;
             height *= 0.8f;
             windowRect = new Rect((Screen.width - width) / 2, (Screen.height - height) / 2, width, height);
+            supportRect = new Rect((Screen.width - width) / 2, (Screen.height - height) / 2, width, height / 6);
             // Implement your logic here when screen size changes
             Debug.Log($"Screen size changed to: {width}x{height}");
             if(isInit)
@@ -219,6 +221,7 @@ namespace NineSolsPlugin
             int toggleSize = Mathf.RoundToInt(baseToggleSize * scaleFactor);
             int buttonSize = Mathf.RoundToInt(baseButtonSize * scaleFactor);
             int textFieldSize = Mathf.RoundToInt(baseTextFieldSize * scaleFactor);
+            int supportTextSize = Mathf.RoundToInt(baseTextFieldSize * scaleFactor * 2);
 
             toggleStyle.fontSize = toggleSize;
             toggleStyle.padding = new RectOffset(toggleSize * 2, toggleSize * 2, toggleSize / 2, toggleSize / 2);
@@ -226,6 +229,7 @@ namespace NineSolsPlugin
             buttonStyle.fontSize = buttonSize;
             buttonStyle.padding = new RectOffset(buttonSize / 3, buttonSize / 3, buttonSize / 3, buttonSize / 3);
             titleStyle.fontSize = Mathf.RoundToInt(basetitleSize * scaleFactor);
+            supportTextStyle.fontSize = supportTextSize;
         }
 
         private void OnDestory()
@@ -342,6 +346,17 @@ namespace NineSolsPlugin
                 if (Player.i != null && Player.i.ammo != null)
                 {
                     Player.i.ammo.GainFull();
+                }
+            }
+
+            if (isBossSpeed)
+            {
+                foreach (MonsterBase monsterBase in UnityEngine.Object.FindObjectsOfType<MonsterBase>())
+                {
+                    if (monsterBase.monsterStat.monsterLevel == MonsterLevel.Boss || monsterBase.monsterStat.monsterLevel == MonsterLevel.MiniBoss)
+                        monsterBase.animator.speed = bossSpeed;
+                    else
+                        monsterBase.animator.speed = 1;
                 }
             }
         }
@@ -482,10 +497,12 @@ namespace NineSolsPlugin
                 toggleStyle = new GUIStyle(GUI.skin.toggle);
                 textFieldStyle = new GUIStyle(GUI.skin.textField);
                 buttonStyle = new GUIStyle(GUI.skin.button);
+                supportTextStyle = new GUIStyle(GUI.skin.label);
                 float scaleFactor = Mathf.Min(Screen.width / 1920f, Screen.height / 1080f);
                 int toggleSize = Mathf.RoundToInt(baseToggleSize * scaleFactor);
                 int buttonSize = Mathf.RoundToInt(baseButtonSize * scaleFactor);
                 int textFieldSize = Mathf.RoundToInt(baseTextFieldSize * scaleFactor);
+                int supportTextSize = Mathf.RoundToInt(baseTextFieldSize * scaleFactor * 2);
 
                 toggleStyle.fontSize = toggleSize;
                 toggleStyle.padding = new RectOffset(toggleSize * 2, toggleSize * 2, toggleSize / 2, toggleSize / 2);
@@ -493,6 +510,7 @@ namespace NineSolsPlugin
                 buttonStyle.fontSize = buttonSize;
                 buttonStyle.padding = new RectOffset(buttonSize / 3, buttonSize / 3, buttonSize / 3, buttonSize / 3);
                 titleStyle.fontSize = Mathf.RoundToInt(basetitleSize * scaleFactor);
+                supportTextStyle.fontSize = supportTextSize;
                 isInit = true;
             }
 
@@ -500,6 +518,24 @@ namespace NineSolsPlugin
             {
                 windowRect = GUI.Window(156789, windowRect, DoMyWindow, localizationManager.GetString("title"), titleStyle);
             }
+
+            if (showSupportWindow)
+            {
+                // Create a draggable window
+                if(isShowSupportWindowNoBackGround)
+                    supportRect = GUI.Window(1354564, supportRect, DrawWindow, "",GUIStyle.none);
+                else
+                    supportRect = GUI.Window(1299856, supportRect, DrawWindow, "Predict to Attack");
+            }
+        }
+
+        void DrawWindow(int windowID)
+        {
+            // Display the text in the window
+            GUILayout.Label(SupportText, supportTextStyle);
+
+            // Make the window draggable
+            GUI.DragWindow();
         }
 
         public void DoMyWindow(int windowID)
@@ -682,8 +718,21 @@ namespace NineSolsPlugin
                         HandleTeleportButtonClick("A11_SG1_ShinTenRoom", new Vector3(-5827, -464f, 0f)); //無頭刑天
                 }
                 GUILayout.EndHorizontal();
-
-                
+                GUILayout.BeginHorizontal();
+                {
+                    if (GUILayout.Button(localizationManager.GetString("SupportWindow"), buttonStyle))
+                        showSupportWindow = !showSupportWindow;
+                    if (GUILayout.Button(localizationManager.GetString("ShowSupportWindowNoBackGround"), buttonStyle))
+                        isShowSupportWindowNoBackGround = !isShowSupportWindowNoBackGround;
+                }
+                GUILayout.EndHorizontal();
+                GUILayout.BeginHorizontal();
+                {
+                    isBossSpeed = GUILayout.Toggle(isBossSpeed, localizationManager.GetString("BossSpeed"), toggleStyle);
+                    bossSpeedInput = GUILayout.TextField(bossSpeedInput, textFieldStyle);
+                    float.TryParse(bossSpeedInput, out bossSpeed);
+                }
+                GUILayout.EndHorizontal();
 
                 if (GUILayout.Button(localizationManager.GetString("Skip"), buttonStyle))
                 {
@@ -698,6 +747,14 @@ namespace NineSolsPlugin
                     }
                     if (GUILayout.Button(localizationManager.GetString("Test"), buttonStyle))
                     {
+                        
+                        //foreach (MonsterBase monsterBase in UnityEngine.Object.FindObjectsOfType<MonsterBase>())
+                        //{
+                        //    if(monsterBase.monsterStat.monsterLevel == MonsterLevel.Boss || monsterBase.monsterStat.monsterLevel == MonsterLevel.MiniBoss)
+                        //        monsterBase.animator.speed = 4;
+                        //    else
+                        //        monsterBase.animator.speed = 1;
+                        //}
                         //HandleTeleportButtonClick("A1_S2_ConnectionToElevator_Final", new Vector3(1820f, -4432f, 0f)); //赤虎刀校－百長
                         //HandleTeleportButtonClick("A2_S6_LogisticCenter_Final", new Vector3(4370, -6768, 0f)); //赤虎刀校－炎刃
                         //HandleTeleportButtonClick("A2_S2_ReactorRight_Final", new Vector3(-4642, -1968, 0f)); //天綱步衛－角端
@@ -729,7 +786,7 @@ namespace NineSolsPlugin
                         //HandleTeleportButtonClick("A11_SG1_ShinTenRoom", new Vector3(-5827, -464f, 0f)); //無頭刑天
 
                         //HandleTeleportButtonClick("A5_S2_Jail_Remake_Final", new Vector3(-464f, -4624f, 0f)); //康回
-                        
+
                         //foreach (PlayerAbilityModifyPackApplyAction playerAbilityModifyPackApplyAction in UnityEngine.Object.FindObjectsOfType<PlayerAbilityModifyPackApplyAction>())
                         //{
                         //    playerAbilityModifyPackApplyAction.ExitLevelAndDestroy(); //A5 Jail Debuff Pack 虛弱監獄 (PlayerAbilityScenarioModifyPack)

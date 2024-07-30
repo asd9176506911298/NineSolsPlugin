@@ -81,6 +81,10 @@
       <HintPath>assembly-libaries\UnityEngine.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="UnityEngine.AnimationModule">
+      <HintPath>assembly-libaries\UnityEngine.AnimationModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>assembly-libaries\UnityEngine.CoreModule.dll</HintPath>
       <Private>False</Private>
@@ -91,6 +95,18 @@
     </Reference>
     <Reference Include="UnityEngine.InputLegacyModule">
       <HintPath>assembly-libaries\UnityEngine.InputLegacyModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>assembly-libaries\UnityEngine.TextRenderingModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>assembly-libaries\UnityEngine.UI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UIModule">
+      <HintPath>assembly-libaries\UnityEngine.UIModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
@@ -111,7 +127,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>move /Y "$(TargetDir)NineSolsPlugin.dll" "D:\Games\Nine Sols\BepInEx\scripts\"</PostBuildEvent>
   </PropertyGroup>
 </Project>

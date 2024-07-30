@@ -11,7 +11,7 @@ namespace NineSolsPlugin
         {
             if (Plugin.Instance.isEnableConsole.Value)
                 __result = true;
-            else 
+            else
                 return true;
 
             return false;
@@ -21,7 +21,7 @@ namespace NineSolsPlugin
         [HarmonyPrefix, HarmonyPatch(typeof(MonsterBase), "DecreasePosture")]
         public static bool DecreasePosture(ref EffectHitData data, ref float scale)
         {
-            if(Plugin.Instance.isOneHitKill)
+            if (Plugin.Instance.isOneHitKill)
                 scale = 9999f;
 
             return true;
@@ -47,10 +47,18 @@ namespace NineSolsPlugin
         [HarmonyPrefix, HarmonyPatch(typeof(SkillTreeUI), "UpgradeCheck")]
         public static bool UpgradeCheck(ref SkillTreeUI __instance)
         {
-            if(Plugin.Instance.isFastLearnSkill)
+            if (Plugin.Instance.isFastLearnSkill)
                 __instance.longPressSubmit.submitTime = 0f;
             else
                 __instance.longPressSubmit.submitTime = 1f;
+            return true;
+        }
+
+        [HarmonyPrefix, HarmonyPatch(typeof(BossGeneralState), "OnStateUpdate")]
+        public static bool OnStateUpdate(ref BossGeneralState __instance)
+        {
+            if (Plugin.Instance.showSupportWindow)
+                Plugin.Instance.SupportText = __instance.gameObject.name;
             return true;
         }
     }
