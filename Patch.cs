@@ -61,5 +61,18 @@ namespace NineSolsPlugin
                 Plugin.Instance.SupportText = __instance.gameObject.name;
             return true;
         }
+
+        [HarmonyPrefix, HarmonyPatch(typeof(MonsterBase), "UnFreeze")]
+        public static bool UnFreeze(ref MonsterBase __instance)
+        {
+            if(Plugin.Instance.isBossSpeed)
+            {
+                Traverse.Create(__instance).Field("isFreezing").SetValue(false);
+                Plugin.Instance.modifyBossSpeed(Plugin.Instance.bossSpeed);
+                return false;
+            }
+
+            return true;
+        }
     }
 }
