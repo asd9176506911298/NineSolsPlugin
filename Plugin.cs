@@ -292,7 +292,10 @@ namespace NineSolsPlugin
         private void TickLogic()
         {
             if (showMenu || Input.GetKey(MouseTeleportKey.Value))
+            {
                 Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+            }
 
             if (isFov)
             {
