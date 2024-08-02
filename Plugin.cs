@@ -53,13 +53,23 @@ namespace NineSolsPlugin
         public bool isInfinitePotion = false;
         public bool isInfiniteAmmo = false;
         public bool isBossSpeed = false;
+        public bool isAttackMult = false;
+        public bool isInjeryMult = false;
         private bool previousIsBossSpeed;
+        private bool previousIsAttackMult;
+        private bool previousIsInjeryMult;
         public float fov = 68f;
         public float speed = 2f;
         public float bossSpeed = 1f;
+        public float attackMult = 1f;
+        public float injeryMult = 1f;
         private float previousBossSpeed;
+        private float previousAttackMult;
+        private float previousInjeryMult;
         private string speedInput = "2";
         private string bossSpeedInput = "1";
+        private string attackMultInput = "1";
+        private string injeryMultInput = "1";
         private Rect windowRect;
         private Rect supportRect;
 
@@ -88,7 +98,7 @@ namespace NineSolsPlugin
 
             // Initialize window size based on screen dimensions
             float width = Screen.width * 0.5f;
-            float height = Screen.height * 0.8f;
+            float height = Screen.height * 0.9f;
             windowRect = new Rect((Screen.width - width) / 2, (Screen.height - height) / 2, width, height);
             supportRect = new Rect((Screen.width - width) / 2, (Screen.height - height) / 2, width, height / 6);
         }
@@ -97,6 +107,12 @@ namespace NineSolsPlugin
         {
             previousIsBossSpeed = isBossSpeed;
             previousBossSpeed = bossSpeed;
+
+            previousIsAttackMult = isAttackMult;
+            previousAttackMult = previousAttackMult;
+
+            previousIsInjeryMult = isInjeryMult;
+            previousInjeryMult = injeryMult;
         }
 
         async void Kanghui(string SceneName, Vector3 teleportPostion, List<string> flags = null)
@@ -179,6 +195,7 @@ namespace NineSolsPlugin
             if(teleportPointData != null)
                 GameCore.Instance.TeleportToSavePoint(teleportPointData);
             // Now the scene is loaded, run the appropriate method
+            checkMultiplier();
             CheckGetAll();
         }
 
@@ -209,7 +226,7 @@ namespace NineSolsPlugin
         void OnScreenSizeChanged(float width, float height)
         {
             width *= 0.5f;
-            height *= 0.8f;
+            height *= 0.9f;
             windowRect = new Rect((Screen.width - width) / 2, (Screen.height - height) / 2, width, height);
             supportRect = new Rect((Screen.width - width) / 2, (Screen.height - height) / 2, width, height / 6);
             // Implement your logic here when screen size changes
@@ -339,6 +356,41 @@ namespace NineSolsPlugin
             }
             previousIsBossSpeed = isBossSpeed;
             previousBossSpeed = bossSpeed;
+
+            if (isAttackMult != previousIsAttackMult || attackMult != previousInjeryMult)
+                checkMultiplier();
+
+            previousIsAttackMult = isAttackMult;
+            previousAttackMult = attackMult;
+
+            if (isInjeryMult != previousIsInjeryMult || injeryMult != previousInjeryMult)
+                checkMultiplier();
+
+            previousIsInjeryMult = isInjeryMult;
+            previousInjeryMult = injeryMult;
+        }
+        
+        private void checkMultiplier()
+        {
+            if (isAttackMult)
+                modifyStat("0_PlayerAttackBaseDamageRatio 主角攻擊的基礎倍率", attackMult);
+            else
+                modifyStat("0_PlayerAttackBaseDamageRatio 主角攻擊的基礎倍率", 1.0f);
+
+            if (isInjeryMult)
+                modifyStat("1_PlayerTakeDamageRatio 主角受傷倍率", injeryMult);
+            else
+                modifyStat("1_PlayerTakeDamageRatio 主角受傷倍率", 1.0f);
+        }
+
+        private void modifyStat(string name, float value)
+        {
+            if (SaveManager.Instance == null) return;
+            if (SaveManager.Instance.allStatData == null) return;
+
+            var allStatData = SaveManager.Instance.allStatData;
+            allStatData.GetStat(name).Stat.BaseValue = value;
+            //Traverse.Create(allStatData.GetStat(name).Stat).Field("_value").SetValue(value);
         }
 
         public void modifyBossSpeed(float speed)
@@ -396,6 +448,9 @@ namespace NineSolsPlugin
             #if DEBUG
             if (Input.GetKeyDown(KeyCode.Insert))
             {
+                var allStat = SaveManager.Instance.allStatData;
+                Logger.LogInfo(Traverse.Create(allStat.GetStat("0_PlayerAttackBaseDamageRatio 主角攻擊的基礎倍率").Stat).Field("BaseValue").GetValue<float>());
+                Logger.LogInfo(Traverse.Create(allStat.GetStat("1_PlayerTakeDamageRatio 主角受傷倍率").Stat).Field("BaseValue").GetValue<float>());
                 //KillAllEnemies();
                 //KillAllEnemiesExcept(MonsterLevel.MiniBoss);
                 //KillAllEnemies(MonsterLevel.Minion);
@@ -728,10 +783,24 @@ namespace NineSolsPlugin
                 GUILayout.EndHorizontal();
                 GUILayout.BeginHorizontal();
                 {
-                    if (GUILayout.Button(localizationManager.GetString("Skip"), buttonStyle))
-                    {
-                        SkippableManager.Instance.TrySkip();
-                    }
+                    isAttackMult = GUILayout.Toggle(isAttackMult, localizationManager.GetString("Attack Multiplier"), toggleStyle);
+                    attackMultInput = GUILayout.TextField(attackMultInput, textFieldStyle);
+                    float.TryParse(attackMultInput, out attackMult);
+                }
+                GUILayout.EndHorizontal();
+                GUILayout.BeginHorizontal();
+                {
+                    isInjeryMult = GUILayout.Toggle(isInjeryMult, localizationManager.GetString("Injury Multiplier"), toggleStyle);
+                    injeryMultInput = GUILayout.TextField(injeryMultInput, textFieldStyle);
+                    float.TryParse(injeryMultInput, out injeryMult);
+                }
+                GUILayout.EndHorizontal();
+                if (GUILayout.Button(localizationManager.GetString("Skip"), buttonStyle))
+                {
+                    SkippableManager.Instance.TrySkip();
+                }
+                GUILayout.BeginHorizontal();
+                {
                     #if DEBUG
                     {
                         if (GUILayout.Button(localizationManager.GetString("故意放棄進度 reset這個場景"), buttonStyle))
@@ -741,10 +810,11 @@ namespace NineSolsPlugin
                         }
                         if (GUILayout.Button(localizationManager.GetString("Test"), buttonStyle))
                         {
-                                foreach (var skillNodeUIControlButton in UnityEngine.Object.FindObjectsOfType<SkillNodeUIControlButton>())
-                                {
-                                    skillNodeUIControlButton.UpdateView();
-                                }
+                            var allStat = SaveManager.Instance.allStatData;
+                            Logger.LogInfo(Traverse.Create(allStat.GetStat("0_PlayerAttackBaseDamageRatio 主角攻擊的基礎倍率").Stat).Field("_value").GetValue<float>());
+                            Logger.LogInfo(Traverse.Create(allStat.GetStat("1_PlayerTakeDamageRatio 主角受傷倍率").Stat).Field("_value").GetValue<float>());
+
+
                             //foreach (MonsterBase monsterBase in UnityEngine.Object.FindObjectsOfType<MonsterBase>())
                             //{
                             //    if (monsterBase.monsterStat.monsterLevel == MonsterLevel.Boss || monsterBase.monsterStat.monsterLevel == MonsterLevel.MiniBoss)
@@ -835,7 +905,6 @@ namespace NineSolsPlugin
                             //ModifyFlag("19b09ad0c66d84337826a5c0184625edSkillNodeData", 1); // 0_parry 格擋 (SkillNodeData)
                             //ModifyFlag("d8cbeba2a689a422abdb956743a07891SkillNodeData", 1); // 0_攻擊 (SkillNodeData)
                             //ModifyFlag("b3e48a60ad0b84648952dc21712b27c0SkillNodeData", 1); // Foo Power +1 內力提升 LV1 (SkillNodeData)
-
                         }
                     }
                     #endif
@@ -875,8 +944,8 @@ namespace NineSolsPlugin
                 Traverse.Create(player).Method("AddMoney").GetValue();
                 Traverse.Create(player).Method("GetAllJades").GetValue();
                 Traverse.Create(player).Method("GetAllJadeSlots").GetValue();
-                Traverse.Create(player.mainAbilities.PlayerMaxJadePowerStat.Stat).Field("_value").SetValue(500.0f);
-                Traverse.Create(player.potion.potionMaxCountData.Stat).Field("_value").SetValue(8);
+                Traverse.Create(player.mainAbilities.PlayerMaxJadePowerStat.Stat).Field("BaseValue").SetValue(500.0f);
+                Traverse.Create(player.potion.potionMaxCountData.Stat).Field("BaseValue").SetValue(8);
 
                 Player.i.RestoreEverything();
             }
@@ -910,8 +979,8 @@ namespace NineSolsPlugin
                 Traverse.Create(player).Method("AddMoney").GetValue();
                 Traverse.Create(player).Method("GetAllJades").GetValue();
                 Traverse.Create(player).Method("GetAllJadeSlots").GetValue();
-                Traverse.Create(player.mainAbilities.PlayerMaxJadePowerStat.Stat).Field("_value").SetValue(500.0f);
-                Traverse.Create(player.potion.potionMaxCountData.Stat).Field("_value").SetValue(8);
+                Traverse.Create(player.mainAbilities.PlayerMaxJadePowerStat.Stat).Field("BaseValue").SetValue(500.0f);
+                Traverse.Create(player.potion.potionMaxCountData.Stat).Field("BaseValue").SetValue(8);
 
                 Player.i.RestoreEverything();
             }
@@ -1040,6 +1109,7 @@ namespace NineSolsPlugin
                             GameCore.Instance.TeleportToSavePoint(teleportPointData);
                         }
                         GameCore.Instance.DiscardUnsavedFlagsAndReset();
+                        checkMultiplier();
                         CheckGetAll();
                     }
                 }
