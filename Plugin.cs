@@ -98,7 +98,7 @@ namespace NineSolsPlugin
 
             // Initialize window size based on screen dimensions
             float width = Screen.width * 0.5f;
-            float height = Screen.height * 0.9f;
+            float height = Screen.height * 0.92f;
             windowRect = new Rect((Screen.width - width) / 2, (Screen.height - height) / 2, width, height);
             supportRect = new Rect((Screen.width - width) / 2, (Screen.height - height) / 2, width, height / 6);
         }
@@ -226,7 +226,7 @@ namespace NineSolsPlugin
         void OnScreenSizeChanged(float width, float height)
         {
             width *= 0.5f;
-            height *= 0.9f;
+            height *= 0.92f;
             windowRect = new Rect((Screen.width - width) / 2, (Screen.height - height) / 2, width, height);
             supportRect = new Rect((Screen.width - width) / 2, (Screen.height - height) / 2, width, height / 6);
             // Implement your logic here when screen size changes
@@ -776,23 +776,27 @@ namespace NineSolsPlugin
                 GUILayout.EndHorizontal();
                 GUILayout.BeginHorizontal();
                 {
-                    isBossSpeed = GUILayout.Toggle(isBossSpeed, localizationManager.GetString("BossSpeed"), toggleStyle);
-                    bossSpeedInput = GUILayout.TextField(bossSpeedInput, textFieldStyle);
-                    float.TryParse(bossSpeedInput, out bossSpeed);
-                }
-                GUILayout.EndHorizontal();
-                GUILayout.BeginHorizontal();
-                {
-                    isAttackMult = GUILayout.Toggle(isAttackMult, localizationManager.GetString("Attack_Multiplier"), toggleStyle);
-                    attackMultInput = GUILayout.TextField(attackMultInput, textFieldStyle);
-                    float.TryParse(attackMultInput, out attackMult);
-                }
-                GUILayout.EndHorizontal();
-                GUILayout.BeginHorizontal();
-                {
-                    isInjeryMult = GUILayout.Toggle(isInjeryMult, localizationManager.GetString("Injury_Multiplier"), toggleStyle);
-                    injeryMultInput = GUILayout.TextField(injeryMultInput, textFieldStyle);
-                    float.TryParse(injeryMultInput, out injeryMult);
+                    GUILayout.BeginVertical();
+                    {
+                        isBossSpeed = GUILayout.Toggle(isBossSpeed, localizationManager.GetString("BossSpeed"), toggleStyle);
+                        bossSpeedInput = GUILayout.TextField(bossSpeedInput, textFieldStyle);
+                        float.TryParse(bossSpeedInput, out bossSpeed);
+                    }
+                    GUILayout.EndVertical();
+                    GUILayout.BeginVertical();
+                    {
+                        isAttackMult = GUILayout.Toggle(isAttackMult, localizationManager.GetString("Attack_Multiplier"), toggleStyle);
+                        attackMultInput = GUILayout.TextField(attackMultInput, textFieldStyle);
+                        float.TryParse(attackMultInput, out attackMult);
+                    }
+                    GUILayout.EndVertical();
+                    GUILayout.BeginVertical();
+                    {
+                        isInjeryMult = GUILayout.Toggle(isInjeryMult, localizationManager.GetString("Injury_Multiplier"), toggleStyle);
+                        injeryMultInput = GUILayout.TextField(injeryMultInput, textFieldStyle);
+                        float.TryParse(injeryMultInput, out injeryMult);
+                    }
+                    GUILayout.EndVertical();
                 }
                 GUILayout.EndHorizontal();
                 if (GUILayout.Button(localizationManager.GetString("Skip"), buttonStyle))
