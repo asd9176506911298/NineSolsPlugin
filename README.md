@@ -33,6 +33,7 @@
 - Goto Boss and Mini Boss
 - Modify Boss Speed
 - Predict Attack
+- Attack Injury Multiplier
 
 # Use Goto Boss, Mini Boss Will Override last Save Slot
 
