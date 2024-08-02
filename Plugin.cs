@@ -783,14 +783,14 @@ namespace NineSolsPlugin
                 GUILayout.EndHorizontal();
                 GUILayout.BeginHorizontal();
                 {
-                    isAttackMult = GUILayout.Toggle(isAttackMult, localizationManager.GetString("Attack Multiplier"), toggleStyle);
+                    isAttackMult = GUILayout.Toggle(isAttackMult, localizationManager.GetString("Attack_Multiplier"), toggleStyle);
                     attackMultInput = GUILayout.TextField(attackMultInput, textFieldStyle);
                     float.TryParse(attackMultInput, out attackMult);
                 }
                 GUILayout.EndHorizontal();
                 GUILayout.BeginHorizontal();
                 {
-                    isInjeryMult = GUILayout.Toggle(isInjeryMult, localizationManager.GetString("Injury Multiplier"), toggleStyle);
+                    isInjeryMult = GUILayout.Toggle(isInjeryMult, localizationManager.GetString("Injury_Multiplier"), toggleStyle);
                     injeryMultInput = GUILayout.TextField(injeryMultInput, textFieldStyle);
                     float.TryParse(injeryMultInput, out injeryMult);
                 }
