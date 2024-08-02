@@ -17,6 +17,8 @@
   "SupportWindow": "开启/关闭预测攻击",
   "ShowSupportWindowNoBackGround": "预设攻击视窗无背景",
   "BossSpeed": "BOSS加速",
+  "Attack_Multiplier": "攻击倍率",
+  "Injury_Multiplier": "受伤倍率",
   "Skip": "跳过",
   "A2_S5_BossHorseman_Final": "英招",
   "A3_S5_BossGouMang_Final": "勾芒",
