@@ -741,12 +741,15 @@ namespace NineSolsPlugin
                         }
                         if (GUILayout.Button(localizationManager.GetString("Test"), buttonStyle))
                         {
-
-                            foreach (MonsterBase monsterBase in UnityEngine.Object.FindObjectsOfType<MonsterBase>())
-                            {
-                                if (monsterBase.monsterStat.monsterLevel == MonsterLevel.Boss || monsterBase.monsterStat.monsterLevel == MonsterLevel.MiniBoss)
-                                    monsterBase.animator.speed = 4;
-                            }
+                                foreach (var skillNodeUIControlButton in UnityEngine.Object.FindObjectsOfType<SkillNodeUIControlButton>())
+                                {
+                                    skillNodeUIControlButton.UpdateView();
+                                }
+                            //foreach (MonsterBase monsterBase in UnityEngine.Object.FindObjectsOfType<MonsterBase>())
+                            //{
+                            //    if (monsterBase.monsterStat.monsterLevel == MonsterLevel.Boss || monsterBase.monsterStat.monsterLevel == MonsterLevel.MiniBoss)
+                            //        monsterBase.animator.speed = 4;
+                            //}
                             //HandleTeleportButtonClick("A1_S2_ConnectionToElevator_Final", new Vector3(1820f, -4432f, 0f)); //赤虎刀校－百長
                             //HandleTeleportButtonClick("A2_S6_LogisticCenter_Final", new Vector3(4370, -6768, 0f)); //赤虎刀校－炎刃
                             //HandleTeleportButtonClick("A2_S2_ReactorRight_Final", new Vector3(-4642, -1968, 0f)); //天綱步衛－角端

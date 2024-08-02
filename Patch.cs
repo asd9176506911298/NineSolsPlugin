@@ -74,5 +74,14 @@ namespace NineSolsPlugin
 
             return true;
         }
+
+
+        [HarmonyPrefix, HarmonyPatch(typeof(SkillNodeUIControlButton), "UpdateView")]
+        public static bool UpdateView(ref SkillNodeUIControlButton __instance)
+        {
+            __instance.GetComponent<Animator>().SetBool(Animator.StringToHash("Activated"), false);
+            
+            return true;
+        }
     }
 }
