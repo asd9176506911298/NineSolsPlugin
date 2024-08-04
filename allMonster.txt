@@ -1,0 +1,31 @@
+Key: f0f1efec-7510-4363-ba83-9f6f900c5a0b, Monster Data: TrapMonster_Robot_Crawler
+Key: 0711de6d-8d82-4103-8a3e-306d36a3c674, Monster Data: StealthGameMonster_Statue_DangerJumpKickStatue_M
+Key: f71cc2b6-24db-4319-9af3-a7f984c69cbd, Monster Data: StealthGameMonster_Phoenix_AirDrone Dasher
+Key: e7e60148-2295-416d-96f2-80e6a4d3d6f9, Monster Data: StealthMonster_AirSpider_ReflectAndExplode (5)
+Key: f6360c1e-5d28-407b-89c1-5737bd7f78b5, Monster Data: StealthMonster_AirSpider_ReflectAndExplode (4)
+Key: 5da1344c-2e18-4ac5-a12e-a01d66c312be, Monster Data: StealthMonster_AirSpider_ReflectAndExplode (6)
+Key: bee7dedf-b143-46b9-ab97-b757e8a69772, Monster Data: StealthGameMonster_Elite
+Key: 3e642745-51b8-4b03-baaf-477b888845a1, Monster Data: StealthGameMonster_GunBoy (2)
+Key: dd7428b8-0a02-4e3f-8f66-1aea239dcaf7, Monster Data: StealthGameMonster_GunBoy (4)
+Key: 0d15cc30-2c8b-4213-bfbc-205f3aaf49b7, Monster Data: StealthGameMonster_Spearman (1)
+Key: bdf0cba4-67d0-49b5-b3ca-7d0b3c186ddd, Monster Data: StealthGameMonster_Samurai_General_Boss Variant
+Key: aba98a81-bae5-41cc-95c5-5f18c39615f3, Monster Data: StealthMonster_AirSpider_ReflectAndExplode (4)
+Key: 0b9a4f85-62bc-4984-8229-5ffc4c2fa522, Monster Data: StealthMonster_AirSpider_ReflectAndExplode (5)
+Key: 8713717f-666c-4a05-b8a0-3d9dcb9ecebe, Monster Data: StealthMonster_AirSpider_ReflectAndExplode (5)
+Key: 909372b4-6669-428a-b346-68e02fe04832, Monster Data: StealthMonster_AirSpider_ReflectAndExplode (4)
+Key: 22ddb06e-a4cf-4a67-afa5-45c368111939, Monster Data: StealthGameMonster_Spearman (1)
+Key: 325a2b17-e167-4c3a-a436-6b5258ef9bda, Monster Data: StealthGameMonster_GunBoy (1)
+Key: 11d0de55-3c9f-454d-884e-47e0cb5f542e, Monster Data: TrapMonster_Robot_Crawler (1)
+Key: 02568417-c08b-4fa7-964d-851dae55cbf4, Monster Data: StealthGameMonster_GunBoy (2)
+Key: f0609edf-7b5e-41ec-ab22-354b42b293d3, Monster Data: StealthGameMonster_Minion
+Key: f4f8b541-027a-40e9-aaec-ce5c62cbc176, Monster Data: TrapMonster_Robot_Crawler (2)
+Key: 109876c4-44ca-4df4-9cdb-eb3c1a17a205, Monster Data: StealthGameMonster_GunBoy (3)
+Key: 459abcb7-3e0c-44d4-8c6d-cd0d56fb8002, Monster Data: StealthGameMonster_Minion
+Key: 79a024f4-41ac-4d55-a13c-b018d4432870, Monster Data: StealthGameMonster_GunBoy (2)
+Key: 62490e9a-f731-48ce-a8dc-f087081f78d2, Monster Data: StealthGameMonster_Minion (2)
+Key: 77c48933-54e8-4fc5-ad67-1c1e53940830, Monster Data: StealthGameMonster_Elite
+Key: 117ff89d-101e-48fe-b9ab-a26678384734, Monster Data: TrapMonster_Robot_Crawler
+Key: 1a05029b-d87f-41a8-8a62-2af733fcc183, Monster Data: StealthGameMonster_GunBoy (2)
+Key: 98f6ef9f-2680-4666-84a2-9b523d9aafca, Monster Data: StealthGameMonster_GunBoy (1)
+
+Key: 96612916-4224-43c1-bdc9-e881912f4a35, Monster Data: Boss_Yi Gung

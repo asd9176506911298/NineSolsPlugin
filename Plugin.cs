@@ -9,6 +9,12 @@ using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using RCGFSM.PlayerAbility;
 using UnityEngine.UI;
+using System.Collections;
+using static Linefy.PolygonalMesh;
+using static UnityEngine.UI.Image;
+using Cysharp.Threading.Tasks.Triggers;
+using UnityEngine.Pool;
+using UnityEngine.Events;
 
 namespace NineSolsPlugin
 {
@@ -109,7 +115,7 @@ namespace NineSolsPlugin
             previousBossSpeed = bossSpeed;
 
             previousIsAttackMult = isAttackMult;
-            previousAttackMult = previousAttackMult;
+            previousAttackMult = attackMult;
 
             previousIsInjeryMult = isInjeryMult;
             previousInjeryMult = injeryMult;
@@ -438,19 +444,158 @@ namespace NineSolsPlugin
                 }
             }
         }
+        IEnumerator DelayedExecution()
+        {
+            Vector3 position = Player.i.transform.localPosition;
+            position.x += 10f;
+            Player.i.transform.localPosition = position;
+            // Wait for 2 seconds
+            yield return new WaitForSeconds(0.5f);
+            Player.i.FlipFacing();
+
+            position = Player.i.transform.localPosition;
+            position.x += 10f;
+            Player.i.transform.localPosition = position;
+            // Code to execute after the delay
+            Debug.Log("This code is executed after a 2-second delay");
+        }
 
         private void Update()
         {
             CheckScreenSize();
             ProcessShortCut();
             TickLogic();
+            //Player.i.animator.SetFloat(Animator.StringToHash("OnGround"), 10f);
 
             #if DEBUG
+            if(Input.GetKeyDown(KeyCode.Keypad1))
+                //Sword
+                foreach (MonsterBase monsterBase in UnityEngine.Object.FindObjectsOfType<MonsterBase>())
+                    monsterBase.ChangeStateIfValid(MonsterBase.States.Attack3);
+
+            if (Input.GetKeyDown(KeyCode.Keypad2))
+                foreach (MonsterBase monsterBase in UnityEngine.Object.FindObjectsOfType<MonsterBase>())
+                    //Up
+                    monsterBase.ChangeStateIfValid(MonsterBase.States.Attack4);
+
+            if (Input.GetKeyDown(KeyCode.Keypad3))
+                foreach (MonsterBase monsterBase in UnityEngine.Object.FindObjectsOfType<MonsterBase>())
+                    //AOE Sword Quick
+                    monsterBase.ChangeStateIfValid(MonsterBase.States.Attack11);
+
+            if (Input.GetKeyDown(KeyCode.Keypad4))
+                foreach (MonsterBase monsterBase in UnityEngine.Object.FindObjectsOfType<MonsterBase>())
+                    // Three and Back
+                    monsterBase.ChangeStateIfValid(MonsterBase.States.Attack13);
+
+            if (Input.GetKeyDown(KeyCode.Keypad5))
+                foreach (MonsterBase monsterBase in UnityEngine.Object.FindObjectsOfType<MonsterBase>())
+                    //Direct Foo
+                    monsterBase.ChangeStateIfValid(MonsterBase.States.Attack16);
+
+            if (Input.GetKeyDown(KeyCode.Keypad6))
+                foreach (MonsterBase monsterBase in UnityEngine.Object.FindObjectsOfType<MonsterBase>())
+                    // Sword Up and down 3 sword
+                    monsterBase.ChangeStateIfValid(MonsterBase.States.Attack17);
+
             if (Input.GetKeyDown(KeyCode.Insert))
             {
-                var allStat = SaveManager.Instance.allStatData;
-                Logger.LogInfo(Traverse.Create(allStat.GetStat("0_PlayerAttackBaseDamageRatio 主角攻擊的基礎倍率").Stat).Field("BaseValue").GetValue<float>());
-                Logger.LogInfo(Traverse.Create(allStat.GetStat("1_PlayerTakeDamageRatio 主角受傷倍率").Stat).Field("BaseValue").GetValue<float>());
+
+                Logger.LogInfo("Execute");
+                var testList = new List<MonsterPoolObjectWrapper>();
+                foreach (MonsterPoolObjectWrapper monsterPoolObjectWrapper in UnityEngine.Object.FindObjectsOfType<MonsterPoolObjectWrapper>())
+                {
+                    Logger.LogInfo($"{monsterPoolObjectWrapper.gameObject.name} {monsterPoolObjectWrapper.transform.Find("MonsterCore").gameObject.activeSelf} {monsterPoolObjectWrapper.GetComponent<MonsterBase>().enabled}");
+                    if(!monsterPoolObjectWrapper.transform.Find("MonsterCore").gameObject.activeSelf)
+                    {
+                        monsterPoolObjectWrapper.transform.Find("MonsterCore").gameObject.SetActive(true);
+                    }
+                    if (!monsterPoolObjectWrapper.GetComponent<MonsterBase>().enabled)
+                    {
+                        monsterPoolObjectWrapper.GetComponent<MonsterBase>().enabled = true;
+                    }
+                    testList.Add(monsterPoolObjectWrapper);
+                }
+
+                var nest = GameObject.Find("A1_S2_GameLevel/Room/MonsterNest");
+                MonsterSpawner spawner = nest.GetComponentInChildren<MonsterSpawner>();
+                spawner.spawnTargetList = testList;
+                spawner.IgnoreMaximum = true;
+                nest.transform.position = Player.i.transform.position;
+                nest.SetActive(true);
+
+                //MonsterManager monsterManager = UnityEngine.Object.FindObjectsOfType<MonsterManager>()[0];
+
+                //var testList = new List<MonsterPoolObjectWrapper>();
+
+                //foreach (var x in monsterManager.monsterDict)
+                //{
+                //    Logger.LogInfo(x.Value);
+                //    // Create a new GameObject and attach MonsterPoolObjectWrapper to it
+                //    GameObject obj = new GameObject(x.Value.name);
+                //    MonsterPoolObjectWrapper t = obj.AddComponent<MonsterPoolObjectWrapper>();
+                //    var poolObject = obj.AddComponent<PoolObject>();
+                //    UnityEvent OnPoolDestroy = new UnityEvent();
+
+                //    if (t == null)
+                //    {
+                //        Logger.LogError("MonsterPoolObjectWrapper is null after being added to GameObject.");
+                //        continue;
+                //    }
+
+                //    // Set the necessary fields
+                //    Traverse.Create(t).Field("bindingMonsterBase").SetValue(x.Value);
+                //    Traverse.Create(t).Field("poolObject").SetValue(poolObject);
+                //    Traverse.Create(t).Field("OnPoolDestroy").SetValue(OnPoolDestroy);
+
+                //    testList.Add(t);
+                //    Logger.LogInfo($"Added MonsterPoolObjectWrapper to testList: {t}");
+                //}
+                //var nest = GameObject.Find("A1_S2_GameLevel/Room/MonsterNest");
+                //MonsterSpawner spawner = nest.GetComponentInChildren<MonsterSpawner>();
+                ////var testList = new List<MonsterPoolObjectWrapper>();
+                ////foreach (MonsterPoolObjectWrapper monsterPoolObjectWrapper in UnityEngine.Object.FindObjectsOfType<MonsterPoolObjectWrapper>())
+                ////{
+                ////    testList.Add(monsterPoolObjectWrapper);
+                ////    Logger.LogInfo(monsterPoolObjectWrapper.gameObject.name);
+                ////}
+                //spawner.spawnTargetList = testList;
+                //spawner.IgnoreMaximum = true;
+                //nest.transform.position = Player.i.transform.position;
+                //nest.SetActive(true);
+
+                //Sword
+                //monsterBase.ChangeStateIfValid(MonsterBase.States.Attack3);
+                //Up
+                //monsterBase.ChangeStateIfValid(MonsterBase.States.Attack4);
+                //AOE Sword
+                //monsterBase.ChangeStateIfValid(MonsterBase.States.Attack8);
+                //AOE Sword Quick
+                //monsterBase.ChangeStateIfValid(MonsterBase.States.Attack11);
+                // UP Down Bomp
+                //monsterBase.ChangeStateIfValid(MonsterBase.States.Attack12);
+                // Three and Back
+                //monsterBase.ChangeStateIfValid(MonsterBase.States.Attack13);
+                //Direct Foo
+                //monsterBase.ChangeStateIfValid(MonsterBase.States.Attack16);
+                // Sword Up and down 3 sword
+                //monsterBase.ChangeStateIfValid(MonsterBase.States.Attack17);
+
+
+                //foreach (FxPlayer fxPlayer in UnityEngine.Object.FindObjectsOfType<FxPlayer>())
+                //{
+                //    Logger.LogInfo(fxPlayer);
+                //    fxPlayer.PlayCustomObject();
+                //}
+
+
+                //Player.i.animator.SetFloat(Animator.StringToHash("IsFastRun"), 10f);
+
+                //StartCoroutine(DelayedExecution());
+
+
+
+
                 //KillAllEnemies();
                 //KillAllEnemiesExcept(MonsterLevel.MiniBoss);
                 //KillAllEnemies(MonsterLevel.Minion);
@@ -505,9 +650,88 @@ namespace NineSolsPlugin
                 //PrintFlag("t", "740a8b30-e3cc-4acc-9f5f-da3aaae1df5e_51c211e21fecd9e4c92f41d8d72aa395InterestPointData");
                 //PrintFlag("t", "51c211e21fecd9e4c92f41d8d72aa395b3d34dc1-c360-4e0c-863b-446c45bade1aInterestPointData");
             }
-            #endif
+            if (Input.GetKeyDown(KeyCode.Home))
+            {
+                //var nest = GameObject.Find("A1_S2_GameLevel/Room/MonsterNest");
+                //MonsterSpawner spawner = nest.GetComponentInChildren<MonsterSpawner>();
+                //spawner.TryEmitMonster(spawner.spawnTargetList.Count);
+                foreach (MonsterPoolObjectWrapper monsterPoolObjectWrapper in UnityEngine.Object.FindObjectsOfType<MonsterPoolObjectWrapper>())
+                {
+                    if (!monsterPoolObjectWrapper.transform.Find("MonsterCore").gameObject.activeSelf || !monsterPoolObjectWrapper.GetComponent<MonsterBase>().enabled)
+                    {
+                        monsterPoolObjectWrapper.transform.Find("MonsterCore").gameObject.SetActive(true);
+                        var monsterBase = monsterPoolObjectWrapper.GetComponent<MonsterBase>();
+                        monsterBase.enabled = true;
+                        monsterBase.LevelReset();
+                        var playerPos = Player.i.transform.position;
+                        if (Player.i.Facing == Facings.Right)
+                            monsterBase.transform.position = new Vector3(playerPos.x + 250, playerPos.y, 0f);
+                        else if (Player.i.Facing == Facings.Left)
+                            monsterBase.transform.position = new Vector3(playerPos.x - 250, playerPos.y, 0f);
+                        continue;
+                    }
+                    SpawnMonster(monsterPoolObjectWrapper);
+                }
+            }
         }
+#endif
 
+        void SpawnMonster(MonsterPoolObjectWrapper monster)
+        {
+            LoopWanderingPointGenerator overridePointGenerator = null;
+            MonsterPoolObjectWrapper monsterPoolObjectWrapper = monster;
+            MonsterPoolObjectWrapper monsterPoolObjectWrapper2;
+            if (monsterPoolObjectWrapper.gameObject.scene == SceneManager.GetActiveScene())
+            {
+                Debug.Log("SpawnMonster In Scece", monsterPoolObjectWrapper);
+                monsterPoolObjectWrapper2 = monsterPoolObjectWrapper;
+                monsterPoolObjectWrapper2.gameObject.SetActive(true);
+            }
+            else
+            {
+                monsterPoolObjectWrapper2 = SingletonBehaviour<PoolManager>.Instance.BorrowOrInstantiate<MonsterPoolObjectWrapper>(monsterPoolObjectWrapper, base.transform.position, Quaternion.identity, base.transform, null);
+            }
+            monsterPoolObjectWrapper2.transform.parent = null;
+            MonsterBase monsterBase = monsterPoolObjectWrapper2.GetComponent<MonsterBase>();
+            StealthWandering stealthWandering = monsterBase.FindState(MonsterBase.States.Wandering) as StealthWandering;
+            StealthWanderingIdle stealthWanderingIdle = monsterBase.FindState(MonsterBase.States.WanderingIdle) as StealthWanderingIdle;
+            FlyingMonsterWandering flyingMonsterWandering = monsterBase.FindState(MonsterBase.States.Wandering) as FlyingMonsterWandering;
+            if (stealthWanderingIdle != null)
+            {
+                stealthWanderingIdle.newPosTime = 2f;
+                stealthWanderingIdle.SinglePointIdle = false;
+            }
+            if (overridePointGenerator != null)
+            {
+                if (stealthWandering != null)
+                {
+                    stealthWandering.wanderingPointGenerator.OverridePoints(overridePointGenerator.TargetPoints);
+                }
+                else if (flyingMonsterWandering != null)
+                {
+                    flyingMonsterWandering.patrolPoints.Clear();
+                    flyingMonsterWandering.patrolPoints.Add(overridePointGenerator.TargetPoints[0].transform);
+                    flyingMonsterWandering.patrolPoints.Add(overridePointGenerator.TargetPoints[1].transform);
+                }
+            }
+            else if (stealthWandering != null)
+            {
+                stealthWandering.wanderingPointGenerator.DetachFromParent();
+            }
+
+            monsterPoolObjectWrapper2.transform.position = base.transform.position;
+            monsterPoolObjectWrapper2.gameObject.SetActive(true);
+            monsterBase.FacePlayer();
+            monsterBase.UpdateScaleFacing();
+            monsterBase.ChangeStateIfValid(MonsterBase.States.ZEnter);
+
+            var playerPos = Player.i.transform.position;
+            if (Player.i.Facing == Facings.Right)
+                monsterBase.transform.position = new Vector3(playerPos.x + 250, playerPos.y, 0f);
+            else if (Player.i.Facing == Facings.Left)
+                monsterBase.transform.position = new Vector3(playerPos.x - 250, playerPos.y, 0f);
+
+        }
 
         void PrintFlag(string key)
         {
@@ -815,9 +1039,8 @@ namespace NineSolsPlugin
                         if (GUILayout.Button(localizationManager.GetString("Test"), buttonStyle))
                         {
                             var allStat = SaveManager.Instance.allStatData;
-                            Logger.LogInfo(Traverse.Create(allStat.GetStat("0_PlayerAttackBaseDamageRatio 主角攻擊的基礎倍率").Stat).Field("_value").GetValue<float>());
-                            Logger.LogInfo(Traverse.Create(allStat.GetStat("1_PlayerTakeDamageRatio 主角受傷倍率").Stat).Field("_value").GetValue<float>());
-
+                            Logger.LogInfo(Traverse.Create(allStat.GetStat("ParryDuration").Stat).Field("BaseValue").GetValue<float>());
+                            allStat.GetStat("ParryDuration").Stat.BaseValue = 0f;
 
                             //foreach (MonsterBase monsterBase in UnityEngine.Object.FindObjectsOfType<MonsterBase>())
                             //{
