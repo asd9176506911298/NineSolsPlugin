@@ -83,5 +83,12 @@ namespace NineSolsPlugin
             
             return true;
         }
+
+        //[HarmonyPrefix, HarmonyPatch(typeof(PoolObject), "UseSceneAsPool",MethodType.Getter)]
+        //public static bool UseSceneAsPool(ref PoolObject __instance, ref bool __result)
+        //{
+        //    __result = false;
+        //    return false;
+        //}
     }
 }

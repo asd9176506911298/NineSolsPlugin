@@ -112,6 +112,8 @@ namespace NineSolsPlugin
             float height = Screen.height * 0.92f;
             windowRect = new Rect((Screen.width - width) / 2, (Screen.height - height) / 2, width, height);
             supportRect = new Rect((Screen.width - width) / 2, (Screen.height - height) / 2, width, height / 6);
+
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
 
         private void Start()
@@ -266,6 +268,20 @@ namespace NineSolsPlugin
         private void OnDestory()
         {
             Harmony.UnpatchAll();
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+        }
+
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            // Your code here
+            Logger.LogInfo("Scene loaded: " + scene.name);
+
+            // Example: Find all MonsterPoolObjectWrapper instances, including inactive ones
+            foreach (MonsterPoolObjectWrapper monsterPoolObjectWrapper in UnityEngine.Object.FindObjectsOfType<MonsterPoolObjectWrapper>(true))
+            {
+                // Your code here
+                Logger.LogInfo("Found MonsterPoolObjectWrapper: " + monsterPoolObjectWrapper.name);
+            }
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -660,7 +676,7 @@ namespace NineSolsPlugin
                 //var nest = GameObject.Find("A1_S2_GameLevel/Room/MonsterNest");
                 //MonsterSpawner spawner = nest.GetComponentInChildren<MonsterSpawner>();
                 //spawner.TryEmitMonster(spawner.spawnTargetList.Count);
-                Player.i.HasGravity = !Player.i.HasGravity;
+                //Player.i.HasGravity = !Player.i.HasGravity;
                 //foreach (MonsterPoolObjectWrapper monsterPoolObjectWrapper in UnityEngine.Object.FindObjectsOfType<MonsterPoolObjectWrapper>())
                 //{
                 //    if (!monsterPoolObjectWrapper.transform.Find("MonsterCore").gameObject.activeSelf || !monsterPoolObjectWrapper.GetComponent<MonsterBase>().enabled)
@@ -678,8 +694,13 @@ namespace NineSolsPlugin
                 //    }
                 //    SpawnMonster(monsterPoolObjectWrapper);
                 //}
+
+                foreach (BossPhaseChangeState bossPhaseChangeState in UnityEngine.Object.FindObjectsOfType<BossPhaseChangeState>())
+                {
+                    bossPhaseChangeState.OnStateEnter();
+                }
             }
-            
+
             if (Input.GetKeyDown(KeyCode.PageUp))
             {
                 Logger.LogInfo("Pageup");
@@ -690,32 +711,69 @@ namespace NineSolsPlugin
 
                 //foreach (GameObject gameObject in Resources.FindObjectsOfTypeAll<GameObject>())
                 //{
-                    
+
                 //    if (gameObject.name == "StealthGameMonster_Minion_prefab")
                 //    {
                 //        SpawnMonster(gameObject.GetComponent<MonsterPoolObjectWrapper>());
                 //    }
                 //}
 
-                foreach (MonsterPoolObjectWrapper monsterPoolObjectWrapper in Resources.FindObjectsOfTypeAll<MonsterPoolObjectWrapper>())
+                //foreach (MonsterPoolObjectWrapper monsterPoolObjectWrapper in Resources.FindObjectsOfTypeAll<MonsterPoolObjectWrapper>())
+                //{
+
+                //    //if(monsterPoolObjectWrapper.gameObject.tag == "Enemy")
+                //    //{
+                //    //    if (monsterPoolObjectWrapper.gameObject.name.Contains("AfterImage") || monsterPoolObjectWrapper.gameObject.name.Contains("殘影")) continue;
+                //    //    var level = Traverse.Create(monsterPoolObjectWrapper).Field("bindingMonsterBase").GetValue<MonsterBase>().monsterStat.monsterLevel;
+                //    //    if (true/*level == MonsterLevel.Minion*//*level == MonsterLevel.MiniBoss || level == MonsterLevel.Elite || level == MonsterLevel.Boss*/)
+                //    //    {
+                //    //        LogInfo($"Name:{monsterPoolObjectWrapper.gameObject.name} level:{level}");
+                //    //        SpawnMonster(monsterPoolObjectWrapper.GetComponent<MonsterPoolObjectWrapper>());
+
+                //    //    }
+                //    //}
+                //    if (monsterPoolObjectWrapper.gameObject.name == "StealthGameMonster_Minion_prefab")
+                //    {
+                //        SpawnMonster(gameObject.GetComponent<MonsterPoolObjectWrapper>());
+                //    }
+                //}
+
+                //foreach (MonsterPoolObjectWrapper monsterPoolObjectWrapper in Resources.FindObjectsOfTypeAll<MonsterPoolObjectWrapper>())
+                //{
+                //    //Logger.LogInfo(monsterPoolObjectWrapper.gameObject.name);
+                //    if (monsterPoolObjectWrapper.gameObject.name.Contains("Phantom")) return;
+                //    var level = Traverse.Create(monsterPoolObjectWrapper).Field("bindingMonsterBase").GetValue<MonsterBase>().monsterStat.monsterLevel;
+                //    if (level == MonsterLevel.Boss)
+                //    {
+                //        Logger.LogInfo(monsterPoolObjectWrapper.gameObject.name);
+                //        SpawnMonster(monsterPoolObjectWrapper.GetComponent<MonsterPoolObjectWrapper>());
+                //    }
+
+                //    //if (monsterPoolObjectWrapper.gameObject.name == "StealthGameMonster_Minion_prefab")
+                //    //{
+                //    //    SpawnMonster(monsterPoolObjectWrapper.GetComponent<MonsterPoolObjectWrapper>());
+                //    //}
+                //}
+                foreach (MonsterPoolObjectWrapper monsterPoolObjectWrapper in UnityEngine.Object.FindObjectsOfType<MonsterPoolObjectWrapper>(true))
                 {
-                    
-                    if(true/*monsterPoolObjectWrapper.gameObject.tag == "Enemy"*/)
+                    //Logger.LogInfo(monsterPoolObjectWrapper.gameObject.name);
+                    //if (monsterPoolObjectWrapper.gameObject.name.Contains("Phantom")) return;
+                    var level = Traverse.Create(monsterPoolObjectWrapper).Field("bindingMonsterBase").GetValue<MonsterBase>().monsterStat.monsterLevel;
+                    Logger.LogInfo($"Name:{monsterPoolObjectWrapper.gameObject.name} Level:{level}");
+
+                    if (level == MonsterLevel.Elite)
                     {
-                        if (monsterPoolObjectWrapper.gameObject.name.Contains("AfterImage") || monsterPoolObjectWrapper.gameObject.name.Contains("殘影")) continue;
-                        var level = Traverse.Create(monsterPoolObjectWrapper).Field("bindingMonsterBase").GetValue<MonsterBase>().monsterStat.monsterLevel;
-                        if (level == MonsterLevel.MiniBoss/* || level == MonsterLevel.Elite || level == MonsterLevel.Boss*/)
-                        {
-                            LogInfo($"Name:{monsterPoolObjectWrapper.gameObject.name} level:{level}");
+                        Logger.LogInfo(monsterPoolObjectWrapper.gameObject.name);
+                        if(monsterPoolObjectWrapper.gameObject.name == "StealthGameMonster_Elite")
                             SpawnMonster(monsterPoolObjectWrapper.GetComponent<MonsterPoolObjectWrapper>());
-                            
-                        }
                     }
+
                     //if (monsterPoolObjectWrapper.gameObject.name == "StealthGameMonster_Minion_prefab")
                     //{
-                    //    SpawnMonster(gameObject.GetComponent<MonsterPoolObjectWrapper>());
+                    //    SpawnMonster(monsterPoolObjectWrapper.GetComponent<MonsterPoolObjectWrapper>());
                     //}
                 }
+                
 
 
                 //foreach(var dict in MonsterManager.Instance.monsterDict)
@@ -726,6 +784,48 @@ namespace NineSolsPlugin
 
                 //    SpawnMonsterDu(dict.Value.GetComponent<MonsterPoolObjectWrapper>());
                 //}
+                }
+            if (Input.GetKeyDown(KeyCode.PageDown))
+            {
+                Logger.LogInfo("PageDown");
+                //var nest = GameObject.Find("A1_S2_GameLevel/Room/MonsterNest");
+                //MonsterSpawner spawner = nest.GetComponentInChildren<MonsterSpawner>();
+
+                //var playerPos = Player.i.transform.position;
+                //if (Player.i.Facing == Facings.Right)
+                //    BorrowOrInstantiateCust(spawner.spawnTargetList.First<MonsterPoolObjectWrapper>().gameObject, new Vector3(playerPos.x + 250, playerPos.y, 0f), Quaternion.identity, null, null);
+                //else if (Player.i.Facing == Facings.Left)
+                //    BorrowOrInstantiateCust(spawner.spawnTargetList.First<MonsterPoolObjectWrapper>().gameObject, new Vector3(playerPos.x - 250, playerPos.y, 0f), Quaternion.identity, null, null);
+
+                foreach (MonsterPoolObjectWrapper monsterPoolObjectWrapper in UnityEngine.Object.FindObjectsOfType<MonsterPoolObjectWrapper>(true))
+                {
+                    //Logger.LogInfo(monsterPoolObjectWrapper.gameObject.name);
+                    //if (monsterPoolObjectWrapper.gameObject.name.Contains("Phantom")) return;
+                    //var level = Traverse.Create(monsterPoolObjectWrapper).Field("bindingMonsterBase").GetValue<MonsterBase>().monsterStat.monsterLevel;
+                    //Logger.LogInfo($"Name:{monsterPoolObjectWrapper.gameObject.name} Level:{level}");
+
+                    if (true/*level == MonsterLevel.Minion*/)
+                    {
+                        Logger.LogInfo(monsterPoolObjectWrapper.gameObject.name);
+                        if (monsterPoolObjectWrapper.gameObject.name == "StealthGameMonster_Samurai_General_Boss Variant")
+                        {
+                            //SingletonBehaviour<PoolManager>.Instance.BorrowOrInstantiate(monsterPoolObjectWrapper.gameObject, new Vector3(playerPos.x + 250, playerPos.y, 0f), Quaternion.identity, null, null);
+                            //SingletonBehaviour<PoolManager>.Instance.BorrowOrInstantiate(monsterPoolObjectWrapper.gameObject, new Vector3(playerPos.x - 250, playerPos.y, 0f), Quaternion.identity, null, null);
+                            var playerPos = Player.i.transform.position;
+                            if (Player.i.Facing == Facings.Right)
+                                BorrowOrInstantiateCust(monsterPoolObjectWrapper.gameObject, new Vector3(playerPos.x + 250, playerPos.y, 0f), Quaternion.identity, null, null);
+                            else if (Player.i.Facing == Facings.Left)
+                                BorrowOrInstantiateCust(monsterPoolObjectWrapper.gameObject, new Vector3(playerPos.x - 250, playerPos.y, 0f), Quaternion.identity, null, null);
+
+                        }
+                        //SpawnMonsterDu(monsterPoolObjectWrapper.GetComponent<MonsterPoolObjectWrapper>());
+                    }
+
+                    //if (monsterPoolObjectWrapper.gameObject.name == "StealthGameMonster_Minion_prefab")
+                    //{
+                    //    SpawnMonster(monsterPoolObjectWrapper.GetComponent<MonsterPoolObjectWrapper>());
+                    //}
+                }
             }
 #endif
             void SpawnMonsterDu(MonsterPoolObjectWrapper monster)
@@ -733,10 +833,8 @@ namespace NineSolsPlugin
                 LoopWanderingPointGenerator overridePointGenerator = null;
                 MonsterPoolObjectWrapper monsterPoolObjectWrapper = monster;
                 MonsterPoolObjectWrapper monsterPoolObjectWrapper2;
-
-                Vector3 x = new Vector3(Player.i.transform.position.x, Player.i.transform.position.y, 0f);
-                monsterPoolObjectWrapper2 = Instantiate(monsterPoolObjectWrapper, x, Quaternion.identity);
-
+                Logger.LogInfo(monsterPoolObjectWrapper.gameObject.scene.name);
+                monsterPoolObjectWrapper2 = BorrowOrInstantiateCust<MonsterPoolObjectWrapper>(monsterPoolObjectWrapper, base.transform.position, Quaternion.identity, base.transform, null);
                 monsterPoolObjectWrapper2.transform.parent = null;
                 MonsterBase monsterBase = monsterPoolObjectWrapper2.GetComponent<MonsterBase>();
                 StealthWandering stealthWandering = monsterBase.FindState(MonsterBase.States.Wandering) as StealthWandering;
@@ -764,13 +862,12 @@ namespace NineSolsPlugin
                 {
                     stealthWandering.wanderingPointGenerator.DetachFromParent();
                 }
-
                 monsterPoolObjectWrapper2.transform.position = base.transform.position;
                 monsterPoolObjectWrapper2.gameObject.SetActive(true);
                 monsterBase.FacePlayer();
                 monsterBase.UpdateScaleFacing();
                 monsterBase.ChangeStateIfValid(MonsterBase.States.ZEnter);
-                monsterBase.ForceEngage();
+                //monsterBase.ForceEngage();
 
                 var playerPos = Player.i.transform.position;
                 if (Player.i.Facing == Facings.Right)
@@ -786,9 +883,10 @@ namespace NineSolsPlugin
             LoopWanderingPointGenerator overridePointGenerator = null;
             MonsterPoolObjectWrapper monsterPoolObjectWrapper = monster;
             MonsterPoolObjectWrapper monsterPoolObjectWrapper2;
+            Logger.LogInfo(monsterPoolObjectWrapper.gameObject.scene.name);
             if (monsterPoolObjectWrapper.gameObject.scene == SceneManager.GetActiveScene())
             {
-                Debug.Log("SpawnMonster In Scece", monsterPoolObjectWrapper);
+                Logger.LogInfo($"SpawnMonster In Scece {monsterPoolObjectWrapper.gameObject.name}");
                 monsterPoolObjectWrapper2 = monsterPoolObjectWrapper;
                 monsterPoolObjectWrapper2.gameObject.SetActive(true);
             }
@@ -823,12 +921,12 @@ namespace NineSolsPlugin
             {
                 stealthWandering.wanderingPointGenerator.DetachFromParent();
             }
-
             monsterPoolObjectWrapper2.transform.position = base.transform.position;
             monsterPoolObjectWrapper2.gameObject.SetActive(true);
             monsterBase.FacePlayer();
             monsterBase.UpdateScaleFacing();
             monsterBase.ChangeStateIfValid(MonsterBase.States.ZEnter);
+            monsterBase.ForceEngage();
 
             var playerPos = Player.i.transform.position;
             if (Player.i.Facing == Facings.Right)
@@ -1511,6 +1609,84 @@ namespace NineSolsPlugin
         public static void LogError(string message)
         {
             logger.LogError(message);
+        }
+
+        public T BorrowOrInstantiateCust<T>(T obj, Vector3 position = default(Vector3), Quaternion rotation = default(Quaternion), Transform parent = null, Action<PoolObject> handler = null) where T : MonoBehaviour
+        {
+            PoolObject component = obj.GetComponent<PoolObject>();
+            if (component != null)
+            {
+                return BorrowCust(component, position, rotation, parent, handler).GetComponent<T>();
+            }
+
+            Logger.LogInfo("It's not a pool object...");
+            return UnityEngine.Object.Instantiate(obj, position, rotation, parent);
+        }
+
+        public GameObject BorrowOrInstantiateCust(GameObject obj, Vector3 position = default(Vector3), Quaternion rotation = default(Quaternion), Transform parent = null, Action<PoolObject> handler = null)
+        {
+            PoolRequest poolRequest;
+            bool flag = obj.TryGetComponent<PoolRequest>(out poolRequest);
+            PoolObject prefab;
+            bool flag2 = obj.TryGetComponent<PoolObject>(out prefab);
+            if (flag)
+            {
+                return this.BorrowCust(poolRequest.PoolObjectRequests.prefab, position, rotation, parent, handler).gameObject;
+            }
+            if (flag2)
+            {
+                return this.BorrowCust(prefab, position, rotation, parent, handler).gameObject;
+            }
+            Logger.LogInfo("RunTime Instantiate");
+            return UnityEngine.Object.Instantiate<GameObject>(obj, position, rotation, parent);
+        }
+
+        private PoolObject BorrowCust(PoolObject prefab, Vector3 position, Quaternion rotation, Transform parent = null, Action<PoolObject> handler = null)
+        {
+            if (!PoolManager.Instance.IsReady)
+            {
+                Logger.LogInfo($"太早跟pool拿東西了，危險。 {prefab} {prefab}");
+            }
+
+            //if (prefab.UseSceneAsPool)
+            //{
+            //    prefab.TransformReset();
+            //    prefab.PoolObjectResetAndStart();
+            //    Transform obj = prefab.transform;
+            //    obj.parent = parent;
+            //    obj.rotation = rotation;
+            //    obj.position = position;
+            //    //prefab.OnBorrowFromPool(null);
+            //    prefab.OverrideTransformSetting(position, rotation, parent, prefab.transform.localScale);
+            //    prefab.TransformReset();
+            //    prefab.gameObject.SetActive(value: true);
+            //    prefab.ResetAnim();
+            //    prefab.PoolObjectResetAndStart();
+            //    handler?.Invoke(prefab);
+            //    return prefab;
+            //}
+
+            //prefab.TransformReset();
+            //prefab.PoolObjectResetAndStart();
+            //Transform obj = prefab.transform;
+            //obj.parent = parent;
+            //obj.rotation = rotation;
+            //obj.position = position;
+            //prefab.OnBorrowFromPool(null);
+            //prefab.OverrideTransformSetting(position, rotation, parent, prefab.transform.localScale);
+            //prefab.TransformReset();
+            //prefab.gameObject.SetActive(value: true);
+            //prefab.ResetAnim();
+            //prefab.PoolObjectResetAndStart();
+            //handler?.Invoke(prefab);
+
+            if (!PoolManager.Instance.PoolDictionary.ContainsKey(prefab))
+            {
+                Logger.LogInfo("PoolManager: " + prefab.name + " is not in the pool dictionary");
+                Traverse.Create(PoolManager.Instance).Method("AddAPool",prefab).GetValue();
+            }
+
+            return PoolManager.Instance.PoolDictionary[prefab].Borrow(position, rotation, parent, handler);
         }
     }
 }
