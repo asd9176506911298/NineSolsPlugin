@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NineSolsPlugin</RootNamespace>
     <AssemblyName>NineSolsPlugin</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -40,9 +41,15 @@
       <HintPath>assembly-libaries\Assembly-CSharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="barbaro.autoattributes.Runtime">
+      <HintPath>..\..\..\Games\Nine Sols\NineSols_Data\Managed\barbaro.autoattributes.Runtime.dll</HintPath>
+    </Reference>
     <Reference Include="BepInEx">
       <HintPath>assembly-libaries\BepInEx.dll</HintPath>
       <Private>False</Private>
+    </Reference>
+    <Reference Include="guidRef">
+      <HintPath>..\..\..\Games\Nine Sols\NineSols_Data\Managed\guidRef.dll</HintPath>
     </Reference>
     <Reference Include="InControl">
       <HintPath>assembly-libaries\InControl.dll</HintPath>
@@ -64,6 +71,9 @@
     <Reference Include="rcg.rcgmakercore.Runtime">
       <HintPath>assembly-libaries\rcg.rcgmakercore.Runtime.dll</HintPath>
       <Private>False</Private>
+    </Reference>
+    <Reference Include="Sirenix.OdinInspector.Attributes">
+      <HintPath>..\..\..\Games\Nine Sols\NineSols_Data\Managed\Sirenix.OdinInspector.Attributes.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -97,6 +107,9 @@
       <HintPath>assembly-libaries\UnityEngine.InputLegacyModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="UnityEngine.Physics2DModule">
+      <HintPath>..\..\..\Games\Nine Sols\NineSols_Data\Managed\UnityEngine.Physics2DModule.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.TextRenderingModule">
       <HintPath>assembly-libaries\UnityEngine.TextRenderingModule.dll</HintPath>
       <Private>False</Private>
@@ -115,6 +128,9 @@
     <Compile Include="Patch.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="samuraiOriOffset - Copy.txt" />
+    <Content Include="samuraiOriOffset.txt" />
+    <Content Include="samuraiOriNoOffset.txt" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="language\" />
