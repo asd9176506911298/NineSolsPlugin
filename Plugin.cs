@@ -89,6 +89,10 @@ namespace NineSolsPlugin
         private Rect windowRect;
         private Rect supportRect;
 
+        GameObject attack = null;
+        GameObject attack2 = null;
+        GameObject attack3 = null;
+
         public bool showSupportWindow = false;
         public string SupportText = "test";
         private bool isShowSupportWindowNoBackGround = false;
@@ -797,7 +801,51 @@ namespace NineSolsPlugin
             if (Input.GetKeyDown(KeyCode.PageDown))
             {
                 Logger.LogInfo("PageDown");
-                ModifyFlag("df6a9a9f7748f4baba6207afdf10ea31PlayerAbilityScenarioModifyPack", 1);
+                //Effect_TaiDanger
+                //易公
+                //紅閃 FullScreen Slash FX Damage Danger
+                //Logger.LogInfo(GameObject.Find("HoHoYee_AttackC ThirdAttack Effect"));
+                GameObject[] allGameObjects = Resources.FindObjectsOfTypeAll<GameObject>();
+                if (attack == null || attack2 == null)
+                {
+                    // Filter to find the specific GameObject by name
+                    foreach (GameObject go in allGameObjects)
+                    {
+                        if (go.name == "HoHoYee_AttackC ThirdAttack Effect" || go.name == "HoHoYee_Charging 蓄力攻擊特效" || go.name == "紅閃 FullScreen Slash FX Damage Danger")
+                        {
+                            if (go.name == "HoHoYee_AttackC ThirdAttack Effect")
+                                attack = go;
+                            if (go.name == "HoHoYee_Charging 蓄力攻擊特效")
+                                attack2 = go;
+                            if (go.name == "紅閃 FullScreen Slash FX Damage Danger")
+                                attack3 = go;
+                        }
+
+                        // Break the loop if both attack and attack2 are found
+                        if (attack != null && attack2 != null && attack3 != null)
+                        {
+                            break;
+                        }
+                    }
+                }
+                int i = 0;
+                while (i < 24)
+                {
+                    var x = Instantiate(attack, Player.i.Center, Quaternion.Euler(0, 0, 15*i));
+                    var x2 = Instantiate(attack2, Player.i.Center, Quaternion.Euler(0, 0, 15f * i));
+                    var x3 = Instantiate(attack3, Player.i.Center, Quaternion.Euler(0, 0, 15f * i));
+                    x.transform.Find("ShootSpawner").gameObject.SetActive(true);
+                    x.transform.Find("Sprite").gameObject.SetActive(false);
+                    Destroy(x);
+                    //Destroy(x2);
+                    //Destroy(x3);
+                    i++;
+                }
+                
+                //attack.transform.rotation.
+                //PoolManager.Instance.BorrowOrInstantiate(attack, Player.i.Center, Quaternion.identity);
+
+                //ModifyFlag("df6a9a9f7748f4baba6207afdf10ea31PlayerAbilityScenarioModifyPack", 1);
                 //foreach (MonsterBase monsterBase in UnityEngine.Object.FindObjectsOfType<MonsterBase>(true))
                 //{
                 //    monsterBase.monsterStat.IsLockPostureInvincible = false;
