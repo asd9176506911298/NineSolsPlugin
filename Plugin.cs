@@ -25,6 +25,7 @@ using System.Runtime.InteropServices;
 using RCGFSM.Projectiles;
 using Com.LuisPedroFonseca.ProCamera2D.TopDownShooter;
 using QFSW.QC.Utilities;
+using static Unity.IO.LowLevel.Unsafe.AsyncReadManagerMetrics;
 
 namespace NineSolsPlugin
 {
@@ -502,32 +503,55 @@ namespace NineSolsPlugin
             if (Input.GetKeyDown(KeyCode.Keypad1))
                 //Sword
                 foreach (MonsterBase monsterBase in UnityEngine.Object.FindObjectsOfType<MonsterBase>())
-                    monsterBase.ChangeStateIfValid(MonsterBase.States.StandUp);
+                    monsterBase.ChangeStateIfValid(MonsterBase.States.Attack4);
 
             if (Input.GetKeyDown(KeyCode.Keypad2))
                 foreach (MonsterBase monsterBase in UnityEngine.Object.FindObjectsOfType<MonsterBase>())
                     //Up
-                    monsterBase.ChangeStateIfValid(MonsterBase.States.Sit);
+                    monsterBase.ChangeStateIfValid(MonsterBase.States.Attack5);
 
             if (Input.GetKeyDown(KeyCode.Keypad3))
                 foreach (MonsterBase monsterBase in UnityEngine.Object.FindObjectsOfType<MonsterBase>())
                     //AOE Sword Quick
-                    monsterBase.ChangeStateIfValid(MonsterBase.States.Attack1);
+                    monsterBase.ChangeStateIfValid(MonsterBase.States.Attack3);
 
             if (Input.GetKeyDown(KeyCode.Keypad4))
                 foreach (MonsterBase monsterBase in UnityEngine.Object.FindObjectsOfType<MonsterBase>())
                     // Three and Back
-                    monsterBase.ChangeStateIfValid(MonsterBase.States.Attack2);
+                    monsterBase.ChangeStateIfValid(MonsterBase.States.Attack1);
 
             if (Input.GetKeyDown(KeyCode.Keypad5))
                 foreach (MonsterBase monsterBase in UnityEngine.Object.FindObjectsOfType<MonsterBase>())
                     //Direct Foo
-                    monsterBase.ChangeStateIfValid(MonsterBase.States.Attack3);
+                    monsterBase.ChangeStateIfValid(MonsterBase.States.Attack12);
 
             if (Input.GetKeyDown(KeyCode.Keypad6))
                 foreach (MonsterBase monsterBase in UnityEngine.Object.FindObjectsOfType<MonsterBase>())
                     // Sword Up and down 3 sword
-                    monsterBase.ChangeStateIfValid(MonsterBase.States.Attack4);
+                    monsterBase.ChangeStateIfValid(MonsterBase.States.Attack14);
+
+            if (Input.GetKeyDown(KeyCode.Keypad7))
+                foreach (MonsterBase monsterBase in UnityEngine.Object.FindObjectsOfType<MonsterBase>())
+                    // Sword Up and down 3 sword
+                    monsterBase.ChangeStateIfValid(MonsterBase.States.Attack6);
+
+            if (Input.GetKeyDown(KeyCode.Keypad8))
+                foreach (MonsterBase monsterBase in UnityEngine.Object.FindObjectsOfType<MonsterBase>())
+                    // Sword Up and down 3 sword
+                    monsterBase.ChangeStateIfValid(MonsterBase.States.Attack2);
+
+            if (Input.GetKeyDown(KeyCode.Keypad9))
+                foreach (MonsterBase monsterBase in UnityEngine.Object.FindObjectsOfType<MonsterBase>())
+                    // Sword Up and down 3 sword
+                    monsterBase.ChangeStateIfValid(MonsterBase.States.Attack7);
+
+            //4 5 關刀 5 火光
+            // 3 尖
+            // 1 12 14槍 12火光
+            // 2 暗器
+            // 6 長劍
+            // 7 流彈
+
 
             if (Input.GetKeyDown(KeyCode.Insert))
             {
@@ -1473,9 +1497,9 @@ namespace NineSolsPlugin
 
                 GUILayout.BeginHorizontal();
                 {
-                    if (GUILayout.Button(localizationManager.GetString("Enable Jailed Weak Status"), buttonStyle))
+                    if (GUILayout.Button(localizationManager.GetString("Enable_Jailed_Weak_Status"), buttonStyle))
                         ModifyFlag("df6a9a9f7748f4baba6207afdf10ea31PlayerAbilityScenarioModifyPack", 1);
-                    if (GUILayout.Button(localizationManager.GetString("Disable Jailed Weak Status"), buttonStyle))
+                    if (GUILayout.Button(localizationManager.GetString("Disable_Jailed_Weak_Status"), buttonStyle))
                         ModifyFlag("df6a9a9f7748f4baba6207afdf10ea31PlayerAbilityScenarioModifyPack", 0);
                 }
                 GUILayout.EndHorizontal();
@@ -1498,7 +1522,8 @@ namespace NineSolsPlugin
                         }
                         if (GUILayout.Button(localizationManager.GetString("Test"), buttonStyle))
                         {
-                            HandleTeleportButtonClick("A1_S2_ConnectionToElevator_Final", new Vector3(75, -3408f, 0f)); //赤虎刀校－百長
+                            //HandleTeleportButtonClick("A1_S2_ConnectionToElevator_Final", new Vector3(75, -3408f, 0f)); //赤虎刀校－百長s
+                            HandleTeleportButtonClick("A4_S4_Container_Final", new Vector3(1968f, -8768f, 0f));
                             //var allStat = SaveManager.Instance.allStatData;
                             //Logger.LogInfo(Traverse.Create(allStat.GetStat("ParryDuration").Stat).Field("BaseValue").GetValue<float>());
                             //allStat.GetStat("ParryDuration").Stat.BaseValue = 0f;

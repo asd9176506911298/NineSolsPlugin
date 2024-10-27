@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using RCGFSM.Projectiles;
+using RCGSetting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -87,6 +88,13 @@ namespace NineSolsPlugin
 
             return true;
         }
+
+        //[HarmonyPrefix, HarmonyPatch(typeof(DebugSetting), "IsDebugMode", MethodType.Getter)]
+        //public static bool IsDebugMode(ref bool __result)
+        //{
+        //    __result = true;
+        //    return false;
+        //}
 
         //[HarmonyPrefix, HarmonyPatch(typeof(PoolObject), "UseSceneAsPool",MethodType.Getter)]
         //public static bool UseSceneAsPool(ref PoolObject __instance, ref bool __result)
