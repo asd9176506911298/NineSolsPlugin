@@ -41,6 +41,8 @@ namespace NineSolsPlugin
         private ConfigEntry<KeyCode> FovToggleKey;
         private ConfigEntry<KeyCode> MouseTeleportKey;
         private ConfigEntry<KeyCode> SkipKey;
+        private ConfigEntry<KeyCode> saveKey;
+        private ConfigEntry<KeyCode> loadKey;
         private ConfigEntry<string> Language;
         public ConfigEntry<bool> isEnableConsole;
 
@@ -105,7 +107,9 @@ namespace NineSolsPlugin
             SpeedToggleKey = Config.Bind<KeyCode>("Menu", "SpeedToggleKey", KeyCode.F4, "Timer ShortCut\n加速快捷鍵\n加速热键");
             FovToggleKey = Config.Bind<KeyCode>("Menu", "FOVToggleKey", KeyCode.F5, "FOV ShortCut\nFOV快捷鍵\nFOV热键");
             MouseTeleportKey = Config.Bind<KeyCode>("Menu", "MouseTeleportKey", KeyCode.F2, "Mouse Move Character ShortCut\n滑鼠移動快捷鍵\n滑鼠移动热键");
-            SkipKey = Config.Bind<KeyCode>("Menu", "SkilKey", KeyCode.LeftControl, "Skip ShortCut\n跳過快捷鍵\n跳過热键");
+            SkipKey = Config.Bind<KeyCode>("Menu", "SkipKey", KeyCode.LeftControl, "Skip ShortCut\n跳過快捷鍵\n跳過热键");
+            saveKey = Config.Bind<KeyCode>("Menu", "SaveKey", KeyCode.F11, "Save Current State\n儲存當前資料\n暂存当前资料");
+            loadKey = Config.Bind<KeyCode>("Menu", "LoadKey", KeyCode.F12, "Load Tmp State\n讀取暫存資料\n读取暂存资料");
             isEnableConsole = Config.Bind<bool>("Menu", "isEnableConsole", true, "Is Enable Console? F1 Open Console\n是否開啟控制台 F1開啟控制台\n是否开启控制台 F1开启控制台");
             Language = Config.Bind<string>("Menu", "MenuLanguage", "en-us", "Menu Language\n選單語言\n选单语言\nen-us, zh-tw, zh-cn");
 
@@ -343,9 +347,18 @@ namespace NineSolsPlugin
                 isFov = !isFov;
             }
 
+            if (Input.GetKeyDown(saveKey.Value))
+            {
+                SaveCurState();
+            }
+
+            if (Input.GetKeyDown(loadKey.Value))
+            {
+                LoadSaveState();
+            }
+
             if (Input.GetKeyDown(SkipKey.Value))
             {
-
                 Skip();
             }
 
@@ -453,8 +466,15 @@ namespace NineSolsPlugin
             {
                 if (isBossSpeed)
                 {
-                    if (monsterBase.monsterStat.monsterLevel == MonsterLevel.Boss || monsterBase.monsterStat.monsterLevel == MonsterLevel.MiniBoss)
-                        monsterBase.animator.speed = speed;
+                    var monsterStatField = typeof(MonsterBase).GetField("monsterStat")
+                                       ?? typeof(MonsterBase).GetField("_monsterStat");
+                    if(monsterStatField != null)
+                    {
+                        var monsterStat = monsterStatField.GetValue(monsterBase) as MonsterStat; // Assuming MonsterStat is the type of the field
+                        if ( monsterStat.monsterLevel == MonsterLevel.Boss || monsterStat.monsterLevel == MonsterLevel.MiniBoss)
+                            monsterBase.animator.speed = speed;
+                    }
+                    
                 }else
                     monsterBase.animator.speed = 1;
             }
@@ -615,15 +635,15 @@ namespace NineSolsPlugin
                 {
                     GUILayout.BeginVertical();
                     {
-                        isFov = GUILayout.Toggle(isFov, localizationManager.GetString("FOV"), toggleStyle);
-                        fov = GUILayout.HorizontalSlider(fov, 1f, 180f, GUILayout.Width(200));
+                        isSpeed = GUILayout.Toggle(isSpeed, ShowKey(SpeedToggleKey) + localizationManager.GetString("Timer"), toggleStyle);
+                        speedInput = GUILayout.TextField(speedInput, textFieldStyle);
+                        float.TryParse(speedInput, out speed);
                     }
                     GUILayout.EndVertical();
                     GUILayout.BeginVertical();
                     {
-                        isSpeed = GUILayout.Toggle(isSpeed, localizationManager.GetString("Timer"), toggleStyle);
-                        speedInput = GUILayout.TextField(speedInput, textFieldStyle);
-                        float.TryParse(speedInput, out speed);
+                        isFov = GUILayout.Toggle(isFov, ShowKey(FovToggleKey) + localizationManager.GetString("FOV"), toggleStyle);
+                        fov = GUILayout.HorizontalSlider(fov, 1f, 180f, GUILayout.Width(200));
                     }
                     GUILayout.EndVertical();
                 }
@@ -821,30 +841,17 @@ namespace NineSolsPlugin
                         Skip();
                     }
 
-                    if (GUILayout.Button(localizationManager.GetString("Save_CurState"), buttonStyle))
+                    if (GUILayout.Button(ShowKey(saveKey) + localizationManager.GetString("Save_CurState"), buttonStyle))
                     {
-                        data = GameCore.Instance.playerGameData.SaveMetaData();
-                        dataByte = GameFlagManager.FlagsToBinary(SaveManager.Instance.allFlags);
+                        SaveCurState();
                         //flagJson = GameFlagManager.FlagsToJson(SaveManager.Instance.allFlags);
-                        tmpPos = Player.i.transform.position;
-                        vel = Player.i.Velocity;
-                        sceneName = GameCore.Instance.gameLevel.gameObject.scene.name;
-                        Logger.LogInfo(flagJson);
+                        //Logger.LogInfo(flagJson);
                     }   
 
-                    if (GUILayout.Button(localizationManager.GetString("Load_SaveState"), buttonStyle))
+                    if (GUILayout.Button(ShowKey(loadKey) + localizationManager.GetString("Load_SaveState"), buttonStyle))
                     {
                         //GameFlagManager.Instance.LoadFlagsFromJson(flagJson, SaveManager.Instance.allFlags, TestMode.Build);
-                        GameFlagManager.LoadFlagsFromBinarySave(dataByte, SaveManager.Instance.allFlags, TestMode.Build);
-                        SaveManager.Instance.allFlags.AllFlagInitStartAndEquip();
-                        GameCore.Instance.ResetLevel();
-                        if(sceneName != SceneManager.GetActiveScene().name)
-                        {
-                            var teleportToSavePoint = CreateTeleportPointData(sceneName, tmpPos);
-                            GameCore.Instance.TeleportToSavePoint(teleportToSavePoint);
-                        }
-                        Player.i.transform.position = tmpPos;
-                        Player.i.Velocity = vel;
+                        LoadSaveState();
 
                     }
                 }
@@ -860,7 +867,7 @@ namespace NineSolsPlugin
                         }   
                         if (GUILayout.Button(localizationManager.GetString("Test"), buttonStyle))
                         {
-                            
+                            Logger.LogInfo(ShowKey(SpeedToggleKey));
                             //GameCore.Instance.SetReviveSavePoint(CreateTeleportPointData(SceneManager.GetActiveScene().name, new Vector3(Player.i.transform.position.x, Player.i.transform.position.y, Player.i.transform.position.z)));
                             //Player.i.RespawnAtSavePoint();
                             //SceneConnectionPoint.ChangeSceneData changeSceneData = GameCore.Instance.FetchReviveData();
@@ -1325,6 +1332,36 @@ namespace NineSolsPlugin
                     Debug.LogError($"Error trying to skip item: {ex.Message}");
                 }
             }
+        }
+
+        String ShowKey(ConfigEntry<KeyCode> code)
+        {
+            return $"[{code.BoxedValue.ToString()}]";
+        }
+
+        void SaveCurState()
+        {
+            data = GameCore.Instance.playerGameData.SaveMetaData();
+            dataByte = GameFlagManager.FlagsToBinary(SaveManager.Instance.allFlags);
+            //flagJson = GameFlagManager.FlagsToJson(SaveManager.Instance.allFlags);
+            tmpPos = Player.i.transform.position;
+            vel = Player.i.Velocity;
+            sceneName = GameCore.Instance.gameLevel.gameObject.scene.name;
+        }
+
+        void LoadSaveState()
+        {
+            GameFlagManager.LoadFlagsFromBinarySave(dataByte, SaveManager.Instance.allFlags, TestMode.Build);
+            SaveManager.Instance.allFlags.AllFlagInitStartAndEquip();
+            GameCore.Instance.ResetLevel();
+            if (sceneName != SceneManager.GetActiveScene().name)
+            {
+                var teleportToSavePoint = CreateTeleportPointData(sceneName, tmpPos);
+                checkTeleportToSavePoint(teleportToSavePoint);
+
+            }
+            Player.i.transform.position = tmpPos;
+            Player.i.Velocity = vel;
         }
     }
 }

@@ -46,5 +46,7 @@
   "刑天": "Xingtian",
   "無頭刑天": "Headless Xingtian",
   "Enable_Jailed_Weak_Status": "Enable Jailed Weak Status",
-  "Disable_Jailed_Weak_Status": "Disable Jailed Weak Status"
+  "Disable_Jailed_Weak_Status": "Disable Jailed Weak Status",
+  "Save_CurState": "Save CurState",
+  "Load_SaveState": "Load CurState"
 }

@@ -46,5 +46,7 @@
   "刑天": "刑天",
   "無頭刑天": "无头刑天",
   "Enable_Jailed_Weak_Status": "开启监狱状态",
-  "Disable_Jailed_Weak_Status": "关闭监狱状态"
+  "Disable_Jailed_Weak_Status": "关闭监狱状态",
+  "Save_CurState": "暂存当前资料",
+  "Load_SaveState": "读取暂存资料"
 }
