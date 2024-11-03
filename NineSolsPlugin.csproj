@@ -64,6 +64,9 @@
       <HintPath>packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="PrimeTween.Runtime">
+      <HintPath>assembly-libaries\PrimeTween.Runtime.dll</HintPath>
+    </Reference>
     <Reference Include="QFSW.QC">
       <HintPath>assembly-libaries\QFSW.QC.dll</HintPath>
       <Private>False</Private>
@@ -128,6 +131,7 @@
     <Compile Include="Patch.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="assembly-libaries\UniTask.dll" />
     <Content Include="samuraiOriOffset - Copy.txt" />
     <Content Include="samuraiOriOffset.txt" />
     <Content Include="samuraiOriNoOffset.txt" />
@@ -145,6 +149,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>move /Y "$(TargetDir)NineSolsPlugin.dll" "D:\Games\Nine Sols\BepInEx\scripts\"</PostBuildEvent>
+    <PostBuildEvent>move /Y "$(TargetDir)NineSolsPlugin.dll" "C:\Users\a0936\AppData\Roaming\r2modmanPlus-local\NineSols\profiles\Default\BepInEx\scripts\"
+move /Y "$(TargetDir)NineSolsPlugin.pdb" "C:\Users\a0936\AppData\Roaming\r2modmanPlus-local\NineSols\profiles\Default\BepInEx\scripts\"</PostBuildEvent>
   </PropertyGroup>
 </Project>

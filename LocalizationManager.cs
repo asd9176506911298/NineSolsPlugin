@@ -27,7 +27,7 @@ public class LocalizationManager
         _localizationStrings = new Dictionary<string, string>();
         string ASSEMBLY_DIR;
         #if DEBUG
-            ASSEMBLY_DIR = "D:\\Games\\Nine Sols\\BepInEx\\scripts";// Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            ASSEMBLY_DIR = "D:\\code\\BepInEx\\NineSolsPlugin\\language";// Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         #else
             ASSEMBLY_DIR = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         #endif

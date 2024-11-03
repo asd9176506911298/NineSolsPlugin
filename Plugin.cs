@@ -2,6 +2,7 @@
 using BepInEx.Configuration;
 using HarmonyLib;
 using System;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -58,6 +59,7 @@ namespace NineSolsPlugin
         public ConfigEntry<bool> isEnableConsole;
 
         private bool showMenu = false;
+        private bool hasBossRushVersion = false;
         public bool isFov = false;
         public bool isOneHitKill = false;
         public bool isInvincible = false;
@@ -124,7 +126,7 @@ namespace NineSolsPlugin
             windowRect = new Rect((Screen.width - width) / 2, (Screen.height - height) / 2, width, height);
             supportRect = new Rect((Screen.width - width) / 2, (Screen.height - height) / 2, width, height / 6);
 
-            //SceneManager.sceneLoaded += OnSceneLoaded;
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
 
         private void Start()
@@ -208,16 +210,25 @@ namespace NineSolsPlugin
             }
         }
 
-        private async UniTaskVoid PrePrecoess(string sceneName, TeleportPointData teleportPointData)
+        private async UniTask PrePrecoess(string sceneName, TeleportPointData teleportPointData,bool isMemory = false)
         {
-            
-            await WaitForSceneLoad(sceneName);
+            Logger.LogInfo("PrePrecoessPrePrecoess");
+
+            if (isMemory)
+                await WaitForSceneLoad("VR_Challenge_Hub");
 
             await WaitForEnterGame();
             
             GameCore.Instance.DiscardUnsavedFlagsAndReset();
-            if(teleportPointData != null)
-                GameCore.Instance.TeleportToSavePoint(teleportPointData);
+
+ 
+            if (teleportPointData != null)
+                checkTeleportToSavePoint(teleportPointData);
+            //GameCore.Instance.TeleportToSavePoint(teleportPointData);
+
+            await WaitForSceneLoad(sceneName);
+
+            //checkTeleportToSavePoint(teleportPointData);
             // Now the scene is loaded, run the appropriate method
             checkMultiplier();
             CheckGetAll();
@@ -279,20 +290,21 @@ namespace NineSolsPlugin
         private void OnDestory()
         {
             Harmony.UnpatchAll();
-            //SceneManager.sceneLoaded -= OnSceneLoaded;
+            SceneManager.sceneLoaded -= OnSceneLoaded;
         }
 
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
             // Your code here
             Logger.LogInfo("Scene loaded: " + scene.name);
-
-            // Example: Find all MonsterPoolObjectWrapper instances, including inactive ones
-            foreach (MonsterPoolObjectWrapper monsterPoolObjectWrapper in UnityEngine.Object.FindObjectsOfType<MonsterPoolObjectWrapper>(true))
+            if(scene.name == "TitleScreenMenu")
             {
-                // Your code here
-                Logger.LogInfo("Found MonsterPoolObjectWrapper: " + monsterPoolObjectWrapper.name);
+                if(GameObject.Find("MenuLogic/MainMenuLogic/Providers/MenuUIPanel/Button Layout/MainMenuButton_MemoryOfBattle"))
+                {
+                    hasBossRushVersion = true;
+                }
             }
+            Logger.LogInfo("hasBossRushVersion: " + hasBossRushVersion);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -330,7 +342,8 @@ namespace NineSolsPlugin
 
             if (Input.GetKeyDown(SkipKey.Value))
             {
-                SkippableManager.Instance.TrySkip();
+
+                Skip();
             }
 
             if (Input.GetKey(MouseTeleportKey.Value))
@@ -1507,7 +1520,7 @@ namespace NineSolsPlugin
                 {
                     if (GUILayout.Button(localizationManager.GetString("Skip"), buttonStyle))
                     {
-                        SkippableManager.Instance.TrySkip();
+                        Skip();
                     }
                 }
                 GUILayout.EndHorizontal();
@@ -1519,11 +1532,37 @@ namespace NineSolsPlugin
                         {
                             if (GameCore.Instance != null)
                                 GameCore.Instance.DiscardUnsavedFlagsAndReset();
-                        }
+                        }   
                         if (GUILayout.Button(localizationManager.GetString("Test"), buttonStyle))
                         {
+                            //GameCore.Instance.SetReviveSavePoint(CreateTeleportPointData(SceneManager.GetActiveScene().name, new Vector3(Player.i.transform.position.x, Player.i.transform.position.y, Player.i.transform.position.z)));
+                            Player.i.RespawnAtSavePoint();
+                            //SceneConnectionPoint.ChangeSceneData changeSceneData = GameCore.Instance.FetchReviveData();
+                            //GameCore.Instance.ChangeScene(changeSceneData).Forget();
+
+                            //foreach (var skippable in FindObjectsOfType<MonoBehaviour>().OfType<ISkippable>().ToArray())
+                            //{
+                            //    Logger.LogInfo($"{skippable} {skippable.CanSkip}");
+                            //    skippable.TrySkip();
+                            //}
+
+                            //foreach (ISkippable item in FindObjectsOfType<MonoBehaviour>().OfType<ISkippable>())
+                            //{
+                            //    try
+                            //    {
+                            //        if (item.CanSkip)
+                            //        {
+                            //            item.TrySkip();
+                            //        }
+                            //    }
+                            //    catch (Exception ex)
+                            //    {
+                            //        // Handle exceptions gracefully
+                            //        Debug.LogError($"Error trying to skip item: {ex.Message}");
+                            //    }
+                            //}
                             //HandleTeleportButtonClick("A1_S2_ConnectionToElevator_Final", new Vector3(75, -3408f, 0f)); //赤虎刀校－百長s
-                            HandleTeleportButtonClick("A4_S4_Container_Final", new Vector3(1968f, -8768f, 0f));
+                            //HandleTeleportButtonClick("A4_S4_Container_Final", new Vector3(1968f, -8768f, 0f));
                             //var allStat = SaveManager.Instance.allStatData;
                             //Logger.LogInfo(Traverse.Create(allStat.GetStat("ParryDuration").Stat).Field("BaseValue").GetValue<float>());
                             //allStat.GetStat("ParryDuration").Stat.BaseValue = 0f;
@@ -1810,27 +1849,107 @@ namespace NineSolsPlugin
             }
         }
 
+        private async UniTask checkVersionStartGame(string name, TeleportPointData teleportPointData)
+        {
+            try
+            {
+                // Load the StartMenuLogic type
+                Assembly assembly = Assembly.Load("Assembly-CSharp");
+                System.Type startMenuLogicType = assembly.GetType("StartMenuLogic");
+                if (startMenuLogicType == null)
+                {
+                    Logger.LogError("StartMenuLogic class not found.");
+                    return;
+                }
+
+                // Retrieve the base type `SingletonBehaviour<StartMenuLogic>`
+                System.Type singletonType = startMenuLogicType.BaseType;
+                if (singletonType == null || !singletonType.IsGenericType || singletonType.GetGenericTypeDefinition() != typeof(SingletonBehaviour<>))
+                {
+                    Logger.LogError("StartMenuLogic does not inherit from SingletonBehaviour.");
+                    return;
+                }
+
+                // Get the "Instance" property from `SingletonBehaviour<StartMenuLogic>`
+                PropertyInfo instanceProperty = singletonType.GetProperty("Instance", BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy);
+                if (instanceProperty == null)
+                {
+                    Logger.LogError("Instance property not found in SingletonBehaviour.");
+                    return;
+                }
+
+                // Get the instance of StartMenuLogic
+                object startMenuLogicInstance = instanceProperty.GetValue(null);
+                if (startMenuLogicInstance == null)
+                {
+                    Logger.LogError("Could not retrieve StartMenuLogic instance.");
+                    return;
+                }
+                Logger.LogInfo($"startMenuLogicInstance:{startMenuLogicInstance}");
+                // Check if the StartGame method exists in StartMenuLogic
+                MethodInfo startGameMethod = startMenuLogicType.GetMethod("StartGame", BindingFlags.Public | BindingFlags.Instance);
+
+                if (startGameMethod != null)
+                {
+                    // Old version code: Call StartGame if it exists
+                    string sceneName = name; // Replace with the actual scene name
+                    startGameMethod.Invoke(startMenuLogicInstance, new object[] { sceneName });
+                    Logger.LogInfo("Successfully called StartGame with scene name1111: " + sceneName);
+                    await WaitForSceneLoad(sceneName);
+
+                    await WaitForEnterGame();
+                    PrePrecoess(name, teleportPointData);
+                }
+                else
+                {
+                    //StartMenuLogic.Instance.StartMemoryChallenge();
+
+                    // Check if the StartGame method exists in StartMenuLogic
+                    MethodInfo StartMemoryChallenge = startMenuLogicType.GetMethod("StartMemoryChallenge", BindingFlags.Public | BindingFlags.Instance);
+                    if (StartMemoryChallenge != null)
+                    {
+                        // Old version code: Call StartGame if it exists
+                        string sceneName = name; // Replace with the actual scene name
+                        StartMemoryChallenge.Invoke(startMenuLogicInstance, new object[] {  });
+                        Logger.LogInfo("Successfully called StartGame with scene name2222: " + sceneName);
+                        PrePrecoess(name, teleportPointData, true);
+                    }
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError($"Error checking or invoking StartGame: {ex.Message}");
+            }
+        }
+
         private void PreocessGotoScene(string SceneName, TeleportPointData teleportPointData = null)
         {
+            Logger.LogInfo("PreocessGotoScene");
             if (Player.i == null)
             {
                 if (StartMenuLogic.Instance != null && SceneManager.GetActiveScene().name == "TitleScreenMenu")
                 {
-                    StartMenuLogic.Instance.StartGame(SceneName);
-                    PrePrecoess(SceneName, teleportPointData).Forget();
+                    //StartMenuLogic.Instance.StartGame(SceneName);
+                    checkVersionStartGame(SceneName, teleportPointData);
+                    //PrePrecoess(SceneName, teleportPointData).Forget();
+                    Logger.LogInfo("PrePrecoess");
                 }
             }
             else
             {
                 if (GameCore.Instance != null)
                 {
+                    Logger.LogInfo($"{GameCore.Instance} {GameCore.Instance.currentCoreState}");
                     if (GameCore.Instance.currentCoreState == GameCore.GameCoreState.Playing)
                     {
-                        if(teleportPointData == null)
+                        if (teleportPointData == null)
                             GameCore.Instance.GoToScene(SceneName);
                         else
                         {
-                            GameCore.Instance.TeleportToSavePoint(teleportPointData);
+                            //GameCore.Instance.TeleportToSavePoint(teleportPointData);
+                            checkTeleportToSavePoint(teleportPointData);
                         }
                         GameCore.Instance.DiscardUnsavedFlagsAndReset();
                         checkMultiplier();
@@ -1839,6 +1958,81 @@ namespace NineSolsPlugin
                 }
             }
         }
+
+        private void checkTeleportToSavePoint(TeleportPointData teleportPointData)
+        {
+            try
+            {
+                // Load the GameCore type
+                Assembly assembly = Assembly.Load("Assembly-CSharp");
+                System.Type gameCoreType = assembly.GetType("GameCore");
+                if (gameCoreType == null)
+                {
+                    Logger.LogError("GameCore class not found.");
+                    return;
+                }
+
+                // Get the GameCore instance from SingletonBehaviour<StartMenuLogic>
+                System.Type singletonType = gameCoreType.BaseType;
+                PropertyInfo instanceProperty = singletonType?.GetProperty("Instance", BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy);
+                object gameCoreInstance = instanceProperty?.GetValue(null);
+
+                if (gameCoreInstance == null)
+                {
+                    Logger.LogError("Could not retrieve GameCore instance.");
+                    return;
+                }
+
+                // Attempt to get TeleportToSavePoint directly from GameCore type
+                MethodInfo teleportMethod = gameCoreType.GetMethod("TeleportToSavePoint", BindingFlags.Public | BindingFlags.Instance);
+
+                if (teleportMethod == null)
+                {
+                    // If not found, look through attached components
+                    Logger.LogInfo("TeleportToSavePoint method not found in GameCore; searching components.");
+                    var components = ((GameObject)gameCoreInstance).GetComponents<MonoBehaviour>();
+
+                    foreach (var component in components)
+                    {
+                        teleportMethod = component.GetType().GetMethod("TeleportToSavePoint", BindingFlags.Public | BindingFlags.Instance);
+                        if (teleportMethod != null)
+                        {
+                            gameCoreInstance = component;
+                            break;
+                        }
+                    }
+                }
+
+                if (teleportMethod == null)
+                {
+                    Logger.LogError("TeleportToSavePoint method not found in any attached components.");
+                    return;
+                }
+
+                // Check parameter count and invoke accordingly
+                ParameterInfo[] parameters = teleportMethod.GetParameters();
+                if (parameters.Length == 2)
+                {
+                    Logger.LogInfo("Invoking old version of TeleportToSavePoint.");
+                    teleportMethod.Invoke(gameCoreInstance, new object[] { teleportPointData, false });
+                }
+                else if (parameters.Length == 3)
+                {
+                    Logger.LogInfo("Invoking new version of TeleportToSavePoint.");
+                    teleportMethod.Invoke(gameCoreInstance, new object[] { teleportPointData, false, 0f });
+                }
+                else
+                {
+                    Logger.LogError("Unexpected parameter count in TeleportToSavePoint method.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError($"Error checking or invoking TeleportToSavePoint: {ex.Message}");
+            }
+        }
+
+
 
         private void CheckGetAll()
         {
@@ -2065,6 +2259,31 @@ namespace NineSolsPlugin
                 var value = field.GetValue(component);
                 Logger.LogInfo($"{indent}{field.Name} ({field.FieldType.Name}): {value}");
             }
+        }
+
+        void Skip()
+        {
+            if (hasBossRushVersion)
+            {
+                foreach (ISkippable item in FindObjectsOfType<MonoBehaviour>().OfType<ISkippable>())
+                {
+                    try
+                    {
+                        if (item.CanSkip)
+                        {
+                            item.TrySkip();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        // Handle exceptions gracefully
+                        Debug.LogError($"Error trying to skip item: {ex.Message}");
+                    }
+                }
+            }
+            else
+                SkippableManager.Instance.TrySkip();
+            
         }
     }
 }
