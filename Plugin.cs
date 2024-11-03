@@ -198,7 +198,14 @@ namespace NineSolsPlugin
             await checkMove();
 
             // Now that the player is on the ground, call KillAllEnemies
+            try
+            {
+
             KillAllEnemiesExcept(MonsterLevel.MiniBoss);
+            }catch(Exception e)
+            {
+                Logger.LogInfo($"Exp {e}");
+            }
         }
 
         async UniTask checkMove()
@@ -476,19 +483,34 @@ namespace NineSolsPlugin
 
         private void KillAllEnemies(MonsterLevel killType)
         {
-
             foreach (MonsterBase monsterBase in UnityEngine.Object.FindObjectsOfType<MonsterBase>())
             {
-                bool flag = monsterBase != null && monsterBase.IsAlive() && monsterBase.isActiveAndEnabled && monsterBase.gameObject.activeInHierarchy && monsterBase.gameObject.activeSelf && monsterBase.monsterStat.monsterLevel == killType;
-                if (flag)
+                bool flag = monsterBase != null
+                            && monsterBase.IsAlive()
+                            && monsterBase.isActiveAndEnabled
+                            && monsterBase.gameObject.activeInHierarchy
+                            && monsterBase.gameObject.activeSelf;
+
+                // Get the monsterStat field using reflection to handle both old and new versions
+                var monsterStatField = typeof(MonsterBase).GetField("monsterStat")
+                                       ?? typeof(MonsterBase).GetField("_monsterStat");
+                
+                if (monsterStatField != null)
                 {
-                    if (monsterBase != null)
+                    var monsterStat = monsterStatField.GetValue(monsterBase) as MonsterStat; // Assuming MonsterStat is the type of the field
+                    if (monsterStat != null && monsterStat.monsterLevel == killType && flag)
                     {
+                        Logger.LogInfo($"{monsterBase.name} {monsterStat.monsterLevel}");
                         monsterBase.DieSelfDesctruction();
                     }
                 }
+                else
+                {
+                    Logger.LogWarning("No valid monsterStat field found on MonsterBase.");
+                }
             }
         }
+
 
         private void Update()
         {
@@ -815,8 +837,18 @@ namespace NineSolsPlugin
                         }   
                         if (GUILayout.Button(localizationManager.GetString("Test"), buttonStyle))
                         {
+                            var methodInfo = typeof(StartMenuLogic).GetMethod("StartMemoryChallenge");
+
+                            if (methodInfo != null)
+                            {
+                                Logger.LogInfo("Method StartMemoryChallenge with specified parameters found!");
+                            }
+                            else
+                            {
+                                Logger.LogInfo("Method StartMemoryChallenge with specified parameters not found.");
+                            }
                             //GameCore.Instance.SetReviveSavePoint(CreateTeleportPointData(SceneManager.GetActiveScene().name, new Vector3(Player.i.transform.position.x, Player.i.transform.position.y, Player.i.transform.position.z)));
-                            Player.i.RespawnAtSavePoint();
+                            //Player.i.RespawnAtSavePoint();
                             //SceneConnectionPoint.ChangeSceneData changeSceneData = GameCore.Instance.FetchReviveData();
                             //GameCore.Instance.ChangeScene(changeSceneData).Forget();
 
@@ -1133,69 +1165,29 @@ namespace NineSolsPlugin
         {
             try
             {
-                // Load the StartMenuLogic type
-                Assembly assembly = Assembly.Load("Assembly-CSharp");
-                System.Type startMenuLogicType = assembly.GetType("StartMenuLogic");
-                if (startMenuLogicType == null)
-                {
-                    Logger.LogError("StartMenuLogic class not found.");
-                    return;
-                }
+                var StartMemoryChallenge = typeof(StartMenuLogic).GetMethod("StartMemoryChallenge");
 
-                // Retrieve the base type `SingletonBehaviour<StartMenuLogic>`
-                System.Type singletonType = startMenuLogicType.BaseType;
-                if (singletonType == null || !singletonType.IsGenericType || singletonType.GetGenericTypeDefinition() != typeof(SingletonBehaviour<>))
+                if (StartMemoryChallenge != null)
                 {
-                    Logger.LogError("StartMenuLogic does not inherit from SingletonBehaviour.");
-                    return;
-                }
+                    //StartMenuLogic.Instance.StartMemoryChallenge();
 
-                // Get the "Instance" property from `SingletonBehaviour<StartMenuLogic>`
-                PropertyInfo instanceProperty = singletonType.GetProperty("Instance", BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy);
-                if (instanceProperty == null)
-                {
-                    Logger.LogError("Instance property not found in SingletonBehaviour.");
-                    return;
-                }
-
-                // Get the instance of StartMenuLogic
-                object startMenuLogicInstance = instanceProperty.GetValue(null);
-                if (startMenuLogicInstance == null)
-                {
-                    Logger.LogError("Could not retrieve StartMenuLogic instance.");
-                    return;
-                }
-                Logger.LogInfo($"startMenuLogicInstance:{startMenuLogicInstance}");
-                // Check if the StartGame method exists in StartMenuLogic
-                MethodInfo startGameMethod = startMenuLogicType.GetMethod("StartGame", BindingFlags.Public | BindingFlags.Instance);
-
-                if (startGameMethod != null)
-                {
-                    // Old version code: Call StartGame if it exists
+                    // Check if the StartGame method exists in StartMenuLogic
+                        // Old version code: Call StartGame if it exists
                     string sceneName = name; // Replace with the actual scene name
-                    startGameMethod.Invoke(startMenuLogicInstance, new object[] { sceneName });
+                    StartMemoryChallenge.Invoke(StartMenuLogic.Instance, new object[] { });
+                    Logger.LogInfo("Successfully called StartGame with scene name2222: " + sceneName);
+                    PrePrecoess(name, teleportPointData, true);
+                }
+                else
+                {
+                    string sceneName = name; // Replace with the actual scene name
+                    typeof(StartMenuLogic).GetMethod("StartGame").Invoke(StartMenuLogic.Instance, new object[] { sceneName });
+                    //startGameMethod.Invoke(startMenuLogicInstance, new object[] { sceneName });
                     Logger.LogInfo("Successfully called StartGame with scene name1111: " + sceneName);
                     await WaitForSceneLoad(sceneName);
 
                     await WaitForEnterGame();
                     PrePrecoess(name, teleportPointData);
-                }
-                else
-                {
-                    //StartMenuLogic.Instance.StartMemoryChallenge();
-
-                    // Check if the StartGame method exists in StartMenuLogic
-                    MethodInfo StartMemoryChallenge = startMenuLogicType.GetMethod("StartMemoryChallenge", BindingFlags.Public | BindingFlags.Instance);
-                    if (StartMemoryChallenge != null)
-                    {
-                        // Old version code: Call StartGame if it exists
-                        string sceneName = name; // Replace with the actual scene name
-                        StartMemoryChallenge.Invoke(startMenuLogicInstance, new object[] {  });
-                        Logger.LogInfo("Successfully called StartGame with scene name2222: " + sceneName);
-                        PrePrecoess(name, teleportPointData, true);
-                    }
-
-
                 }
             }
             catch (Exception ex)
@@ -1243,67 +1235,25 @@ namespace NineSolsPlugin
         {
             try
             {
-                // Load the GameCore type
-                Assembly assembly = Assembly.Load("Assembly-CSharp");
-                System.Type gameCoreType = assembly.GetType("GameCore");
-                if (gameCoreType == null)
+                var teleportMethod = typeof(GameCore).GetMethod("TeleportToSavePoint");
+
+                if (teleportMethod != null)
                 {
-                    Logger.LogError("GameCore class not found.");
-                    return;
-                }
-
-                // Get the GameCore instance from SingletonBehaviour<StartMenuLogic>
-                System.Type singletonType = gameCoreType.BaseType;
-                PropertyInfo instanceProperty = singletonType?.GetProperty("Instance", BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy);
-                object gameCoreInstance = instanceProperty?.GetValue(null);
-
-                if (gameCoreInstance == null)
-                {
-                    Logger.LogError("Could not retrieve GameCore instance.");
-                    return;
-                }
-
-                // Attempt to get TeleportToSavePoint directly from GameCore type
-                MethodInfo teleportMethod = gameCoreType.GetMethod("TeleportToSavePoint", BindingFlags.Public | BindingFlags.Instance);
-
-                if (teleportMethod == null)
-                {
-                    // If not found, look through attached components
-                    Logger.LogInfo("TeleportToSavePoint method not found in GameCore; searching components.");
-                    var components = ((GameObject)gameCoreInstance).GetComponents<MonoBehaviour>();
-
-                    foreach (var component in components)
+                    ParameterInfo[] parameters = teleportMethod.GetParameters();
+                    if (parameters.Length == 2)
                     {
-                        teleportMethod = component.GetType().GetMethod("TeleportToSavePoint", BindingFlags.Public | BindingFlags.Instance);
-                        if (teleportMethod != null)
-                        {
-                            gameCoreInstance = component;
-                            break;
-                        }
+                        Logger.LogInfo("Invoking old version of TeleportToSavePoint.");
+                        teleportMethod.Invoke(GameCore.Instance, new object[] { teleportPointData, false });
                     }
-                }
-
-                if (teleportMethod == null)
-                {
-                    Logger.LogError("TeleportToSavePoint method not found in any attached components.");
-                    return;
-                }
-
-                // Check parameter count and invoke accordingly
-                ParameterInfo[] parameters = teleportMethod.GetParameters();
-                if (parameters.Length == 2)
-                {
-                    Logger.LogInfo("Invoking old version of TeleportToSavePoint.");
-                    teleportMethod.Invoke(gameCoreInstance, new object[] { teleportPointData, false });
-                }
-                else if (parameters.Length == 3)
-                {
-                    Logger.LogInfo("Invoking new version of TeleportToSavePoint.");
-                    teleportMethod.Invoke(gameCoreInstance, new object[] { teleportPointData, false, 0f });
-                }
-                else
-                {
-                    Logger.LogError("Unexpected parameter count in TeleportToSavePoint method.");
+                    else if (parameters.Length == 3)
+                    {
+                        Logger.LogInfo("Invoking new version of TeleportToSavePoint.");
+                        teleportMethod.Invoke(GameCore.Instance, new object[] { teleportPointData, false, 0f });
+                    }
+                    else
+                    {
+                        Logger.LogError("Unexpected parameter count in TeleportToSavePoint method.");
+                    }
                 }
             }
             catch (Exception ex)
@@ -1348,27 +1298,21 @@ namespace NineSolsPlugin
 
         void Skip()
         {
-            if (hasBossRushVersion)
+            foreach (ISkippable item in FindObjectsOfType<MonoBehaviour>().OfType<ISkippable>())
             {
-                foreach (ISkippable item in FindObjectsOfType<MonoBehaviour>().OfType<ISkippable>())
+                try
                 {
-                    try
+                    if (item.CanSkip)
                     {
-                        if (item.CanSkip)
-                        {
-                            item.TrySkip();
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        // Handle exceptions gracefully
-                        Debug.LogError($"Error trying to skip item: {ex.Message}");
+                        item.TrySkip();
                     }
                 }
+                catch (Exception ex)
+                {
+                    // Handle exceptions gracefully
+                    Debug.LogError($"Error trying to skip item: {ex.Message}");
+                }
             }
-            else
-                SkippableManager.Instance.TrySkip();
-            
         }
     }
 }

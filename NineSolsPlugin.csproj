@@ -131,6 +131,7 @@
     <Compile Include="Patch.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="assembly-libaries\Assembly-CSharp.dll" />
     <Content Include="assembly-libaries\UniTask.dll" />
     <Content Include="samuraiOriOffset - Copy.txt" />
     <Content Include="samuraiOriOffset.txt" />
@@ -149,7 +150,13 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>move /Y "$(TargetDir)NineSolsPlugin.dll" "C:\Users\a0936\AppData\Roaming\r2modmanPlus-local\NineSols\profiles\Default\BepInEx\scripts\"
-move /Y "$(TargetDir)NineSolsPlugin.pdb" "C:\Users\a0936\AppData\Roaming\r2modmanPlus-local\NineSols\profiles\Default\BepInEx\scripts\"</PostBuildEvent>
+    <PostBuildEvent>copy /Y "$(TargetDir)NineSolsPlugin.dll" "C:\Users\a0936\AppData\Roaming\r2modmanPlus-local\NineSols\profiles\Default\BepInEx\scripts\"
+copy /Y "$(TargetDir)NineSolsPlugin.pdb" "C:\Users\a0936\AppData\Roaming\r2modmanPlus-local\NineSols\profiles\Default\BepInEx\scripts\"
+
+copy /Y "$(TargetDir)NineSolsPlugin.dll" "D:\Games\Nine Sols\BepInEx\scripts\"
+copy /Y "$(TargetDir)NineSolsPlugin.pdb" "D:\Games\Nine Sols\BepInEx\scripts\"
+
+copy /Y "$(TargetDir)NineSolsPlugin.dll" "E:\Games\Nine Sols1030\BepInEx\scripts\"
+copy /Y "$(TargetDir)NineSolsPlugin.pdb" "E:\Games\Nine Sols1030\BepInEx\scripts\"</PostBuildEvent>
   </PropertyGroup>
 </Project>
