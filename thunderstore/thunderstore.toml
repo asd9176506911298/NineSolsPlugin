@@ -2,10 +2,10 @@
 schemaVersion = "0.0.1"
 
 [package]
-namespace = "NineSolsPlugin"
-name = "Nine Sols Cheat Menu"
-versionNumber = "1.2.6"
-description = "Nine Sols Cheat Menu"
+namespace = "CheatMenu"
+name = "CheatMenu"
+versionNumber = "1.2.80"
+description = "CheatMenu"
 websiteUrl = "https://github.com/asd9176506911298/NineSolsPlugin"
 containsNsfwContent = false
 

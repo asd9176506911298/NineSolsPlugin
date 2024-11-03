@@ -22,6 +22,9 @@ namespace NineSolsPlugin
         public static Plugin Instance { get; private set; }
         private static ManualLogSource logger;
 
+        private Harmony harmony;
+
+
         private bool isInit = false;
         private Vector2Int lastScreenSize;
         private GUIStyle titleStyle;
@@ -117,6 +120,20 @@ namespace NineSolsPlugin
             localizationManager.SetLanguage(Language.Value);
 
             Harmony.CreateAndPatchAll(typeof(Patch));
+            harmony = new Harmony("MonsterBasePatcher");
+
+            // Check if UpdateAnimatorSpeed exists in MonsterBase and apply patch if it does
+            var method = AccessTools.Method(typeof(MonsterBase), "UpdateAnimatorSpeed");
+
+            if (method != null)
+            {
+                harmony.Patch(method, prefix: new HarmonyMethod(typeof(MonsterBasePatcher), nameof(MonsterBasePatcher.UpdateAnimatorSpeed)));
+                Logger.LogInfo("UpdateAnimatorSpeed patch applied.");
+            }
+            else
+            {
+                Logger.LogInfo("UpdateAnimatorSpeed method not found. Skipping patch.");
+            }
 
             // Initialize window size based on screen dimensions
             float width = Screen.width * 0.5f;
@@ -295,6 +312,13 @@ namespace NineSolsPlugin
         private void OnDestory()
         {
             Harmony.UnpatchAll();
+            var method = AccessTools.Method(typeof(MonsterBase), "UpdateAnimatorSpeed");
+
+            if (method != null)
+            {
+                harmony.UnpatchSelf();
+            }
+
             SceneManager.sceneLoaded -= OnSceneLoaded;
         }
 
@@ -471,7 +495,7 @@ namespace NineSolsPlugin
                     if(monsterStatField != null)
                     {
                         var monsterStat = monsterStatField.GetValue(monsterBase) as MonsterStat; // Assuming MonsterStat is the type of the field
-                        if ( monsterStat.monsterLevel == MonsterLevel.Boss || monsterStat.monsterLevel == MonsterLevel.MiniBoss)
+                        if (monsterStat.monsterLevel == MonsterLevel.Boss || monsterStat.monsterLevel == MonsterLevel.MiniBoss)
                             monsterBase.animator.speed = speed;
                     }
                     
@@ -873,7 +897,8 @@ namespace NineSolsPlugin
                         }   
                         if (GUILayout.Button(localizationManager.GetString("Test"), buttonStyle))
                         {
-                            Logger.LogInfo(ShowKey(SpeedToggleKey));
+                            Logger.LogInfo(AccessTools.Method(typeof(MonsterBase), "UpdateAnimatorSpeed"));
+                            //Logger.LogInfo(ShowKey(SpeedToggleKey));
                             //GameCore.Instance.SetReviveSavePoint(CreateTeleportPointData(SceneManager.GetActiveScene().name, new Vector3(Player.i.transform.position.x, Player.i.transform.position.y, Player.i.transform.position.z)));
                             //Player.i.RespawnAtSavePoint();
                             //SceneConnectionPoint.ChangeSceneData changeSceneData = GameCore.Instance.FetchReviveData();

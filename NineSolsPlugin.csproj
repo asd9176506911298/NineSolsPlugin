@@ -27,7 +27,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\..\Games\Nine Sols\BepInEx\plugins\NineSolsPlugin\</OutputPath>
+    <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -157,6 +157,12 @@ copy /Y "$(TargetDir)NineSolsPlugin.dll" "D:\Games\Nine Sols\BepInEx\scripts\"
 copy /Y "$(TargetDir)NineSolsPlugin.pdb" "D:\Games\Nine Sols\BepInEx\scripts\"
 
 copy /Y "$(TargetDir)NineSolsPlugin.dll" "E:\Games\Nine Sols1030\BepInEx\scripts\"
-copy /Y "$(TargetDir)NineSolsPlugin.pdb" "E:\Games\Nine Sols1030\BepInEx\scripts\"</PostBuildEvent>
+copy /Y "$(TargetDir)NineSolsPlugin.pdb" "E:\Games\Nine Sols1030\BepInEx\scripts\"
+
+copy /Y "$(TargetDir)NineSolsPlugin.dll" "D:\code\BepInEx\NineSolsPlugin\thunderstore\build\dll\"</PostBuildEvent>
   </PropertyGroup>
+  <Target Name="PackageMod" AfterTargets="Publish">
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="../thunderstore/build/dll" SkipUnchangedFiles="true" />
+    <Exec Command="tcli build --config-path thunderstore/thunderstore.toml" />
+  </Target>
 </Project>

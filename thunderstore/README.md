@@ -13,6 +13,8 @@
 - Open Cheat Menu F3
 - Timer F4
 - FOV (Mouse Wheel Adjust Zoom) F5
+- Save Current State F11
+- Load tmp State F12
 - AutoHeal
 - InfiniteChi
 - InfinitePotion

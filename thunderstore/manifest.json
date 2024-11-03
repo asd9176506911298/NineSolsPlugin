@@ -2,7 +2,7 @@
   "namespace": "NineSolsPlugin",
   "name": "CheatMenu",
   "description": "CheatMenu",
-  "version_number": "1.2.70",
+  "version_number": "1.2.80",
   "dependencies": [
     "BepInEx-BepInExPack-5.4.2100"
   ],

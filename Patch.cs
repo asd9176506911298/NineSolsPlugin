@@ -1,9 +1,4 @@
 ﻿using HarmonyLib;
-using RCGFSM.Projectiles;
-using RCGSetting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace NineSolsPlugin
@@ -88,6 +83,11 @@ namespace NineSolsPlugin
 
             return true;
         }
+
+        
+
+
+
 
         //[HarmonyPrefix, HarmonyPatch(typeof(DebugSetting), "IsDebugMode", MethodType.Getter)]
         //public static bool IsDebugMode(ref bool __result)
@@ -213,5 +213,17 @@ namespace NineSolsPlugin
 
         //    return true;
         //}
+    }
+
+    public static class MonsterBasePatcher
+    {
+        [HarmonyPrefix]
+        public static bool UpdateAnimatorSpeed(ref MonsterBase __instance)
+        {
+            if (Plugin.Instance.isBossSpeed)
+                return false;
+
+            return true;
+        }
     }
 }
