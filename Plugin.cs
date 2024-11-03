@@ -9,24 +9,8 @@ using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using RCGFSM.PlayerAbility;
-using UnityEngine.UI;
-using System.Collections;
-using static Linefy.PolygonalMesh;
-using static UnityEngine.UI.Image;
-using Cysharp.Threading.Tasks.Triggers;
-using UnityEngine.Pool;
-using UnityEngine.Events;
-using System.Reflection;
 using BepInEx.Logging;
-using System.Threading;
 using System.Linq;
-using RCGMaker.Runtime.Character;
-using Auto.Utils;
-using System.Runtime.InteropServices;
-using RCGFSM.Projectiles;
-using Com.LuisPedroFonseca.ProCamera2D.TopDownShooter;
-using QFSW.QC.Utilities;
-using static Unity.IO.LowLevel.Unsafe.AsyncReadManagerMetrics;
 
 namespace NineSolsPlugin
 {
@@ -1261,8 +1245,6 @@ namespace NineSolsPlugin
                 Logger.LogError($"Error checking or invoking TeleportToSavePoint: {ex.Message}");
             }
         }
-
-
 
         private void CheckGetAll()
         {
