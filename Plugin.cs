@@ -24,7 +24,6 @@ namespace NineSolsPlugin
 
         private Harmony harmony;
 
-
         private bool isInit = false;
         private Vector2Int lastScreenSize;
         private GUIStyle titleStyle;

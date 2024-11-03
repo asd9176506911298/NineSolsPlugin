@@ -84,11 +84,6 @@ namespace NineSolsPlugin
             return true;
         }
 
-        
-
-
-
-
         //[HarmonyPrefix, HarmonyPatch(typeof(DebugSetting), "IsDebugMode", MethodType.Getter)]
         //public static bool IsDebugMode(ref bool __result)
         //{
