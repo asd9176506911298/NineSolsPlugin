@@ -11,6 +11,8 @@ using Cysharp.Threading.Tasks;
 using RCGFSM.PlayerAbility;
 using BepInEx.Logging;
 using System.Linq;
+using _3_Script.UI.TitleScreenMenuUI;
+using static SceneConnectionPoint;
 
 namespace NineSolsPlugin
 {
@@ -83,7 +85,15 @@ namespace NineSolsPlugin
         public bool showSupportWindow = false;
         public string SupportText = "test";
         private bool isShowSupportWindowNoBackGround = false;
-       
+
+        SaveSlotMetaData data = null;
+        byte[] dataByte;
+        string flagJson = null;
+        Vector3 tmpPos;
+        Vector2 vel;
+        string sceneName;
+
+
         private void Awake()
         {
             RCGLifeCycle.DontDestroyForever(gameObject);
@@ -209,10 +219,10 @@ namespace NineSolsPlugin
                 await WaitForSceneLoad("VR_Challenge_Hub");
 
             await WaitForEnterGame();
-            
+
             GameCore.Instance.DiscardUnsavedFlagsAndReset();
 
- 
+
             if (teleportPointData != null)
                 checkTeleportToSavePoint(teleportPointData);
             //GameCore.Instance.TeleportToSavePoint(teleportPointData);
@@ -295,6 +305,8 @@ namespace NineSolsPlugin
                     hasBossRushVersion = true;
                 }
             }
+
+            NotAtSavePoint();
             Logger.LogInfo("hasBossRushVersion: " + hasBossRushVersion);
         }
 
@@ -808,6 +820,33 @@ namespace NineSolsPlugin
                     {
                         Skip();
                     }
+
+                    if (GUILayout.Button(localizationManager.GetString("Save_CurState"), buttonStyle))
+                    {
+                        data = GameCore.Instance.playerGameData.SaveMetaData();
+                        dataByte = GameFlagManager.FlagsToBinary(SaveManager.Instance.allFlags);
+                        //flagJson = GameFlagManager.FlagsToJson(SaveManager.Instance.allFlags);
+                        tmpPos = Player.i.transform.position;
+                        vel = Player.i.Velocity;
+                        sceneName = GameCore.Instance.gameLevel.gameObject.scene.name;
+                        Logger.LogInfo(flagJson);
+                    }   
+
+                    if (GUILayout.Button(localizationManager.GetString("Load_SaveState"), buttonStyle))
+                    {
+                        //GameFlagManager.Instance.LoadFlagsFromJson(flagJson, SaveManager.Instance.allFlags, TestMode.Build);
+                        GameFlagManager.LoadFlagsFromBinarySave(dataByte, SaveManager.Instance.allFlags, TestMode.Build);
+                        SaveManager.Instance.allFlags.AllFlagInitStartAndEquip();
+                        GameCore.Instance.ResetLevel();
+                        if(sceneName != SceneManager.GetActiveScene().name)
+                        {
+                            var teleportToSavePoint = CreateTeleportPointData(sceneName, tmpPos);
+                            GameCore.Instance.TeleportToSavePoint(teleportToSavePoint);
+                        }
+                        Player.i.transform.position = tmpPos;
+                        Player.i.Velocity = vel;
+
+                    }
                 }
                 GUILayout.EndHorizontal();
                 GUILayout.BeginHorizontal();
@@ -821,16 +860,7 @@ namespace NineSolsPlugin
                         }   
                         if (GUILayout.Button(localizationManager.GetString("Test"), buttonStyle))
                         {
-                            var methodInfo = typeof(StartMenuLogic).GetMethod("StartMemoryChallenge");
-
-                            if (methodInfo != null)
-                            {
-                                Logger.LogInfo("Method StartMemoryChallenge with specified parameters found!");
-                            }
-                            else
-                            {
-                                Logger.LogInfo("Method StartMemoryChallenge with specified parameters not found.");
-                            }
+                            
                             //GameCore.Instance.SetReviveSavePoint(CreateTeleportPointData(SceneManager.GetActiveScene().name, new Vector3(Player.i.transform.position.x, Player.i.transform.position.y, Player.i.transform.position.z)));
                             //Player.i.RespawnAtSavePoint();
                             //SceneConnectionPoint.ChangeSceneData changeSceneData = GameCore.Instance.FetchReviveData();
@@ -926,7 +956,7 @@ namespace NineSolsPlugin
                             //Traverse.Create(Player.i).Method("AddSkillPoint").GetValue();
                             //NotAtSavePoint();
 
-                            //var dic = SaveManager.Instance.allFlags.flagDict;
+                            //var dic = SaveManager.Instance.allFlags.flagDict; 
 
                             //var d = new List<string>
                             //{
