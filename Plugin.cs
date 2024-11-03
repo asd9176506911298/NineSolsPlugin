@@ -836,7 +836,7 @@ namespace NineSolsPlugin
                 GUILayout.EndHorizontal();
                 GUILayout.BeginHorizontal();
                 {
-                    if (GUILayout.Button(localizationManager.GetString("Skip"), buttonStyle))
+                    if (GUILayout.Button(ShowKey(SkipKey) + localizationManager.GetString("Skip"), buttonStyle))
                     {
                         Skip();
                     }
@@ -853,6 +853,12 @@ namespace NineSolsPlugin
                         //GameFlagManager.Instance.LoadFlagsFromJson(flagJson, SaveManager.Instance.allFlags, TestMode.Build);
                         LoadSaveState();
 
+                    }
+
+                    if (GUILayout.Button(localizationManager.GetString("DiscardFlagsAndReset"), buttonStyle))
+                    {
+                        if (GameCore.Instance != null)
+                            GameCore.Instance.DiscardUnsavedFlagsAndReset();
                     }
                 }
                 GUILayout.EndHorizontal();

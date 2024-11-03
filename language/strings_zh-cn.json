@@ -48,5 +48,6 @@
   "Enable_Jailed_Weak_Status": "开启监狱状态",
   "Disable_Jailed_Weak_Status": "关闭监狱状态",
   "Save_CurState": "暂存当前资料",
-  "Load_SaveState": "读取暂存资料"
+  "Load_SaveState": "读取暂存资料",
+  "DiscardFlagsAndReset": "放弃资料重设场景"
 }

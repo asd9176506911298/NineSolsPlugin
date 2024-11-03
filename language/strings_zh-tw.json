@@ -48,5 +48,6 @@
   "Enable_Jailed_Weak_Status": "開啟監獄狀態",
   "Disable_Jailed_Weak_Status": "關閉監獄狀態",
   "Save_CurState": "暫存當前資料",
-  "Load_SaveState": "讀取暫存資料"
+  "Load_SaveState": "讀取暫存資料",
+  "DiscardFlagsAndReset": "放棄資料重設場景"
 }
