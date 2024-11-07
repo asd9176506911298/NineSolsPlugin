@@ -1,9 +1,12 @@
 # NineSolsPlugin
 # Nine Sols Cheat Menu
-
+# R2ModMan or ThunderStore Easy Install
+- Install R2ModMan or ThunderStore and select Nine Sols
+- Find Mod to install
+- https://thunderstore.io/c/nine-sols/p/Yukikaco/CheatMenu/
 # BepInEx 5.4.23.2
 
-# Install
+# Manual Install
 - On Steam Right Click Nine Sols -> Manage -> Browse local files
 - will see NineSols.exe unzip here
 - will look like this
