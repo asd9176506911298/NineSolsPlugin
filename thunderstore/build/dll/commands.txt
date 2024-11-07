@@ -1,0 +1,41 @@
+all-commands 查詢全部指令 有些指令用了沒作用 或會卡住 自行測試
+
+[Command("tutorial.lear.disable", "關閉所有古樹跟李耳教學"
+[Command("tutorial.lear.enable", "開啟所有古樹跟李耳教學"
+
+[Command("start_game_from", "主選單直接從特定場景開始"
+[Command("start_challenge", "主選單進挑戰"
+
+[Command("back_to_title"
+
+[Command("achievement_clear"]
+[Command("ui.hide", "隱藏UI"]
+[Command("ui.show", "顯示UI"]
+[Command("change_scene", "在遊戲中跳到其他遊戲場景"]
+[Command("jump_to_savepoint", "跳到特定場景的存擋點"]
+[Command("reset_scene", "模擬主角觸碰存擋點按休息後 重置所有怪物與關卡"]
+[Command("reset_scene_and_discard_unsaved_flags", "故意放棄進度 reset這個場景"
+[Command("SaveAtCurrentPosition"]
+[Command("showAllMaps", "顯示地圖"]
+
+[Command("add.money", "錢錢增加99999"]
+[Command("add.skillPoint", "技能點增加99"]
+[Command("suicide", "主角自殺"]
+[Command("skipHackMiniGame", "跳過符咒小遊戲"]
+[Command("getAllJadeSlots", "取得所有算力格子"]
+[Command("getAllJades", "取得所有的玉"]
+[Command("activate.KillZombieFooAbility", "解鎖殺天禍的能力"]
+
+[Command("fullChi",  "滿Combo? 血量下面圓圓的滿"]
+
+activate.all 包括括號裡面功能
+[Command("activate.all", "解鎖全能力並關掉Lear教學"]
+{
+    [Command("activate.butterfly", "解鎖蝴蝶"]
+    [Command("activate.jumpKick", "解鎖太極踢/識破"]
+    [Command("activate.chargedAttack", "解鎖重擊"]
+    [Command("activate.arrow", "解鎖弓箭"]
+    [Command("activate.airDash", "解鎖空中dash"]
+    [Command("activate.counter", "解鎖太極反/大反"]
+    [Command("activate.doubleJump", "解鎖二段跳"]
+}

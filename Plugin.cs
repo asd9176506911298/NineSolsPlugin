@@ -13,6 +13,9 @@ using BepInEx.Logging;
 using System.Linq;
 using _3_Script.UI.TitleScreenMenuUI;
 using static SceneConnectionPoint;
+using Auto.Utils;
+using System.Security.AccessControl;
+using RCGMaker.Runtime.Character;
 
 namespace NineSolsPlugin
 {
@@ -64,9 +67,12 @@ namespace NineSolsPlugin
         public bool isBossSpeed = false;
         public bool isAttackMult = false;
         public bool isInjeryMult = false;
+        public bool isSitAtSavePoint = false;
+        public bool isCPU = false;
         private bool previousIsBossSpeed;
         private bool previousIsAttackMult;
         private bool previousIsInjeryMult;
+        private bool previousIsCpu;
         public float fov = 68f;
         public float speed = 2f;
         public float bossSpeed = 1f;
@@ -96,6 +102,8 @@ namespace NineSolsPlugin
         Vector3 tmpPos;
         Vector2 vel;
         string sceneName;
+        Vector3 HuanxianPos = Vector3.zero;
+        bool isHuanxianPosSet = false;
 
 
         private void Awake()
@@ -135,7 +143,7 @@ namespace NineSolsPlugin
             }
 
             // Initialize window size based on screen dimensions
-            float width = Screen.width * 0.5f;
+            float width = Screen.width * 0.6f;
             float height = Screen.height * 0.92f;
             windowRect = new Rect((Screen.width - width) / 2, (Screen.height - height) / 2, width, height);
             supportRect = new Rect((Screen.width - width) / 2, (Screen.height - height) / 2, width, height / 6);
@@ -153,6 +161,8 @@ namespace NineSolsPlugin
 
             previousIsInjeryMult = isInjeryMult;
             previousInjeryMult = injeryMult;
+
+            previousIsCpu = isCPU;
         }
 
         async void Kanghui(string SceneName, Vector3 teleportPostion, List<string> flags = null)
@@ -270,6 +280,14 @@ namespace NineSolsPlugin
             }
         }
 
+        private async UniTask WaitForHuanXiaoPos()
+        {
+            while (!isHuanxianPosSet)
+            {
+                await UniTask.Yield();
+            }
+        }
+
         private async UniTask WaitForSceneLoad(string sceneName)
         {
             // Wait until the scene is loaded
@@ -281,7 +299,7 @@ namespace NineSolsPlugin
 
         void OnScreenSizeChanged(float width, float height)
         {
-            width *= 0.5f;
+            width *= 0.6f;
             height *= 0.92f;
             windowRect = new Rect((Screen.width - width) / 2, (Screen.height - height) / 2, width, height);
             supportRect = new Rect((Screen.width - width) / 2, (Screen.height - height) / 2, width, height / 6);
@@ -333,7 +351,19 @@ namespace NineSolsPlugin
                 }
             }
 
-            NotAtSavePoint();
+            if (scene.name == "A7_S2_SectionF_MiniBossFight")
+            {
+                if (GameObject.Find("StealthMonster_Flying Teleport Wizard_MiniBoss 幻象區平行宇宙版 Variant"))
+                {
+                    HuanxianPos = GameObject.Find("StealthMonster_Flying Teleport Wizard_MiniBoss 幻象區平行宇宙版 Variant").GetComponent<MonsterBase>().HomePos;
+                    if(HuanxianPos != Vector3.zero)
+                    {
+                        isHuanxianPosSet = true;
+                    }
+                }           
+            }
+
+            //NotAtSavePoint();
             Logger.LogInfo("hasBossRushVersion: " + hasBossRushVersion);
         }
 
@@ -458,6 +488,21 @@ namespace NineSolsPlugin
 
             previousIsInjeryMult = isInjeryMult;
             previousInjeryMult = injeryMult;
+
+            if (isCPU != previousIsCpu)
+                setCpu();
+
+            previousIsCpu = isCPU;
+        }
+
+        void setCpu()
+        {
+            Logger.LogInfo($"CPU {isCPU}");
+            var p = Player.i;
+            if(isCPU)
+                Traverse.Create(p.mainAbilities.PlayerMaxJadePowerStat.Stat).Field("BaseValue").SetValue(500.0f);
+            else
+                Traverse.Create(p.mainAbilities.PlayerMaxJadePowerStat.Stat).Field("BaseValue").SetValue(2.0f);
         }
         
         private void checkMultiplier()
@@ -669,11 +714,26 @@ namespace NineSolsPlugin
                         fov = GUILayout.HorizontalSlider(fov, 1f, 180f, GUILayout.Width(200));
                     }
                     GUILayout.EndVertical();
+                    GUILayout.BeginVertical();
+                    {
+                        isSitAtSavePoint = GUILayout.Toggle(isSitAtSavePoint, localizationManager.GetString("isSitAtSavePoint"), toggleStyle);
+                        isCPU = GUILayout.Toggle(isCPU, localizationManager.GetString("isCPU"), toggleStyle);
+                    }
+                    GUILayout.EndVertical();
+                }
+                GUILayout.EndHorizontal();
+
+                GUILayout.BeginHorizontal();
+                {
+                    if (GUILayout.Button(ShowKey(SkipKey) + localizationManager.GetString("Skip"), buttonStyle))
+                    {
+                        Skip();
+                    }
+                    if (GUILayout.Button(localizationManager.GetString("FullBright"), buttonStyle))
+                        FullLight();
                 }
                 GUILayout.EndHorizontal();
                 
-                if (GUILayout.Button(localizationManager.GetString("FullBright"), buttonStyle))
-                    FullLight();
                 GUILayout.BeginHorizontal();
                 {
                     if (GUILayout.Button(localizationManager.GetString("English"), buttonStyle))
@@ -700,6 +760,10 @@ namespace NineSolsPlugin
                         GetAllMax();
                     if (GUILayout.Button(localizationManager.GetString("GetAllMaxWithoutActiveSkill"), buttonStyle))
                         GetAllMaxWithoutActiveSkill();
+                    if (GUILayout.Button(localizationManager.GetString("SkillPoint0"), buttonStyle))
+                        GameCore.Instance.playerGameData.SkillPointLeft = 0;
+                    if (GUILayout.Button(localizationManager.GetString("Gold0"), buttonStyle))
+                        GameCore.Instance.playerGameData.CurrentGold = 0;
                 }
                 GUILayout.EndHorizontal();
                 GUILayout.BeginHorizontal();
@@ -788,7 +852,11 @@ namespace NineSolsPlugin
                     if (GUILayout.Button(localizationManager.GetString("法使－鐵焰"), buttonStyle))
                         HandleTeleportButtonClick("A4_S2_RouteToControlRoom_Final", new Vector3(-3950, -3040, 0f)); //天綱法使－鐵焰
                     if (GUILayout.Button(localizationManager.GetString("法使－幻仙"), buttonStyle))
-                        HandleTeleportButtonClick("A7_S2_SectionF_MiniBossFight", new Vector3(-4004, -1888, 0f)); //法使-幻仙
+                    {
+                        HuanXianTeleport();
+
+                           
+                    }
                     if (GUILayout.Button(localizationManager.GetString("機兵－天守"), buttonStyle))
                     {
                         HandleTeleportButtonClick("A9_S1_Remake_4wei", new Vector3(-3330, 352, 0f)); //巨錘機兵－天守
@@ -855,21 +923,14 @@ namespace NineSolsPlugin
                         ModifyFlag("df6a9a9f7748f4baba6207afdf10ea31PlayerAbilityScenarioModifyPack", 1);
                     if (GUILayout.Button(localizationManager.GetString("Disable_Jailed_Weak_Status"), buttonStyle))
                         ModifyFlag("df6a9a9f7748f4baba6207afdf10ea31PlayerAbilityScenarioModifyPack", 0);
-                }
-                GUILayout.EndHorizontal();
-                GUILayout.BeginHorizontal();
-                {
-                    if (GUILayout.Button(ShowKey(SkipKey) + localizationManager.GetString("Skip"), buttonStyle))
-                    {
-                        Skip();
-                    }
+                    
 
                     if (GUILayout.Button(ShowKey(saveKey) + localizationManager.GetString("Save_CurState"), buttonStyle))
                     {
                         SaveCurState();
                         //flagJson = GameFlagManager.FlagsToJson(SaveManager.Instance.allFlags);
                         //Logger.LogInfo(flagJson);
-                    }   
+                    }
 
                     if (GUILayout.Button(ShowKey(loadKey) + localizationManager.GetString("Load_SaveState"), buttonStyle))
                     {
@@ -877,11 +938,22 @@ namespace NineSolsPlugin
                         LoadSaveState();
 
                     }
-
+                }
+                GUILayout.EndHorizontal();
+                GUILayout.BeginHorizontal();
+                {
                     if (GUILayout.Button(localizationManager.GetString("DiscardFlagsAndReset"), buttonStyle))
                     {
                         if (GameCore.Instance != null)
                             GameCore.Instance.DiscardUnsavedFlagsAndReset();
+                        Traverse.Create(Player.i.potion.potionMaxCountData.Stat).Field("BaseValue").SetValue(2f);
+                        Player.i.RestoreEverything();
+                    }
+
+                    if (GUILayout.Button(localizationManager.GetString("DevModeConfig"), buttonStyle))
+                    {
+                        SaveManager.Instance.allFlags.AllFlagAwake(TestMode.EditorDevelopment);
+                        SaveManager.Instance.allFlags.AllFlagInitStartAndEquip();
                     }
                 }
                 GUILayout.EndHorizontal();
@@ -896,7 +968,62 @@ namespace NineSolsPlugin
                         }   
                         if (GUILayout.Button(localizationManager.GetString("Test"), buttonStyle))
                         {
-                            Logger.LogInfo(AccessTools.Method(typeof(MonsterBase), "UpdateAnimatorSpeed"));
+                            Logger.LogInfo(Traverse.Create(Player.i.potion.potionMaxCountData.Stat).Field("BaseValue").GetValue());
+                            //ModifyFlag("23168073bb271184b86dc9601f989db3MerchandiseData", 1); //咒滅化緣
+                            //ModifyFlag("8ff1633b861daf549b6ceefe7c2c7a1cMerchandiseData", 1); //咒滅化生
+                            //ModifyFlag("ab52d2383f0a50c40913616dbd0efe94MerchandiseData", 1); //咒滅化息_二階
+                            //Traverse.Create(Player.i).Method("GetAllJades").GetValue();
+                            //Logger.LogInfo(Traverse.Create(Player.i.mainAbilities.PlayerMaxJadePowerStat.Stat).Field("BaseValue").GetValue());
+                            //SaveManager.Instance.allFlags.AllFlagAwake(TestMode.EditorDevelopment);
+                            //bool result = ((!isFromAsset) ? (await ReadFlagsInSave(path)) : ReadFlagsFromResource(path));
+                            //SaveManager.Instance.allFlags.AllFlagInitStartAndEquip();
+                            //HandleTeleportButtonClick("A7_S2_SectionF_MiniBossFight", new Vector3(7773, 444, 0f)); //法使-幻仙
+                            //HandleTeleportButtonClick("A7_S2_SectionF_MiniBossFight", new Vector3(-3776f, -1760f, 0f)); //法使-幻仙
+                            //-4004 - -3776 228 
+                            // -1880 - -1760 120
+                            //Logger.LogInfo(AccessTools.Method(typeof(MonsterBase), "UpdateAnimatorSpeed"));
+                            //var parentObject = GameObject.Find("treeroot");
+                            //if (parentObject != null)
+                            //{
+                            //    var icons = parentObject.GetComponentsInChildren<Transform>(true)
+                            //                            .Where(t => t.name == "Icon")
+                            //                            .Select(t => t.gameObject);
+
+                            //    foreach (var icon in icons)
+                            //    {
+                            //        icon.SetActive(false);
+                            //        Logger.LogInfo(icon);
+                            //    }
+
+                            //    var olds = parentObject.GetComponentsInChildren<Transform>(true)
+                            //                            .Where(t => t.name == "old")
+                            //                            .Select(t => t.gameObject);
+
+                            //    foreach (var old in olds)
+                            //    {
+                            //        old.SetActive(true);
+                            //        var enables = parentObject.GetComponentsInChildren<Transform>(true)
+                            //                            .Where(t => t.name == "EnabledImage")
+                            //                            .Select(t => t.gameObject);
+                            //        foreach (var enable in enables)
+                            //        {
+                            //            enable.SetActive(false);
+                            //        }
+
+                            //        var disables = parentObject.GetComponentsInChildren<Transform>(true)
+                            //                            .Where(t => t.name == "DisabledImage")
+                            //                            .Select(t => t.gameObject);
+                            //        foreach (var disable in disables)
+                            //        {
+                            //            disable.SetActive(true);
+                            //        }
+                            //        //Logger.LogInfo(old);
+                            //    }
+                            //}
+                            //else
+                            //{
+                            //    Logger.LogInfo("GameObject 'viewUI' not found.");
+                            //}
                             //Logger.LogInfo(ShowKey(SpeedToggleKey));
                             //GameCore.Instance.SetReviveSavePoint(CreateTeleportPointData(SceneManager.GetActiveScene().name, new Vector3(Player.i.transform.position.x, Player.i.transform.position.y, Player.i.transform.position.z)));
                             //Player.i.RespawnAtSavePoint();
@@ -1021,7 +1148,7 @@ namespace NineSolsPlugin
                             //ModifyFlag("d8cbeba2a689a422abdb956743a07891SkillNodeData", 1); // 0_攻擊 (SkillNodeData)
                             //ModifyFlag("b3e48a60ad0b84648952dc21712b27c0SkillNodeData", 1); // Foo Power +1 內力提升 LV1 (SkillNodeData)
                         }
-                        
+
                     }
                     #endif
                 }
@@ -1060,17 +1187,18 @@ namespace NineSolsPlugin
                 Traverse.Create(player).Method("AddMoney").GetValue();
                 Traverse.Create(player).Method("GetAllJades").GetValue();
                 Traverse.Create(player).Method("GetAllJadeSlots").GetValue();
-                Traverse.Create(player.mainAbilities.PlayerMaxJadePowerStat.Stat).Field("BaseValue").SetValue(500.0f);
+                //Traverse.Create(player.mainAbilities.PlayerMaxJadePowerStat.Stat).Field("BaseValue").SetValue(500.0f);
                 Traverse.Create(player.potion.potionMaxCountData.Stat).Field("BaseValue").SetValue(8);
 
                 Player.i.RestoreEverything();
             }
 
-            NotAtSavePoint();
+            //NotAtSavePoint();
         }
 
         private void NotAtSavePoint()
         {
+            return;
             GameObject Jade = GameObject.Find("GameCore(Clone)/RCG LifeCycle/UIManager/GameplayUICamera/UI-Canvas/[Tab] MenuTab/CursorProvider/Menu Vertical Layout/Panels/[Jade 玉] Multiple Collection Select Panel/[Condition] 在存檔點");
             GameObject Skill = GameObject.Find("GameCore(Clone)/RCG LifeCycle/UIManager/GameplayUICamera/UI-Canvas/[Tab] MenuTab/CursorProvider/Menu Vertical Layout/Panels/[經絡]SkillTreeUI Manager/[Condition] 不在存檔點不能點技能");
             if (Jade != null)
@@ -1095,14 +1223,14 @@ namespace NineSolsPlugin
                 Traverse.Create(player).Method("AddMoney").GetValue();
                 Traverse.Create(player).Method("GetAllJades").GetValue();
                 Traverse.Create(player).Method("GetAllJadeSlots").GetValue();
-                Traverse.Create(player.mainAbilities.PlayerMaxJadePowerStat.Stat).Field("BaseValue").SetValue(500.0f);
+                //Traverse.Create(player.mainAbilities.PlayerMaxJadePowerStat.Stat).Field("BaseValue").SetValue(500.0f);
                 Traverse.Create(player.potion.potionMaxCountData.Stat).Field("BaseValue").SetValue(8);
 
                 Player.i.RestoreEverything();
             }
             //var skillTreeUI = UnityEngine.Object.FindObjectsOfType<SkillTreeUI>(true)[0];
             //skillTreeUI.ResetAllSkillPoints();
-            NotAtSavePoint();
+            //NotAtSavePoint();
         }
 
         private void SetAllMaxFlag()
@@ -1144,6 +1272,10 @@ namespace NineSolsPlugin
             ModifyFlag("075eabd7421b58e43af25cc1c57e79e3PlayerAbilityData", 1); // Potion value LV6
             ModifyFlag("cf5080950d381d843b000c91175434bfPlayerAbilityData", 1); // Potion value LV7
             ModifyFlag("05b87ad6d7c226245b6e917ec21d3416PlayerAbilityData", 1); // Potion value LV8
+
+            ModifyFlag("23168073bb271184b86dc9601f989db3MerchandiseData", 1); //咒滅化緣
+            ModifyFlag("8ff1633b861daf549b6ceefe7c2c7a1cMerchandiseData", 1); //咒滅化生
+            ModifyFlag("ab52d2383f0a50c40913616dbd0efe94MerchandiseData", 1); //咒滅化息_二階
         }
 
         private void ModifyFlag(string key, int value)
@@ -1209,6 +1341,15 @@ namespace NineSolsPlugin
                     else
                         playerAbilityScenarioModifyPack.RevertApply(playerAbilityScenarioModifyPack);
                     break;
+                case "MerchandiseData":
+                    var merchandiseData = gameFlagBase as MerchandiseData;
+                    Logger.LogInfo(merchandiseData.IsAcquired);
+                    if (merchandiseData == null)
+                        return;
+                    if (valueBool)
+                        merchandiseData.item.PlayerPicked();
+                    break;
+                    
             }
         }
 
@@ -1319,6 +1460,20 @@ namespace NineSolsPlugin
                 GetAllMax();
             else if (isGetAllWithoutActiveSkill)
                 GetAllMaxWithoutActiveSkill();
+        }
+
+        private async UniTask HuanXianTeleport()
+        {
+            if (!isHuanxianPosSet)
+            {
+                HandleTeleportButtonClick("A7_S2_SectionF_MiniBossFight",Vector3.zero);
+                await WaitForHuanXiaoPos();
+                await WaitForEnterGame();
+            }
+                var huanPos = new Vector3(HuanxianPos.x - 228, HuanxianPos.y - 120, HuanxianPos.z);
+                Logger.LogInfo($"1111 {huanPos} {HuanxianPos}");
+                HandleTeleportButtonClick("A7_S2_SectionF_MiniBossFight", huanPos); //法使-幻仙
+            
         }
 
         private void HandleTeleportButtonClick(string sceneName, Vector3 teleportPosition)

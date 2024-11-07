@@ -4,7 +4,7 @@ schemaVersion = "0.0.1"
 [package]
 namespace = "CheatMenu"
 name = "CheatMenu"
-versionNumber = "1.2.80"
+versionNumber = "1.2.90"
 description = "CheatMenu"
 websiteUrl = "https://github.com/asd9176506911298/NineSolsPlugin"
 containsNsfwContent = false

@@ -49,5 +49,10 @@
   "Disable_Jailed_Weak_Status": "關閉監獄狀態",
   "Save_CurState": "暫存當前資料",
   "Load_SaveState": "讀取暫存資料",
-  "DiscardFlagsAndReset": "放棄資料重設場景"
+  "DiscardFlagsAndReset": "[危]放棄資料重設場景",
+  "isSitAtSavePoint": "非存檔點點技能玉石",
+  "SkillPoint0": "技能點清0",
+  "isCPU": "無限算力",
+  "DevModeConfig": "[危]開發模式存檔",
+  "Gold0": "0金"
 }

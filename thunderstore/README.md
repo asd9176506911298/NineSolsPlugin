@@ -18,7 +18,9 @@
 - AutoHeal
 - InfiniteChi
 - InfinitePotion
+- InfiniteCPU
 - InfiniteAmmo
+- NotAtSavePoint Learn Skill Equip Jade
 - GetAllMax (Active Skill)
 - Map Full Bright(Disable Effect)
 - Skip LeftCtrl

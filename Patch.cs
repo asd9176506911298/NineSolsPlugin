@@ -84,6 +84,27 @@ namespace NineSolsPlugin
             return true;
         }
 
+        [HarmonyPrefix, HarmonyPatch(typeof(PlayerSitAtSavePointCondition), "get_isValid")]
+        public static bool PatchIsSitAtSavePoint(ref PlayerSitAtSavePointCondition __instance, ref bool __result)
+        {
+            if(Plugin.Instance.isSitAtSavePoint)
+            {
+                if (__instance.name.Contains("[Condition]"))
+                {
+                    __result = true;
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        //[HarmonyPrefix, HarmonyPatch(typeof(DebugSetting), "get_IsProductionMode")]
+        //public static bool IsProductionMode(ref bool __result)
+        //{
+        //    __result = false;
+        //    return false;
+        //}
+
         //[HarmonyPrefix, HarmonyPatch(typeof(DebugSetting), "IsDebugMode", MethodType.Getter)]
         //public static bool IsDebugMode(ref bool __result)
         //{

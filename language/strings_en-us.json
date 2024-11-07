@@ -49,5 +49,10 @@
   "Disable_Jailed_Weak_Status": "Disable Jailed Weak Status",
   "Save_CurState": "Save CurState",
   "Load_SaveState": "Load CurState",
-  "DiscardFlagsAndReset": "Init Status DiscardData"
+  "DiscardFlagsAndReset": "[Warning]Init Status DiscardData",
+  "isSitAtSavePoint": "NotAtSavePoint Skill Jade",
+  "SkillPoint0": "SkillPoint0",
+  "isCPU": "InfiniteCPU",
+  "DevModeConfig": "[Warning]DevModeConfig",
+  "Gold0": "Gold0"
 }
