@@ -133,6 +133,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="assembly-libaries\Assembly-CSharp.dll" />
     <Content Include="assembly-libaries\UniTask.dll" />
+    <Content Include="gameFlagDesc.txt" />
     <Content Include="samuraiOriOffset - Copy.txt" />
     <Content Include="samuraiOriOffset.txt" />
     <Content Include="samuraiOriNoOffset.txt" />

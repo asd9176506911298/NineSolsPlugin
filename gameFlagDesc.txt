@@ -1,0 +1,761 @@
+﻿281ea300c06feaa47a744759116bbf27MerchandiseData Merchandise_5_Shield Arrow_Level2_To_Level3 (MerchandiseData)  summary: description:
+c391a61927832024fa5e0873e107bef7PlayerWeaponData (Weapon)6 Shield Arrow_Level2 (PlayerWeaponData)  summary: description:
+90ad0e9f7777daa47840bda0f63401c7PlayerWeaponData (Weapon)6 Shield Arrow_Level3 (PlayerWeaponData)  summary: description:防 護罩 Lv.3
+89f506003825f404eac747bbb19560ccPlayerAbilityData (KuaFoo) Potion value LV5 (PlayerAbilityData)  summary: description:
+7760d1100c6ec4194bb05955d9595fc1ReceiveItemData ReceiveItemData_GuideFish9000_A10_Memory (ReceiveItemData)  summary: description:
+15afe59971f8d4ba2ba254aa63fbcccdItemData (Memory)A10_藏經石窟 (ItemData)  summary: description:
+3ef3c210d1d0dc54bb1cdde8baa7baf4ReceiveItemData 神農_收到_商店藥材 7_爬牆虎 (ReceiveItemData)  summary: description:
+00b0232c825990a45a3aad8212dff74eItemData (藥材)蚩尤商店_藥材 7_爬牆虎 (ItemData)  summary: description:蚩尤商店藥材7
+4e408510c15062946a9fb1a5833f594cGameFlagDescriptable [Old]UnknownPedia (GameFlagDescriptable)  summary: description:
+be06009a7087193479d1f3c41d33dceaItemData (Money)02_大錢袋 (ItemData)  summary: description:
+f688c32090bd9a447b2caa202e5d2537ItemData (文物)A3S1_樂譜 (ItemData)  summary: description:
+0c1ddf20ca0b26447895b50183aebae9PlayerAbilityData (KuaFoo) Potion value LV4 (PlayerAbilityData)  summary: description:
+36eb7e7b95e91467191b8f24dbbb5a3eJadeData (Jade Data) ChargeAttack Wave 爆劍玉 (JadeData)  summary: description:蓄集氣攻擊時消耗氣，打出中距離的劍氣和更高的傷害
+608c6830970fe4385aeac10ad290428cEncyclopediaItem Pedia_29_A5_S4b_藥櫃警告訊息 (EncyclopediaItem)  summary: description:
+818f7640ea2ae6d42babd5dd86b14e03AchievementData Ach_Main_A5_Finished (AchievementData)  summary: description:
+012ed640ec72c5e409d85c7e8a6b4436ItemData (重要道具)01_古樂譜簡譜 (ItemData)  summary: description:
+f9c12b4ba239e49ff8992d316de77179SkillNodeData (Skill) 0 氣刃攻擊力提升 1 (SkillNodeData)  summary: description:氣刃攻擊力提升
+19b09ad0c66d84337826a5c0184625edSkillNodeData (Skill) 0_parry 格擋 (SkillNodeData)  summary: description:
+930431c2cc50341778d2f9736d27ee6eSkillNodeData (Skill) 0_下踢 (SkillNodeData)  summary: description:下和攻擊在空中同時按可以施展踢顱擊，成功踢到敵人後會小幅度彈起。可代替識破攻擊使用。
+d8cbeba2a689a422abdb956743a07891SkillNodeData (Skill) 0_攻擊 (SkillNodeData)  summary: description:
+fadab0801872448a088b7cc05d63aac0SkillNodeData (Skill) 0_氣刃攻擊力提升 2 (SkillNodeData)  summary: description:
+9efa79aa5093f4681b650e0dbc0d02feSkillNodeData (Skill) 0_符咒傷害提升 1 (SkillNodeData)  summary: description:
+459bd9b1979414acdbcba2a3644c056cSkillNodeData (Skill) 0_符咒傷害提升 2 (SkillNodeData)  summary: description:
+0c8ce74dd338f4ecaa525eee0b37cc1cSkillNodeData (Skill) 0_背襲 (SkillNodeData)  summary: description:
+af9cb112a715e4955afaa3e740f4fe5aSkillNodeData (Skill) 0_閃避 (SkillNodeData)  summary: description:
+15371e774c66f4ce9a58dc63b1464910SkillNodeData (Skill) 1_識破 (SkillNodeData)  summary: description:
+b969aebcc39544a1eb88a6dc4f538052SkillNodeData (Skill) 1_識破二顆氣 (SkillNodeData)  summary: description:識破後獲得的內力增加一點
+6ce6b20889a30401d89edbea192fdb70SkillNodeData (Skill) 1_識破造成額外內傷 (SkillNodeData)  summary: description:識破成功可對敵人造成更多內傷
+e4c62cea0f9fb4759b69624d571a3c8dSkillNodeData (Skill) 2_Charge Atk蓄力攻擊 (SkillNodeData)  summary: description:
+b6279cb10939e9d4ebda64aea801f75cSkillNodeData (Skill) 3_Air Dodge空中閃避 (SkillNodeData)  summary: description:空中閃避
+82ea1161b33ea423caa77f67fe049046SkillNodeData (Skill) 4_ParryCounter 大反 (SkillNodeData)  summary: description:
+827cb8277cd144d83861460103607ed7SkillNodeData (Skill) 5_二段跳 (SkillNodeData)  summary: description:
+08fecc31de6974aaca652b6beb1cbbfeSkillNodeData (Skill) Accurate Parry RestoreInjury 精準回內傷 (SkillNodeData)  summary: description:精準格擋敵人攻擊時可以恢復少許內傷。
+f168f2477ae5a481ca147ee9ce61833bSkillNodeData (Skill) Accurate Parry To Reflect Projectile 精準反彈 (SkillNodeData)  summary: description:精準格擋可以將弓箭子彈等遠距攻擊反彈回去
+42fd1d09af02e41229825f330c193658SkillNodeData (Skill) Charge Chi 無量蓄氣 (SkillNodeData)  summary: description:
+b3e48a60ad0b84648952dc21712b27c0SkillNodeData (Skill) Foo Power +1 內力提升 LV1 (SkillNodeData)  summary: description:增加 一點內力最大值
+411e38c06854a484cb7eb7e2d5cd9b9eSkillNodeData (Skill) Foo Power +1 內力提升 LV2 (SkillNodeData)  summary: description:增加 一點內力最大值
+66ae60d46a1bf4e46aafe55fa7a0a34bSkillNodeData (Skill) Foo Power +1 內力提升 LV3 (SkillNodeData)  summary: description:增加 一點內力最大值
+c2c80a7aa73a24226b410bd2064b2a5cSkillNodeData (Skill) Foo Power +1 內力提升 LV4 (SkillNodeData)  summary: description:增加 一點內力最大值
+41ea48c62b044a041bdf3f7640dbeb4cSkillNodeData (Skill) ParryCounterReflect Dmg Lv1 借力打力 (SkillNodeData)  summary: description:太極反擊成功時造成的內傷增加
+3c5bc531c4961479189e171da6b1ca5dSkillNodeData (Skill) Reflect Projectile Damage 增加反彈傷害 (SkillNodeData)  summary: description:反彈的子彈傷害強化
+ae3f7be7afb294d2eba0f6f4d129c6d0SkillNodeData (Skill) Run 奔跑 (SkillNodeData)  summary: description:
+c57cd9a29dca44f9d94fe76f4b6c248dSkillNodeData (Skill) 受身閃避 (SkillNodeData)  summary: description:
+304e6970e1f624f0d9254b428b81a73eSkillNodeData (Skill) 大反更多氣 (SkillNodeData)  summary: description:太極反成功時得到的內力增加一點
+f44bf0d0544f84e548eb76a00f12cccdSkillNodeData (Skill) 收魂回命 (SkillNodeData)  summary: description:取回死亡後掉落的魂魄後可以回復些許生命值
+cee53a9ab05cb4f25bc3d5f900fa523cSkillNodeData (Skill) 收魂回砂 (SkillNodeData)  summary: description:
+261c03bb170884f0084f3d4a8c17f708SkillNodeData (Skill) 流派 Foo 1_一氣貫通 (SkillNodeData)  summary: description:將多個能量 （氣）透過符咒一次引爆，最多消耗三
+92e91b67a2b794671a74c275d4c1d2b6SkillNodeData (Skill) 流派 Foo 2_收放自如 (SkillNodeData)  summary: description:引爆符咒時 能透過施咒的時間長短控制消耗的能量（氣）以調整威力大小。
+b24699dc273034e34867754a3c97c4c4SkillNodeData (Skill) 流派 Foo 3_行雲流水 (SkillNodeData)  summary: description:解鎖符咒流 派行雲流水，使用行雲流水時，貼符擊中敵人時，將延遲一段時間後自動引爆。
+fcb5a8efa2ca14f818f53071b10aab11SkillNodeData (Skill) 流派升級 Foo 1_一氣貫通 升級 (SkillNodeData)  summary: description:在使用一氣貫通時進行三層內力的符爆攻擊可以獲得少許倉砂。
+f0db8641341dc4fd39368da2b3a8a821SkillNodeData (Skill) 流派升級 Foo 2_收放自如 升級 (SkillNodeData)  summary: description:精準釋放集滿五層的符爆可造成大量傷害
+9811579f8600a48ecbb002eba20f5bcbSkillNodeData (Skill) 流派升級 Foo 3_行雲流水 升級 (SkillNodeData)  summary: description:使用行雲流水殺死敵人後可獲得一點內力
+727ed050abc10714fb70fd68cd60140eReceiveItemData ReceiveItemData_Shan_StrangeSeed_不知名種子 (ReceiveItemData)  summary: description:
+8d0f6ac6661d7ca4ab6c9a38b59e8044ItemData (文物)A3S2_不知名的種子 (ItemData)  summary: description:
+3e29d950db438456f856b339b02af177ItemData (王璽)Authority_1_Kuafu (ItemData)  summary: description:
+85fedd5082a4bbb47bed0628366b24d0TeleportPointData A1_S1_StartPoint (TeleportPointData)  summary: description:
+225b26d783a254791877e26065f5b7f5PlayerAbilityData (FooExplodeKillAbility) ChainHeal Aura (PlayerAbilityData)  summary: description:傳染符咒能量給附近的敵人
+5c9ba52412e7944788789c16d8f8a3a3PlayerAbilityData (FooExplodeKillAbility) ChainExplode (PlayerAbilityData)  summary: description:傳染符咒能量給附近的敵人
+a4a78260f3fdfcd4eb853a6dc8582ee4MerchandiseData Merchandise_1_NormalArrow_Level2_To_Level3 (MerchandiseData)  summary: description:
+2f7009a00edd57c4fa4332ffcd15396aPlayerWeaponData (Weapon)1 穿雲箭_LV2 (PlayerWeaponData)  summary: description:
+9dfa4667af28b6a4da8c443c9814e40dPlayerWeaponData (Weapon)1 穿雲箭_LV3 (PlayerWeaponData)  summary: description:垮伏的得意之作，可以穿透大量敵人產生中量傷害。
+ea9a496b025d3495c9dc2ef974fdc092ItemData (Memory)A2_蓄能井 (ItemData)  summary: description:
+dbde23882967941729f72898668d888eItemData (Memory)A3_養殖園 (ItemData)  summary: description:
+1f04b20cba6dd44edb862ed7cac7c8c3ItemData (Memory)A4_天倉地庫 (ItemData)  summary: description:
+62c8e43f21bdb4629816759f012f2dc4ItemData (Memory)A5_煉丹爐 (ItemData)  summary: description:
+44eb40430cc294dcba56f740fc539336ItemData (Memory)A1&A6廢棄礦坑 人體處理廠 (ItemData)  summary: description:
+cc2161127ffac40f3900b2338732539cItemData (Memory)A7_幻象區 (ItemData)  summary: description:
+81fd8581688cd4b16947568280181a3eItemData (Memory)A9_得道觀 (ItemData)  summary: description:
+8cadca0dd118b433996ceff3b40c65f1ItemData (Memory)A11_天禍研究所 (ItemData)  summary: description:
+7d7086dda1d540f4ab32c919d59ea036ItemData (王璽)Authority_5_FuDie (ItemData)  summary: description:
+687e430938a164d249d0b3befeb786a3ItemData (王璽)Authority_2_GouMang (ItemData)  summary: description:
+0218216d41d6441d69da23ea385d9452ItemData (王璽)Authority_6_Jee (ItemData)  summary: description:
+3596ea85d82e7d9419ee710c50c19655ItemData (王璽)Authority_4_JieChuan (ItemData)  summary: description:
+9391d80ddafa5d74eb3aca1449ed63ecItemData (王璽)Authority_3_TaoChang (ItemData)  summary: description:
+3f04475e7c59f458a850f1725cf8f197ItemData (王璽)Authority_7_伏羲 (ItemData)  summary: description:
+cea7218ddb8b449008101c3ccdc8b50bItemData (王璽)Authority_8_女媧 (ItemData)  summary: description:
+ac3f2ead21bde4ef886068840a25a9e6ItemData (重要道具)10_原始基因細胞 (ItemData)  summary: description:
+f6ddb914baaea4c11a4b995145dbbaadItemData 裝備_扶桑號角 (ItemData)  summary: description:回家笛子
+c4a79371b6ba3ce47bbdda684236f7b5ItemData (重要道具)04_截全毒藥 (ItemData)  summary: description:
+b76de9e39b92a3642aaea5ef8280265fItemData (重要道具)破損的扶桑牌 (ItemData)  summary: description:
+0c76757489a7fa542b4351efc4731a49ItemData (重要道具)軒軒小說 (ItemData)  summary: description:
+c50645a6658fe4b429ea575c35c28ba3ItemData (重要道具)軒軒畫作 (ItemData)  summary: description:
+4930f5079e3fe4571aeeb640c3563c78ItemData (重要道具)13_電梯卡 (ItemData)  summary: description:
+16d0ec9928dc24b4cac4830f25e986dcItemData (重要道具)11_風氏血清 (ItemData)  summary: description:
+7d0877d308ed125498e7c74eee3941d6ItemData Sunflower 大道果 (ItemData)  summary: description:
+ac87b06b4f279fc4185cc0070303a9adItemData Sunflower 小道果 (ItemData)  summary: description:
+5776ed975228f4ecdb5ccbd2fec6c3bbItemData 裝備_古樹穩定器 (ItemData)  summary: description:盛開在桃花村周遭的花，祭祀時會摘 來裝飾
+ebc522544cda748f4b2e121041f34752ItemData (重要道具)00_A1S1_染血的大紅槿 (ItemData)  summary: description:
+c06500f5667730141aee0f2f2e470ad0ItemData (文物)A1S3_扶桑牌 (ItemData)  summary: description:
+e143133559a42004ba225b6273ccf6d9ItemData (文物)A2S1_多功能工具組 (ItemData)  summary: description:
+8f81aaa43927b41448a502145949a2b0ItemData (文物)A2S2_天道卷軸 (ItemData)  summary: description:
+833cf6d005f2a4b7cab231aecb5f23aeItemData (文物)A3S1_名畫作 (ItemData)  summary: description:
+35dd82067571f4a4099df6a4fdbf7322ItemData (文物)A3S1_棋盤 (ItemData)  summary: description:
+0a5ecab971d381a4dad39e8bf488874dItemData (文物)A4S1_虛擬穿戴裝置 (ItemData)  summary: description:
+b9574a152b739c147a0ecc84a26bbb51ItemData (文物)A4S4_道長寶物 (ItemData)  summary: description:
+cd77f022f99dce04ebc1af78be7b9b50ItemData (文物)A5S2_即食口糧 (ItemData)  summary: description:
+6be26d51d342d73418ba832be13bc58eItemData (Money)03_A5S2_貴族戒指 (ItemData)  summary: description:
+e481e2d53769c64469b962d736eea9c3ItemData (文物)A5S5_截氏寶劍 (ItemData)  summary: description:
+f64e42e463e6c47da8eefe978273b154ItemData (文物)A10S4_崑崙特產赤土 (ItemData)  summary: description:
+281fc49002e760e47af668e87f3cbf82ItemData (文物)AGS2文房四寶 (ItemData)  summary: description:
+739f82b064f1d40ff953c4bdf845c5d1ItemData (文物)大紅槿 (ItemData)  summary: description:盛開在桃花村周遭的花，祭祀時會摘來裝飾
+f9035fc8724f2224f9b4e1949459eda4ItemData (文物)酒樓食譜 (ItemData)  summary: description:
+4f7efee510822ba41b5794e5ca182d8aItemData (文物)肥料 (ItemData)  summary: description:
+04d5ea6dae0714a4594502177fed83f8ItemData 裝備_藥斗擴充瓶 (ItemData)  summary: description:
+c953680b776dd6040b109f6c7bd626ddItemData (Money)01_中錢袋 (ItemData)  summary: description:
+b2a9869dc63969f46aa23fd695df78baItemData (Money)00_小錢袋 (ItemData)  summary: description:
+8722c67effb3dc844b48c5082ef55b70ItemData (重要道具)03_破雷彈 (ItemData)  summary: description:
+053f8b01bebdaa94792c503b53fa092cItemData (升級)弓箭升級 (ItemData)  summary: description:
+5d2fe8f23cb241e4da4fbfb5f5c3beabItemData 裝備_算力元件 (ItemData)  summary: description:
+ff9acceeaed756043976f6a3edc9d40fItemData 裝備_蒼砂彈匣 (ItemData)  summary: description:擴充蒼砂容量最大值
+adf839848b7f7784187fa7a3163eb4c2ItemData (升級)藥斗效率升級_藥草催化器 (ItemData)  summary: description:藥斗效率升級
+3f24b97a10eaa914fbca5cf866b6dcb8ItemData (重要道具)05_尋敵鏢 (ItemData)  summary: description:追蹤弓材料
+c753eb7cbd4ae7048a0dcc715b23e6f0ItemData (藥材)A1S3_雄橙 (ItemData)  summary: description:A1S3藥材
+c40e455c58fa8e444aa5c8657de9143eItemData (藥材)A3S7_應龍金卵 (ItemData)  summary: description:應龍每百年會產下一顆霸王卵。 為防止捕食，成形後的胚胎中含有神經性劇毒。
+96d11b4a9a625ab488ca42e489787eeaItemData (藥材)A4_SG1_龍蛇蛻 (ItemData)  summary: description:A4_SG1_藥材
+e0c92cd8e9370e74c97d5ae797cabce6ItemData (藥材)A5S4_餘毛 (ItemData)  summary: description:A5_S4藥材
+66a914e6e380d464e94f6c56734179c4ItemData (藥材)A9_臭菜 (ItemData)  summary: description:A5_S4藥材
+2d7ce5740746b504d8ad8caebc1e4686ItemData (藥材)A9_鱉蠍 (ItemData)  summary: description:A5_S4藥材
+ed5ec481e3a08344fa779713d791e8b7ItemData (藥材)A10_蛤蟆衣 (ItemData)  summary: description:A5_S4藥材
+2a761d75584603d418c3a63762ce215cItemData (藥材)桃花村_豬黃 (ItemData)  summary: description:A5_S4藥材
+4db95fe8859303b498f08e2290f5b6b9ItemData (藥材)蚩尤商店_藥材 1_百味球 (ItemData)  summary: description:Toxin_A
+cef71c68e23677d4aae949c4999dae2bItemData (藥材)蚩尤商店_藥材 2_蛇咽 (ItemData)  summary: description:
+3623910f44ed1d04fab5face0b376359ItemData (藥材)蚩尤商店_藥材 3_疆蠶 (ItemData)  summary: description:蚩尤商店藥材3
+3cb140e76363b774292297d90bc76d0eItemData (藥材)蚩尤商店_藥材 5_鬼蔘 (ItemData)  summary: description:蚩尤商店藥材5
+4bb79b0a891845542848960ddfd0a03cItemData (藥材)蚩尤商店_藥材 6_雷公蟲 (ItemData)  summary: description:蚩尤商店藥材6
+2203778119e9b0540a493e3d4981d5e2ItemData (藥材)蚩尤商店_藥材 8_斷腸果 (ItemData)  summary: description:
+88dbcf45aff5c4ee1a3db15efaaa73daItemData 消耗品_金 (ItemData)  summary: description:
+25b45e1c416880d41a1f1444e45c24d2ItemData 消耗品_蒼砂 (ItemData)  summary: description:
+49f2fd2c691313f47970b15b58279418ItemData 裝備_蒼弓 (ItemData)  summary: description:相傳為有窮氏后羿所有，具有九連射之奇技 ，威力四射，即便無箭亦能傷人，流傳至今，不知所蹤。
+
+《淮南》言堯時十日並出，草木焦枯，堯命羿仰射十日，中其九日，日中九烏皆死，墜其羽翼，故留其一日也。
+f2a3e04e4cf4746b992a7d6b2373eca3ItemData 裝備_玄蝶 (ItemData)  summary: description:遠端操作和鉤索
+1e9a8d248030e2a4494d62f5a445a59cItemData 裝備_藥斗 (ItemData)  summary: description:方向鍵上可以使用消耗菸油回復體力。
+94b7ee48d3c2744e3a448fcef4257bdcMerchandiseData Merchandise_HackCost50 (MerchandiseData)  summary: description:
+a73feb47fddee414980a4398911d795aMerchandiseData Merchandise_HackCost50_HoloMachine (MerchandiseData)  summary: description:
+4d80beaa4754000459ddd16fdd1545fcMerchandiseData Default販賣機_文物 (MerchandiseData)  summary: description:
+977145bc3965e1e40b1e9476a9329e84MerchandiseData Default販賣機_藥斗升級 (MerchandiseData)  summary: description:
+e0fbcfc26d5a78843abf5cf2f26c00c9MerchandiseData Default販賣機_貪金玉 (MerchandiseData)  summary: description:
+cca0adf6b803e472d945229790373875MerchandiseData Merchandise_CrystalMidium (MerchandiseData)  summary: description:
+2fafa2b38753e4e1a9b3001c0ceb2032MerchandiseData Merchandise_CrystalSmall (MerchandiseData)  summary: description:
+9d977049b9e024d66a2cc3fc6d347f4fMerchandiseData Merchandise_SunFlower (MerchandiseData)  summary: description:
+006c80f1ce4d6c440a73b3a13b5b4174MerchandiseData (販賣)1_中錢袋 (MerchandiseData)  summary: description:
+4941858bb02d54e85a4733740eba003fMerchandiseData (販賣)2_大錢袋 (MerchandiseData)  summary: description:
+9b5ba8bf47f74b84681c66489265b57cMerchandiseData (販賣)0_小錢袋 (MerchandiseData)  summary: description:
+533d0f835cd214a4393541584c18ae77MerchandiseData Merchandise_A5_S2_Mrx_Hack (MerchandiseData)  summary: description:
+67ba65cf80cea4dbaa99d9b63737ed5cMerchandiseData Merchandise_A2_S1_Pyramid (MerchandiseData)  summary: description:
+884d9ab8a5d8a43be97be0c2b9422e6eMerchandiseData Merchandise_A2_S5_Authority (MerchandiseData)  summary: description:
+e4b24dfd7262b4bff830b98770ba3cc7MerchandiseData Merchandise_A3_S5_Authority (MerchandiseData)  summary: description:
+21e1a0fd5efea4f16a59114e179126deMerchandiseData Merchandise_A4_S2_FrogActivate (MerchandiseData)  summary: description:
+80dfc89e1da6748b0a8fb71ba9e79427MerchandiseData Merchandise_A5_S5_Poison 結權 (MerchandiseData)  summary: description:
+84a041dc970d948a199b4aac07dc1374MerchandiseData Merchandise_A5_S5_Release結權 (MerchandiseData)  summary: description:
+7774ca7a3b6854839bd9ee9b1f97e32eMerchandiseData Merchandise_A11_S1_電梯權限 (MerchandiseData)  summary: description:
+7f9adb5a259bd764d8de668b42e4d26dMerchandiseData Merchandise_AG_S2_AIActive (MerchandiseData)  summary: description:
+d565a85e0b5fc3c4f989c83cf429a91cMerchandiseData Fix_Blueprint_Checkerboard (MerchandiseData)  summary: description:
+518ed8f73cf16c449810188a7bc194a1MerchandiseData Fix_Blueprint_EngineerTools (MerchandiseData)  summary: description:
+2db4d0d15162519438b553520976f2c5ItemData PlaceHolder1 (ItemData)  summary: description:別買我1
+39adc6ec7bbc31749ae9efc118f5cab4ItemData PlaceHolder2 (ItemData)  summary: description:別買我2
+dacb7ac1643316e47a4420469e63c865ItemData PlaceHolder3 (ItemData)  summary: description:別買我3
+32fdaef06c8a2064cad1853049a05fe9ItemData PlaceHolder4 (ItemData)  summary: description:別買我4
+cb8c9e012afbf2b48ad6e0985074b1d2ItemData PlaceHolder5 (ItemData)  summary: description:別買我5
+faf6ea3275280401784f347f98bb6fecMerchandiseData Merchandise_0_MaxAmmo value LV1 (MerchandiseData)  summary: description:
+7318aa07da4844119a650c3f2d50e486MerchandiseData Merchandise_0_MaxAmmo value LV2 (MerchandiseData)  summary: description:
+177153ae6304f4b679710ba5a04ee73aMerchandiseData Merchandise_0_MaxAmmo value LV3_二階 (MerchandiseData)  summary: description:
+9ccb3d7d00f293041980e1e4d33c06e4MerchandiseData Merchandise_5_Potion value LV1 (MerchandiseData)  summary: description:
+9b963c922b84fc74596a94d810e2d60dMerchandiseData Merchandise_5_Potion value LV2 (MerchandiseData)  summary: description:
+33d4d47ddd5d37f40973741e0301bec2MerchandiseData Merchandise_5_Potion value LV3 (MerchandiseData)  summary: description:
+3dfda9c3eeb1d774da8f3ae5be10451cMerchandiseData Merchandise_5_Potion value LV4 (MerchandiseData)  summary: description:
+47335b6af1613b9468b9ad7043f0285dMerchandiseData Merchandise_5_Potion value LV5 (MerchandiseData)  summary: description:
+b25b8174d0480844da649da6beb6e698MerchandiseData Merchandise_5_Potion value LV6 (MerchandiseData)  summary: description:
+cc143dc7303dd2a4caabdb5a1db035f5MerchandiseData Merchandise_5_Potion value LV7 (MerchandiseData)  summary: description:
+ddb72c79080ae9f46bd52994358c2d1cMerchandiseData Merchandise_5_Potion value LV8 (MerchandiseData)  summary: description:
+ab52d2383f0a50c40913616dbd0efe94MerchandiseData Merchandise_6_2_咒滅化息_二階 (MerchandiseData)  summary: description:
+8ff1633b861daf549b6ceefe7c2c7a1cMerchandiseData Merchandise_6_1_咒滅化生 (MerchandiseData)  summary: description:
+23168073bb271184b86dc9601f989db3MerchandiseData Merchandise_6_0_咒滅化緣 (MerchandiseData)  summary: description:
+79fd2f41624b685498cfb746ce84ab7bMerchandiseData Merchandise_3_1_爆破箭LV1 (MerchandiseData)  summary: description:
+11c0763bddad6b344a1c35a1383beb78MerchandiseData Merchandise_3_2_爆破箭LV2 (MerchandiseData)  summary: description:
+228a5782203c00f4584aada7b014bbd4MerchandiseData Merchandise_3_3_爆破箭LV3_二階 (MerchandiseData)  summary: description:
+6739393f679d15e499d5431d9dffbb90MerchandiseData Merchandise_2_1_貫穿箭LV2 (MerchandiseData)  summary: description:
+83f988d88c5d5364192bdfcc23be4153MerchandiseData Merchandise_2_2_貫穿箭LV3_二階 (MerchandiseData)  summary: description:
+10dedaaa2dbb3004a97f11e565483cc6MerchandiseData Merchandise_4_1_追蹤箭LV1 (MerchandiseData)  summary: description:
+45161198c2e944449a181d0a656b54edMerchandiseData Merchandise_4_2_追蹤箭LV2 (MerchandiseData)  summary: description:
+d96112e1b741ec04ca845e028101feafMerchandiseData Merchandise_4_3_追蹤箭LV3_二階 (MerchandiseData)  summary: description:
+2adc92bf71d985c49bfe4bc0b7c1b965MerchandiseData (商品)倉庫區販賣機_空白RAM (MerchandiseData)  summary: description:
+8f17deda8d3c8134792c46a43939f9efMerchandiseData (商品)煉丹爐區販賣機_文物 (MerchandiseData)  summary: description:
+7fb640c852596634eaebf1a7a6df3f29MerchandiseData (商品)蚩尤一階_文物 (MerchandiseData)  summary: description:
+809ad7d4837e27d4fbaa309c82d569d4MerchandiseData (商品)蚩尤一階_空白RAM (MerchandiseData)  summary: description:
+bd9b2cf4f40da423580040f9d895dee9MerchandiseData Merchandise Template (MerchandiseData)  summary: description:
+7b9804cb072c5b74ea85ef553daffeb0MerchandiseData Merchandise_PlaceHolder1 (MerchandiseData)  summary: description:
+8b9cf141cb5a04d4b935700344212409MerchandiseData Merchandise_PlaceHolder2 (MerchandiseData)  summary: description:
+481deff7253c9934cbc8bb42e2ddd3b9MerchandiseData Merchandise_PlaceHolder3 (MerchandiseData)  summary: description:
+1e0680e37f0278b45aa72a194786784fMerchandiseData Merchandise_PlaceHolder4 (MerchandiseData)  summary: description:
+dcded4635200eea418078e14ef3f69a0MerchandiseData Merchandise_PlaceHolder5 (MerchandiseData)  summary: description:
+0d1629442c9f14bdb81293fe255f74b9MerchandiseData Merchandise_SunFlower (MerchandiseData)  summary: description:
+dbe81a414de4544be92cd9be688842d8MerchandiseData 消耗道果換技能點 (MerchandiseData)  summary: description:
+14dab79cdc2624d39ba0edbd5cb68621MerchandiseData 消耗金換算力 (MerchandiseData)  summary: description:
+ccc7af4e615f55b499746b2f630ee151MerchandiseData (商品)0_蚩尤一階_竊命玉 (MerchandiseData)  summary: description:
+e7bb288a8b918054abe9edd7c314c7faMerchandiseData (商品)1_蚩尤一階_算力元件_1 (MerchandiseData)  summary: description:
+cd12b658c686e8b41b00717202716715MerchandiseData (商品)1_蚩尤一階_算力元件_2 (MerchandiseData)  summary: description:
+a8c8e315f2d77cf40a316eadf6cb10efMerchandiseData (商品)0_蚩尤一階_背水玉 (MerchandiseData)  summary: description:
+3555a119fbd577343bbbe9f117ba431eMerchandiseData (商品)議會販賣機_1_藥斗數量 3 (MerchandiseData)  summary: description:
+c61f092ac82cdc24ea31b052943fe7f0MerchandiseData (商品)2_蚩尤一階_藥材_1 (MerchandiseData)  summary: description:
+03334f5e0933ace4299166ca58b4a685MerchandiseData (商品)2_蚩尤一階_藥材_2 (MerchandiseData)  summary: description:
+3fc2feb4189ca8a418d5cb461f61b000MerchandiseData (商品)2_蚩尤一階_藥材_3 (MerchandiseData)  summary: description:
+aaf93dee066da9149bd262ccf3d93605MerchandiseData (商品)2_蚩尤一階_藥材_5 (MerchandiseData)  summary: description:
+0c36ab271c40a954c922edbc99ae3f18MerchandiseData (商品)0_蚩尤二階_替死玉 (MerchandiseData)  summary: description:
+218d817eb8366944a91d0ddf0e674f81MerchandiseData (商品)0_蚩尤一階_恢復玉 (MerchandiseData)  summary: description:
+67004289e911d6f489c8c7eef283be74MerchandiseData (商品)1_蚩尤二階_算力元件_3 (MerchandiseData)  summary: description:
+6439edc34fb0b484fb1cd6ac7de463f3MerchandiseData (商品)1_蚩尤二階_算力元件_4 (MerchandiseData)  summary: description:
+03d2eba01b313e14ea7980db97e2c876MerchandiseData (商品)議會販賣機_1_藥斗數量 4 (MerchandiseData)  summary: description:
+18400a8a287e1d5409adcc702cebefe3MerchandiseData (商品)2_蚩尤二階_藥材_8 (MerchandiseData)  summary: description:
+a37846a45e789184c8c29d2b1e5c4744MerchandiseData (商品)2_蚩尤二階_藥材_6 (MerchandiseData)  summary: description:
+53198047d0050a2499457dda764216b5MerchandiseData (商品)2_蚩尤二階_藥材_7 (MerchandiseData)  summary: description:
+4d68c38d4da4dc04a8c52ea07e343f13MerchandiseData (商品)農產區販賣機_中錢袋 (MerchandiseData)  summary: description:
+aa397f2e8dceb8247b114977cf4a83adMerchandiseData (商品)議會販賣機_0_1_反彈玉 (MerchandiseData)  summary: description:
+bf022d16a21faeb498833f866ac26cfaMerchandiseData (商品)農產區販賣機_大錢袋 (MerchandiseData)  summary: description:
+2e3a8b265084cd94ca163129d10690b8MerchandiseData (商品)農產區販賣機_小錢袋 (MerchandiseData)  summary: description:
+69b60a4c78756e4468ce6b62b44c8148MerchandiseData (商品)農產區販賣機_蒼砂10個 (MerchandiseData)  summary: description:蒼砂5個
+46a303874a4bfd348a29b99178e23b34MerchandiseData (商品)農產區販賣機_蒼砂40個 (MerchandiseData)  summary: description:蒼砂20 個
+136291a4ca6bd004783ea49240983d62MerchandiseData (商品)倉庫區販賣機_中錢袋 (MerchandiseData)  summary: description:
+fc1d547e58d2a19488f3c397c3c1ef15MerchandiseData (商品)倉庫區販賣機_大錢袋 (MerchandiseData)  summary: description:
+478dc7336dbcbfc4db4c9663ebaf2422MerchandiseData (商品)倉庫區販賣機_小錢袋 (MerchandiseData)  summary: description:
+99add8484f0f3f54983e3c23ca97d32cMerchandiseData (商品)倉庫區販賣機_文物 (MerchandiseData)  summary: description:
+f7334067cf3a17a4e8fedcf772f28774MerchandiseData (商品)倉庫區販賣機_蒼砂10個 (MerchandiseData)  summary: description:蒼砂5個
+0ecc196a218dd4f4e8c9031e04eca8e5MerchandiseData (商品)倉庫區販賣機_蒼砂40個 (MerchandiseData)  summary: description:蒼砂20 個
+1c0bfdb75c7c594488035374d9f19f8eMerchandiseData (商品)煉丹爐區販賣機_中錢袋 (MerchandiseData)  summary: description:
+e60a1e83aa81b9043b1914cf28ea3071MerchandiseData (商品)煉丹爐區販賣機_大錢袋 (MerchandiseData)  summary: description:
+05285426e7295e746bd509de8fcbc049MerchandiseData (商品)煉丹爐區販賣機_小錢袋 (MerchandiseData)  summary: description:
+4795f67aa93fddc44819617975ce4fd8MerchandiseData (商品)煉丹爐區販賣機_蒼砂10個 (MerchandiseData)  summary: description:蒼砂5個
+d4fe492beb2777f4fa02c18de6597c2cMerchandiseData (商品)煉丹爐區販賣機_蒼砂40個 (MerchandiseData)  summary: description:蒼砂20個
+5c6de48c9acf64e408b5bc1c4bfd9322MerchandiseData (商品)議會販賣機_0_2_藥學玉 (MerchandiseData)  summary: description:
+5d9d9a16de4b091428367fdc0922c09dMerchandiseData (商品)通天塔販賣機_中錢袋 (MerchandiseData)  summary: description:
+343127b53d5bcb04cbfa8d52737e1637MerchandiseData (商品)通天塔販賣機_大錢袋 (MerchandiseData)  summary: description:
+3583071c0ed21a64fb9ba2582e36cc64MerchandiseData (商品)通天塔販賣機_小錢袋 (MerchandiseData)  summary: description:
+dc3cd0cc5739a2c4ab2066ad0a3e80bbMerchandiseData (商品)通天塔販賣機_文物 (MerchandiseData)  summary: description:
+77b2a72338d11a548be4d8d479c26282MerchandiseData (商品)通天塔販賣機_蒼砂10個 (MerchandiseData)  summary: description:蒼砂5個
+cdcbf7b8b20b97f4e80c80ae369f40bdMerchandiseData (商品)通天塔販賣機_蒼砂40個 (MerchandiseData)  summary: description:蒼砂20 個
+5432620e751c4504f857c68bdf433c5fMerchandiseData (商品)議會販賣機_1_藥斗數量 1 (MerchandiseData)  summary: description:
+17d69fab18f30f54e9cff0f845170135MerchandiseData (商品)議會販賣機_0_3_群咒玉 陽 (MerchandiseData)  summary: description:
+9aaa1323a4734694ba8dd2806e1a568dReceiveItemData ReceiveItemData_AI_原始細胞 (ReceiveItemData)  summary: description:
+4795951cc06387a49a9d4be34f5924aaReceiveItemData ReceiveItemData_AI_血清 (ReceiveItemData)  summary: description:
+237a1f09cde0a4acbaf6647040c67c95ReceiveItemData ReceiveItemData_GTX7080_1 (ReceiveItemData)  summary: description:
+558d9fa951efd4e04ab0056c85650216ReceiveItemData ReceiveItemData_GTX7080_2 (ReceiveItemData)  summary: description:
+41c2bd4aeee3c461ca9d52fee0f076f5ReceiveItemData ReceiveItemData_GTX7080_3 (ReceiveItemData)  summary: description:
+c94969e0f3a994eba8a7c04df07be4fdReceiveItemData ReceiveItemData_GTX7080_4 (ReceiveItemData)  summary: description:
+c57a121df65b847a7873d7eb644a80d0ReceiveItemData ReceiveItemData_GTX7080_5 (ReceiveItemData)  summary: description:
+a8373fdfb597741cb91caaabf23763ddReceiveItemData ReceiveItemData_GuideFish9000_A2_Memory (ReceiveItemData)  summary: description:
+133649fcaab0c4d8abb1e349587689d1ReceiveItemData ReceiveItemData_GuideFish9000_A3_Memory (ReceiveItemData)  summary: description:
+ff8f28f130cdd4cc2af1de4fcdb36d7dReceiveItemData ReceiveItemData_GuideFish9000_A4_Memory (ReceiveItemData)  summary: description:
+c4d1b8720ca5a4f59b39d23ab433fc53ReceiveItemData ReceiveItemData_GuideFish9000_A5_Memory (ReceiveItemData)  summary: description:
+76d09fe8ef15344c7adefb3cc435564dReceiveItemData ReceiveItemData_GuideFish9000_A6_Memory (ReceiveItemData)  summary: description:
+9196f3d0304e04da2b1aa526554c8432ReceiveItemData ReceiveItemData_GuideFish9000_A7_Memory (ReceiveItemData)  summary: description:
+420b5e7cbdabc41178700fc1ca5b44d8ReceiveItemData ReceiveItemData_GuideFish9000_A9_Memory (ReceiveItemData)  summary: description:
+8fe8d9771779249978ac8fbe959490f2ReceiveItemData ReceiveItemData_GuideFish9000_A11_Memory (ReceiveItemData)  summary: description:
+88398d70d22e94006b8c516dfdb31e8fReceiveItemData ReceiveItemData_SensorCore (ReceiveItemData)  summary: description:
+3cca73bf02ccb3d4d8f7390eb2eaa02eReceiveItemData ReceiveItemData_WaterPipe (ReceiveItemData)  summary: description:
+794eff23221e2a74bb15e26a7c373524ReceiveItemData ReceiveItemData_Shan_AncientRecord_古唱片 (ReceiveItemData)  summary: description:
+23169f97f592ffe4aae17a8fcc8629b2ReceiveItemData ReceiveItemData_Shan_ChessBoard_棋盤 (ReceiveItemData)  summary: description:
+1d04dbb13e6c54bffa529ae17e16c4c6ReceiveItemData ReceiveItemData_Shan_FusangPendant_扶桑牌 (ReceiveItemData)  summary: description:
+7af0a5df439502c49b113bb99e3703f4ReceiveItemData ReceiveItemData_Shan_JieSword_截氏寶劍 (ReceiveItemData)  summary: description:
+6ed34703be4c5af49b2aaf7fe4fe7276ReceiveItemData ReceiveItemData_Shan_KunlunClay_崑崙特產赤土 (ReceiveItemData)  summary: description:
+4be7603b66904e64aa4f7b3bfe6022e8ReceiveItemData ReceiveItemData_Shan_MagazineFooCharm_符咒特輯 (ReceiveItemData)  summary: description:
+b77b6ac1ebdacff49977469d74b69fa5ReceiveItemData ReceiveItemData_Shan_MRE_即食口糧 (ReceiveItemData)  summary: description:
+fb93e679879812a4d8c97a5ef483075aReceiveItemData ReceiveItemData_Shan_MultiTool_多功能工具組 (ReceiveItemData)  summary: description:
+1fb1d85d1e2a60c4f9e227b3583473adReceiveItemData ReceiveItemData_Shan_MusicSheet_古樂譜 (ReceiveItemData)  summary: description:
+335ab116e3f9e194db131a75b0aa9d31ReceiveItemData ReceiveItemData_Shan_Painting_名畫作 (ReceiveItemData)  summary: description:
+f60a4f833890643eb880deeeaf65dfddReceiveItemData ReceiveItemData_Shan_StationerySet_文房四寶 (ReceiveItemData)  summary: description:
+e296895ca98e7234f8a167ecaaef5699ReceiveItemData ReceiveItemData_Shan_VRDevice_虛擬穿戴裝置 (ReceiveItemData)  summary: description:
+55edb48b62efa144c8d967b2168b6b03ReceiveItemData ReceiveItemData_Shan_酒樓食譜 (ReceiveItemData)  summary: description:
+a21f9cfe3895edf4f9ecd59c1acda154ReceiveItemData ReceiveItemData_Shan_肥料一 (ReceiveItemData)  summary: description:
+48032dfc4d1fb0341bb49811638e00dcReceiveItemData ReceiveItemData_Shan_肥料二 (ReceiveItemData)  summary: description:
+fc062cf81810d4fddb2d27ced921e1daReceiveItemData 神農_收到_A1S3藥材_雄橙 (ReceiveItemData)  summary: description:
+3f5d6412909f67546a03c4a5266f10d5ReceiveItemData 神農_收到_A3S7龍卵 (ReceiveItemData)  summary: description:
+7827d1abef23edb408d3e7bae0fd6c99ReceiveItemData 神農_收到_A4SG1藥材_龍蛇蛻 (ReceiveItemData)  summary: description:
+ca4c8ba32b9b55b43995e60e9981e4b1ReceiveItemData 神農_收到_A5S4藥材_餘毛 (ReceiveItemData)  summary: description:
+2e0c60905f72cf74691d3ace655fc940ReceiveItemData 神農_收到_A9_臭菜 (ReceiveItemData)  summary: description:
+e0570427cbc654a42bd014b42a54fa0bReceiveItemData 神農_收到_A9_鰲蠍 (ReceiveItemData)  summary: description:
+cc1334921d3eb9048bdf063b7ea5d489ReceiveItemData 神農_收到_A10_蛤蟆衣 (ReceiveItemData)  summary: description:
+e5079607d3b4d2741b78db7e1f99089bReceiveItemData 神農_收到_商店藥材 1_百味球 (ReceiveItemData)  summary: description:
+5389afc8f55a1b343bd8702f338c3275ReceiveItemData 神農_收到_商店藥材 2_蛇咽 (ReceiveItemData)  summary: description:
+efad574eeee8b7943964d1a5d27a7c68ReceiveItemData 神農_收到_商店藥材 3_殭蠶 (ReceiveItemData)  summary: description:
+a268530fb47f0774d96be8cb61dbfe6cReceiveItemData 神農_收到_商店藥材 5_鬼蔘 (ReceiveItemData)  summary: description:
+2af3e873581d22f4d97cf50d41590a4eReceiveItemData 神農_收到_商店藥材 6_雷公蟲 (ReceiveItemData)  summary: description:
+964756ef1430d9c41923972970e61113ReceiveItemData 神農_收到_商店藥材 8_斷腸果 (ReceiveItemData)  summary: description:
+17b1715ac9988a042b7b605150202a89ReceiveItemData 神農_收到_桃花村_豬黃 (ReceiveItemData)  summary: description:
+82b0915481ee0184c8bf3277d1d88d7eReceiveItemData 神農_收到_軒軒便當 (ReceiveItemData)  summary: description:
+9ed66ac352868dd4d8bc20a1adde7573MerchandiseData Recycle_Joint (MerchandiseData)  summary: description:
+cfb5ade0e37cb73468fe3c6895b5a056MerchandiseData Recycle_WaterPipe (MerchandiseData)  summary: description:
+4ed5c7df8a3c94344bc1686ff0b14decMerchandiseData Merchandise_A2 GuideFish GTX (MerchandiseData)  summary: description:
+a84ad447fe24a4d6381cc6373554b3ebMerchandiseData Merchandise_EatTaoFruit (MerchandiseData)  summary: description:
+2637e93d7cb2b44fe8f35a4337342750MerchandiseData Merchandise_UnlockTeleportPointCost50 (MerchandiseData)  summary: description:
+1c233c2e6fb14400d8cff8a99c1518a2MerchandiseData Merchandise_UnlockTeleportPointCost100 (MerchandiseData)  summary: description:
+7d79668336c46e145afad71f5ba50b3fMerchandiseData Merchandise_Max health LV1 (MerchandiseData)  summary: description:
+6f3388e68370b394eb7e27ad454c5350MerchandiseData Merchandise_Max health LV2 (MerchandiseData)  summary: description:
+17f6d68cafda88445a81731ab74ca915MerchandiseData Merchandise_Max health LV3 (MerchandiseData)  summary: description:
+c4d89f05704042047b7b5873cd012e1bMerchandiseData Merchandise_Max health LV4 (MerchandiseData)  summary: description:
+50fcfe6b13b03a940be2c64d136da85dMerchandiseData Merchandise_Max health LV5 (MerchandiseData)  summary: description:
+ad1fd3c4f53edaf489a74f413f3f3fbdMerchandiseData Merchandise_Max health LV6 (MerchandiseData)  summary: description:
+e60c198a9c012454ba7e036762d708c3MerchandiseData Merchandise_0_Potion use times LV1 (MerchandiseData)  summary: description:
+2cb43dee144108d4b852577ad0c9fa9dMerchandiseData Merchandise_0_Potion use times LV2 (MerchandiseData)  summary: description:
+68325fe41d3327c428252f327a3e4cbfMerchandiseData Merchandise_0_Potion use times LV3 (MerchandiseData)  summary: description:
+1f23947b05316d44a8aca1b5c060dc8eMerchandiseData Merchandise_0_Potion use times LV4 (MerchandiseData)  summary: description:
+a8e9181c377e5254581f65584908779fMerchandiseData Merchandise_0_Potion use times LV5 (MerchandiseData)  summary: description:
+d62fc5c3773bfce45bafe3495e2f3781MerchandiseData Merchandise_0_Potion use times LV6 (MerchandiseData)  summary: description:
+3040b4d851ac80946a78551c681ead02MerchandiseData Merchandise_1_NormalArrow_Level1_To_Level2 (MerchandiseData)  summary: description:
+04cbd73353303874c8c00d293d7c8b59MerchandiseData Merchandise_1_ToAir Arrow_Level1_To_Level2 (MerchandiseData)  summary: description:
+8dbb9e27290ee3a4a82048b9fc3d8727MerchandiseData Merchandise_1_ToAir Arrow_Level2_To_Level3 (MerchandiseData)  summary: description:
+59387a986fa4ae84294e24c3cc9fc7c1MerchandiseData Merchandise_2_Exploding Arrow_Level1_To_Level2 (MerchandiseData)  summary: description:
+3c264454df5bf97489de2c93a5f3ef00MerchandiseData Merchandise_2_Exploding Arrow_Level2_To_Level3 (MerchandiseData)  summary: description:
+849f2e90ebb5358449f6fba95aa2a31dMerchandiseData Merchandise_3_Paralyze Arrow_Level1_To_Level2 (MerchandiseData)  summary: description:
+9e84d3e18c070544280226963e3e5a6dMerchandiseData Merchandise_3_Paralyze Arrow_Level2_To_Level3 (MerchandiseData)  summary: description:
+07d00dcccddbd2342919784d2f1d7093MerchandiseData Merchandise_4_Chasing Arrow_Level1_To_Level2 (MerchandiseData)  summary: description:
+71f2fe78ef7193e4986a1814f29320acMerchandiseData Merchandise_4_Chasing Arrow_Level2_To_Level3 (MerchandiseData)  summary: description:
+c39c782685f13164ca5793eea286fd72MerchandiseData Merchandise_5_Shield Arrow_Level1_To_Level2 (MerchandiseData)  summary: description:
+c1c5dedf79c3842efa81e91d87584dfbItemData (GTX7080)GraphicCard1 (ItemData)  summary: description:Graphic Card 2
+73de19d94b1454dfbbd9bc4bcf6ecd7fItemData (GTX7080)GraphicCard2 (ItemData)  summary: description:Graphic Card 2
+51e851a9bb44449bf8dc2e87a92b599fItemData (GTX7080)GraphicCard3 (ItemData)  summary: description:Graphic Card 3
+b29568f585aab4b288131f9cf1311b3cItemData (GTX7080)GraphicCard4 (ItemData)  summary: description:Graphic Card 4
+b4efa329186054eb6aef49783c6c73ffItemData (GTX7080)GraphicCard5 (ItemData)  summary: description:Graphic Card 5
+0224f14483c8c1041bcffd9aadba9d8dItemData (Item)Jade (ItemData)  summary: description:盛開在桃花村周遭的花，祭祀時會摘來裝飾
+8db0a25385e824c81876600af6f06233ItemData (Memory)Empty (ItemData)  summary: description:
+6545f393487109f40aa9b0109397450cItemData 0_Crystal Small (ItemData)  summary: description:可以分解成赤晶的結晶
+51a4cd8826ee82148a181433ab8dda37ItemData 1_Crystal Medium (ItemData)  summary: description:可以分解成赤晶的結晶
+48764e74525e03a479845f5e3c811173MerchandiseData (Merchandise)0_Crystal Small (MerchandiseData)  summary: description:
+50f77b81b82112140b65e562dd5af3e3MerchandiseData (Merchandise)1_Crystal Medium (MerchandiseData)  summary: description:
+e7de4e85597ee12498a83b28460dd18cMerchandiseData (Merchandise)Unknown Stone (MerchandiseData)  summary: description:價值未知的石頭
+a515eec1d26dc8d4da77e86976a586f8ItemData FishCore_A2 (ItemData)  summary: description:山海核心
+c8087170a9ebe2440b88559f0a676921EncyclopediaItem Pedia_05_A2_S6_古樹節點異常 (EncyclopediaItem)  summary: description:
+4896a670f29fd4641935e058b2a37e1dSkillNodeData (Skill) Defence LV1 (SkillNodeData)  summary: description:防禦力增加
+7e33977082bec4db5ab349143f89c24fJadeData (Jade Data) steal chi 竊氣玉 (JadeData)  summary: description:背刺成功回復一點內力。
+e50d7e80053813c4cae82eae265b9326ItemData (重要道具)16_礦坑鑰匙 (ItemData)  summary: description:
+28837290da6d24917ad6c99213d99d3dJadeData (Jade Data) Foo Endure Jade 無懼玉 (JadeData)  summary: description:符咒攻擊不會被敵人攻擊中斷，但依然會受到傷害。
+49e993908d9b9a041ae68729cec24f52MerchandiseData (販賣)4_乘客令牌 6 (MerchandiseData)  summary: description:
+1b325062bb8a12f4d9f011b2ae560718ItemData (Money)06_乘客令牌 6 (ItemData)  summary: description:
+196708902c61b4f0abc1e343c650c2e5EncyclopediaItem Pedia_16_A3_S7_耕地標示 (EncyclopediaItem)  summary: description:
+cff31b90ae300f549bf00535703ced17EncyclopediaItem Pedia_36_A10_SG4_軍事天尊 (EncyclopediaItem)  summary: description:
+e257f0f800630384fa80c842a58ef0b8PlayerWeaponData (Weapon)4 Paralyze Arrow_Level1 (PlayerWeaponData)  summary: description: 定身箭 Lv.1
+7d6b659775b21f442aca5d9af53f7982PlayerWeaponData (Weapon)4 Paralyze Arrow_Level2 (PlayerWeaponData)  summary: description: 定身箭 Lv.2
+88121ba0c1030408a974cf1d99140fd9EncyclopediaItem Pedia_13_A3_S2_過度生長的農作物 (EncyclopediaItem)  summary: description:
+dd5adfbe0ac50fe4795b796153ee646dPlayerAbilityData (升級) 煙斗使用次數_Lv4_議會販賣機 (PlayerAbilityData)  summary: description:
+ec1fe3b64944cd643b2020f35e82f023PlayerAbilityData (升級) 煙斗使用次數_Lv3_議會販賣機 (PlayerAbilityData)  summary: description:增加煙管使用次數 1 次
+7d930fa0e22cb41ec902ab10a521e4dbSkillNodeData __depre(Skill) DeadDrop Health 迴生 (SkillNodeData)  summary: description:
+7b8d46b0c0c1845fe893ce18aa67bca3TeleportPointData A5_S5_SavePoint_打劫權 (TeleportPointData)  summary: description:
+b2c7ebb0dd1f24d45ae3a03e1f38b071AchievementData Ach_Col_All_Jade (AchievementData)  summary: description:
+0d15b0c09e7603e428973241f17cc446EncyclopediaItem Pedia_HunYuanJì (EncyclopediaItem)  summary: description:隨著古樹能量保存技術的完善，太陽人的科技發展迎來第一個蓬勃期，基因工程、符咒系統，幾項核心理論的提出使文明突破性地成長。
+然而對有限資源的爭奪也使紛爭四起，科技帶來惡果，如符咒系統應用出的「殭屍士兵」問世，導致巨量的無辜人民被剝奪意識投入戰場；配合戰爭需求而基因改造的各種動植物流入自然，造成生態浩劫，軍事強權「截國」甚至傾一切資源發起「昊天球計畫」，試圖使用大量元晶體研發出能夠威脅全星球存亡的恆星武器……漫長的紛亂使世界陷入渾沌，史稱「混元紀」。
+b5aebac03863f40cabee78be612fdfc2SkillNodeData (Skill) Last Foo Buff (SkillNodeData)  summary: description:第五發符爆Buff
+04d90cc08ac4b904d8d627052439857cEncyclopediaItem 4_ShanHai (EncyclopediaItem)  summary: description:
+706f3711dce19e147a0e83f35d9f9024EncyclopediaItem 4_ShanHai_二階 (EncyclopediaItem)  summary: description:
+2fd33cc0f66ed470a940ab925964ca56SkillNodeData (Skill) Foo Hit Damage LV1 (SkillNodeData)  summary: description:貼符擊中的傷害增加
+50c6e3e0c10e045b2bb7871dd64bcea5PlayerAbilityData (FooExplodeKillAbility) ChainDropGold (PlayerAbilityData)  summary: description:傳染符咒能量給附近的敵人
+610a3a3232701af47b876a660910fccaTeleportPointData A2_S2_SavePointBindingTeleportPointTeleportPoint_蓄能井右 (TeleportPointData)  summary: description:
+a71b5769629d443ef9af5e3a05385c73TeleportPointData A2_S3_ReactorLeft_Room_TeleportPoint_蓄能井左 (TeleportPointData)  summary: description:
+00c585e0186d60a4285e01d2e7247f54EncyclopediaItem 2_ShenNong _二階 (EncyclopediaItem)  summary: description:
+d1e010f02b84fb14fa39a2b44f99a4beItemData 狀態欄_玄蝶 (ItemData)  summary: description:遠端操作和鉤索
+4bb93fbefaedb8e47949d1d384220c21TeleportPointData A10_S1_SavePoint_2064_-3856BindingTeleportPointTeleportPoint (TeleportPointData)  summary: description:
+dfa6bbf26dfef4032a5287a7d9b27881JadeData (Jade Data) ThirdAttack Wave 劍氣玉 (JadeData)  summary: description:第三刀會消耗 一點內力，打出帶有符爆效果的斬擊
+8bd01994a26d46343a21e8a6f7080634EncyclopediaItem Pedia_10_A10_S1_古樹創世詩文 (EncyclopediaItem)  summary: description:
+1b2ed9110ab548e42931345bfd984fedEncyclopediaItem Pedia_11_A10_S1_殭屍棺材銘文 (EncyclopediaItem)  summary: description:A10_S1文本
+129285f008aba4f82ab4916e6f4f5426PlayerAbilityData (Ability) 顯示UI (PlayerAbilityData)  summary: description:玉系統
+3dde68f03bf755948a461748cdd23935AchievementData Ach_Main_A11_Finished (AchievementData)  summary: description:
+cca1601f63325463ca56b28fba2ac3bbEncyclopediaItem Pedia_00_A0_S4_遺書 (EncyclopediaItem)  summary: description:
+aef5b069abec5437e92be1d08e63855eEncyclopediaItem Pedia_01_A0_S4_竹簡故事 (EncyclopediaItem)  summary: description:
+6f09dd55228d01f4797a1d3d8a5e0e61EncyclopediaItem Pedia_02_A1_S1_猿人飼養指南 (EncyclopediaItem)  summary: description:
+b5ca02d4c727444f0ab3da1b7fdfe198EncyclopediaItem Pedia_03_AG_S1_招募標語 (EncyclopediaItem)  summary: description:
+e2a7fbf9aeafc48328541c6abc72a464EncyclopediaItem Pedia_04_AG_S1_雕像碑文 (EncyclopediaItem)  summary: description:
+d6a96d9595386364abf56c85bfa2a32eEncyclopediaItem Pedia_06_A2_S1_元能柱的數據報告 (EncyclopediaItem)  summary: description:
+e0c18d6fbe20fde449d1ae43ade87870EncyclopediaItem Pedia_07_A2_S3_守暮人報告1 (EncyclopediaItem)  summary: description:
+074b013e9264d486da7de635c2d3864dEncyclopediaItem Pedia_08_A2_S5_寶塔能源分配圖 (EncyclopediaItem)  summary: description:
+093afc7ff350d47dba3217da80b09eedEncyclopediaItem Pedia_09_A3_S1_瑤池碑文 (EncyclopediaItem)  summary: description:
+e3fd6e22b80be47ee97d69adbebe8baeEncyclopediaItem Pedia_12_A3_S2_黃水檢測報告 (EncyclopediaItem)  summary: description:
+17858803e17337c4ba1cf7cd1c84836dEncyclopediaItem Pedia_14_A3_S3_造水造氧管線損壞 (EncyclopediaItem)  summary: description:
+1e6bf4d86baa5f44b8a44a04ec64815aEncyclopediaItem Pedia_15_A3_S3_守暮人報告2 (EncyclopediaItem)  summary: description:
+fe09efd3264ed492d9d97c69bcb68631EncyclopediaItem Pedia_17_AG_S1_十大信念 (EncyclopediaItem)  summary: description:
+101f4db545b3dc149bd83c575225fbc7EncyclopediaItem Pedia_18_A5_S1_煉丹爐心狀態 (EncyclopediaItem)  summary: description:
+1eb714c43cdb548b3b18fab21847f561EncyclopediaItem Pedia_19_A6_S1_對掘金者的撤離通知 (EncyclopediaItem)  summary: description:
+b7df8be887589d844b9e648acadbe1e2EncyclopediaItem Pedia_20_A4_S1_倉庫出入貨物紀錄 (EncyclopediaItem)  summary: description:
+409c0d8a55857f84b8d18218559f4869EncyclopediaItem Pedia_21_A4_S2_守暮人報告3 (EncyclopediaItem)  summary: description:
+fb3c0ab8f201840ef9126e088046f3fdEncyclopediaItem Pedia_22_A4_S3_戰神原型機圖示 (EncyclopediaItem)  summary: description:
+a18f20b13ed394fb7bd7d50f0470a5f6EncyclopediaItem Pedia_23_A4_SG4_寶庫承辦筆記 (EncyclopediaItem)  summary: description:
+64ae4af6ad3ef8d48b38d38581fbeab5EncyclopediaItem Pedia_24_A5_S2_逃獄一 (EncyclopediaItem)  summary: description:
+cff374c3e4499d74483e75665fb87d96EncyclopediaItem Pedia_25_A5_S2_逃獄二 (EncyclopediaItem)  summary: description:
+044cbc32e4bad49bcadec39def818dd5EncyclopediaItem Pedia_26_A5_S1_鎚上的截家家訓 (EncyclopediaItem)  summary: description:
+e12e50bede6add0498844441ca76d3aeEncyclopediaItem Pedia_27_A5_S4_衛軍生產排程 (EncyclopediaItem)  summary: description:
+cdd0012ad4db39141a0af084460f4e2cEncyclopediaItem Pedia_28_A5_S4b_守暮人報告4 (EncyclopediaItem)  summary: description:
+7478f506316dd4eeb9dc2ef7d4dbb122EncyclopediaItem Pedia_30_A5_S5_昊天球模型 (EncyclopediaItem)  summary: description:
+cead86cbe2ec8a744b6c83d8d8e0a5e8EncyclopediaItem Pedia_31_A0_S7_石洞內的碑文 (EncyclopediaItem)  summary: description:
+80b4d0ed2190ed84da86efd425256c6cEncyclopediaItem Pedia_32_A0_S10_星河渡口牌匾 (EncyclopediaItem)  summary: description:
+ce171afc4c3b69e439444abad643eae4EncyclopediaItem Pedia_33_A10_S3_石窟雕刻 (EncyclopediaItem)  summary: description:
+b2d9abd742ccba747846527fb995ecddEncyclopediaItem Pedia_34_A10_SG1_科技天尊 (EncyclopediaItem)  summary: description:
+1a37c30f26f84074b90ec92bdf1197b2EncyclopediaItem Pedia_35_A10_SG2_經濟天尊 (EncyclopediaItem)  summary: description:
+aaddc36fd468ac946919ea84f4623d75EncyclopediaItem Pedia_37_A9_S4_偷渡客屍體 (EncyclopediaItem)  summary: description:
+9f75430aa354b7946a7f65fc849684b4EncyclopediaItem Pedia_38_A9_S1_地下水塔 (EncyclopediaItem)  summary: description:
+dd131993d18510b478a6f466ba366ffbEncyclopediaItem Pedia_39_A9_S2_天人佈告欄 (EncyclopediaItem)  summary: description:
+c28736cb52917b549a11d6f63f6523e0EncyclopediaItem Pedia_40_A9_S2_守暮人報告5 (EncyclopediaItem)  summary: description:
+9b4658617a3e45a46baa1eb8d25fde8eEncyclopediaItem Pedia_41_A9_S3_靈樞塔監控儀 (EncyclopediaItem)  summary: description:
+0a4b2b7fdfba0af4f82355e086d312caEncyclopediaItem Pedia_42_A11_S1_守暮人報告6 (EncyclopediaItem)  summary: description:
+4e7c90d21f20f814aaacdbfb1d0cc857EncyclopediaItem Pedia_43_A11_S1_守暮人總部螢幕 (EncyclopediaItem)  summary: description:
+8acf8ff82f57b414887b68e127c7fee7EncyclopediaItem Pedia_44_AG_ST_Hub_古樹核心監控儀 (EncyclopediaItem)  summary: description:
+1025e9e6b5d9440979328bcc29d89468TeleportPointData A3_S5_BossGouMang_Prefab_TeleportPoint_基因庫存所 (TeleportPointData)  summary: description:
+c98fe311bd6e33c47921c30245e69e29SkillNodeData (Skill) Roll CD LV1 (SkillNodeData)  summary: description:衝刺冷卻時間降低
+ef8f7eb3bcd7b444f80d5da539f3b133PlayerWeaponData (Weapon)2 爆破箭 (PlayerWeaponData)  summary: description:
+3c8fd0425b80a405a8fb9623094fcafcJadeData (Jade Data) Reflect Jade 刺蝟玉 (JadeData)  summary: description:精準格擋時會造成 敵人些許內傷。
+d311393b203f34bf19e020312946d376SkillNodeData (Skill) 解鎖 0_FooExplodeKillGainHealth 咒滅化生 (SkillNodeData)  summary: description:符爆擊殺敵人可回復少許血量
+8ff52186b5d2849f6930bd5bf5d86b8aJadeData (Jade Data) Foo Multi Attack 群咒玉 (JadeData)  summary: description:貼符攻擊可以 同時擊中的敵人數量增加一名
+b8fd8e42229824b788bc222b837382f2JadeData (Jade Data) AttackChargedFasterNotMove Jade 不動玉 (JadeData)  summary: description:在原地使用續力攻擊，續力速度更快。
+1a4e7bc2545139145ba229dac285581bTeleportPointData A9_S2_Remake_4wei_SavePoint (TeleportPointData)  summary: description:
+7f39eb3683ab07642b07a29c92f2b2eeItemData (Money)06_乘客令牌 1 (ItemData)  summary: description:
+795a70bd2b1f7314ab17f5a5cf5266acItemData (Money)06_乘客令牌 2 (ItemData)  summary: description:
+1770132101738cb458dbd26b57188d5eAchievementData Ach_Col_Skill_Finished (AchievementData)  summary: description:
+fb1b6921c130f7a44b4bde4de9f3698fEncyclopediaItem 1_Shan (EncyclopediaItem)  summary: description:
+755f00ff0abccd8489ffc74eb9b77116EncyclopediaItem 1_Shan_二階 (EncyclopediaItem)  summary: description:
+56958169e06814244b4cbb899a8fc04cEncyclopediaItem Factory (EncyclopediaItem)  summary: description:
+414576cb2391be54e856b525d3e43154EncyclopediaItem Farm (EncyclopediaItem)  summary: description:
+72e26f341731740c8b519fbff128e79dMerchandiseData Mechandise__ Base DrugMaterial (MerchandiseData)  summary: description:
+5036f58e39fd647a19adba5bf37069a4SkillNodeData (Skill) 解鎖 1_FooKillGainMaterial 咒滅化緣 (SkillNodeData)  summary: description:符爆擊殺敵人可獲得額外金錢
+(定量？)
+6c03c15409a6244ec92b22d1ed1830c7SkillNodeData (Skill) 解鎖 FooKillGainAmmo 咒滅化息 (SkillNodeData)  summary: description:==>改成獲得氣
+9bf82941e7038a44980ca867c751e5cbTeleportPointData A2_S1_SavePoint_BindingTeleportPointTeleportPoint_蓄能井中 (TeleportPointData)  summary: description:
+44f53e41e4fd7f54b9963858ccd8ead1AchievementData Ach_Col_All_Health (AchievementData)  summary: description:
+117e6151f8164b346bce72a16c71f07bMerchandiseData (販賣)3_貴族戒指 (MerchandiseData)  summary: description:
+a2f84651129789d468ad8fde13a54c4fPlayerAbilityData (Shennong) Max health LV6 (PlayerAbilityData)  summary: description:增加 最大生命值
+0317ad5156bb53646a8cf8937c3f2642AchievementData Ach_Col_All_Arrow (AchievementData)  summary: description:
+721bfd51913a6f745b8ba7a35fb6a350EncyclopediaItem 12_FuXie_二階 (EncyclopediaItem)  summary: description:
+d0a9876111d725d4298833323bb082d0PlayerAbilityData (Shennong) Max health LV3 (PlayerAbilityData)  summary: description:增加 最大生命值
+d6e1b96135b4649eab5bfbf05b57ca85SkillNodeData __depre_(Skill) FooHitRecoverInternalInjury 貼符回內傷 (SkillNodeData)  summary: description:
+b242c961367ad6a49889999af22a46d9TeleportPointData A3_S3_OxygenChamber_Prefab_TeleportPoint_造水造氧區 (TeleportPointData)  summary: description:
+3bb72071ddc537041ac3a310b95977fdAchievementData Ach_Op_Poison_Jie (AchievementData)  summary: description:
+5efc24713af10a145bb9ddf2464e173aEncyclopediaItem Pedia_TraditionalBuilding (EncyclopediaItem)  summary: description:新崑崙 的地表上坐落著蓬萊南半球的太陽人傳統建築。
+當太陽人帶走崑崙古樹母株時，這些古建築遺跡同樣隨著「永生爐計畫」穿過星雲來到此處。其結構經過漫長歲月後依然能保持完整，足顯工匠的技藝之精湛，數百年後，也成為了太陽人無意間繼承下來的文明遺產。
+4f3107713e9dd43fc9968aa6579207c9PlayerAbilityData (KuaFoo) MaxAmmo Lv2 (PlayerAbilityData)  summary: description:增加蒼砂最大容量
+7a7f7c71f4dcf41e198764c2155ee7f5DrugMaterialData Drug Material_Horn Test (DrugMaterialData)  summary: description:鹿角角
+16b31aaf73a8c438d98cc808c738fac9GameFlagTutorial [Tutorial Panel]撿屍教學 (RCGFSM.GeneralState.SpecialFlag.GameFlagTutorial)  summary: description:
+2ad47d9a704da431fb4d3c19d8e38928PlayerAbilityData [能力]劇情模式 (PlayerAbilityData)  summary: description:
+d810b77c926044b66ba245cce9096b4ePlayerAbilityData (Debuff Ability) 血量變少 & 不能喝水 (PlayerAbilityData)  summary: description:
+03a9867e038e745868fb4c05bd03d2fdPlayerAbilityData (Debuff Ability) 調整虛弱 (PlayerAbilityData)  summary: description:
+34573ba6ddbae48d9bbe36b486f9ad6bPlayerAbilityData (Debuff) jiechuan health (PlayerAbilityData)  summary: description:
+90e08b0aef60f4715953b8edc064817aPlayerAbilityData (Debuff Ability) Slow 肉肉附身 (PlayerAbilityData)  summary: description:
+98b226f8601374e28af8b43ad6d843e7PlayerAbilityData (Ability) 0_FooAttack (PlayerAbilityData)  summary: description:按下 #[key:FooAttack] 貼符來對敵人造成內傷 ，持續長壓來引爆符咒
+be31937c6691a44d88d3d70ac2f62cc9PlayerAbilityData (Ability) 0_HackDrone 蝴蝶 (PlayerAbilityData)  summary: description:[探 索] 站在地上按下 R2 釋放蝴蝶進行探索。
+[蝴蝶勾] 針對特定有蝴蝶勾反應的物件，跳在空中按 R2 可以使用蝴蝶勾移動。
+3e9bf16ae88584647b4946220bb912ddPlayerAbilityData (Ability) 0_ZGun 蝴蝶雷射炮 (PlayerAbilityData)  summary: description:
+ec6e7096fe74c400b9533070b8794493PlayerAbilityData (Ability) 1_符爆殺死天禍 (PlayerAbilityData)  summary: description:
+b6d8201851e4f4dfcbd62f49681cba3aPlayerAbilityData (Ability) Smoke Heal 抽菸 (PlayerAbilityData)  summary: description:煙斗 ？還是抽菸能力？A0鎖著的話
+42638ff8215cc464eb6ccabb7ca78554PlayerAbilityData (Deprecated Ability) 0_GrabHook (PlayerAbilityData)  summary: description:
+2efd376b4493d40fca29f9e3d49669e9PlayerWeaponData (Weapon)1 Bow (PlayerWeaponData)  summary: description:相傳為有窮氏后羿所 有，具有九連射之奇技，威力四射，即便無箭亦能傷人，流傳至今，不知所蹤。
+
+《淮南》言堯時十日並出，草木焦枯，堯命羿仰射十日，中其九日，日中九烏皆死，墜其羽翼，故留其一日也。
+7837bd6bb550641d8a9f30492603c5eePlayerWeaponData (Weapon)1 穿雲箭 (PlayerWeaponData)  summary: description:
+b4b36f48e6a6ec849a613f2fdeda1a2dPlayerWeaponData (Weapon)2 爆破箭_LV2 (PlayerWeaponData)  summary: description:
+4b323612d5dc8bd49b3fd4508d7b485bPlayerWeaponData (Weapon)2 爆破箭_LV3 (PlayerWeaponData)  summary: description:爆破箭 Lv.3
+3949bc0edba197d459f5d2d7f15c72e0PlayerWeaponData (Weapon)3 追蹤箭 (PlayerWeaponData)  summary: description:
+11df21b39de54f9479514d7135be8d57PlayerWeaponData (Weapon)3 追蹤箭_LV2 (PlayerWeaponData)  summary: description:
+a9402e3a9e1e04f4488265f1c6d42641PlayerWeaponData (Weapon)3 追蹤箭_LV3 (PlayerWeaponData)  summary: description:
+1aa9dc995745460429c87193691b67adSkillNodeData GadgetArrow LV1 Damage (SkillNodeData)  summary: description:
+45bd42d82a7cef64ca308e90504faa5bSkillNodeData GadgetArrow LV2 Decrease Cost (SkillNodeData)  summary: description:
+803a1594b629f914484f315423e4806cSkillNodeData GadgetArrow LV3 ChargeAttack (SkillNodeData)  summary: description:
+603c28a9240865049971c4accabff66cSkillNodeData GadgetArrow LV4 Pentrate (SkillNodeData)  summary: description:
+f8672b4c470c1ef488c14313594afccbSkillNodeData GadgetArrow LV5 Dmg (SkillNodeData)  summary: description:
+8a4108033669b2f43a480a949dda1249PlayerWeaponData (Weapon)2 ToAir Arrow_Level1 (PlayerWeaponData)  summary: description:魚雷箭 Lv.1
+8eeaf15418f6b964f9ab4f76a9bea773PlayerWeaponData (Weapon)2 ToAir Arrow_Level2 (PlayerWeaponData)  summary: description:魚雷箭 Lv.2
+5a0e930477747434db184cb1952a34daPlayerWeaponData (Weapon)2 ToAir Arrow_Level3 (PlayerWeaponData)  summary: description:魚雷箭 Lv.3
+f1008d5b34c300b49a35f6c6c4d3251dPlayerWeaponData (Weapon)4 Paralyze Arrow_Level3 (PlayerWeaponData)  summary: description: 定身箭 Lv.3
+f8bc2873c0e9ea045bddeef4d450b37cPlayerWeaponData (Weapon)6 Shield Arrow_Level1 (PlayerWeaponData)  summary: description:
+122db19db05f245238478a71d6281d49PlayerAbilityData TouchMonsterSlow 碰到怪物變慢 (PlayerAbilityData)  summary: description:
+4e9b068d7b812a84b9f1b52efee467acPlayerAbilityData (Shennong) Max health LV1 (PlayerAbilityData)  summary: description:增加 最大血量
+b11ba30bd3a72eb49ae3d1746fb686b7PlayerAbilityData (Shennong) Max health LV2 (PlayerAbilityData)  summary: description:增加 最大生命值
+1b8f6278e3ead824e8352349a8f7cb6dPlayerAbilityData (Shennong) Max health LV4 (PlayerAbilityData)  summary: description:增加 最大生命值
+aa396485060a82d4db9ab2a1fb02c429PlayerAbilityData (Shennong) Max health LV5 (PlayerAbilityData)  summary: description:增加 最大生命值
+3c1022c896f9ca44e9c588b76797e3d0PlayerAbilityData (Shennong) Max health LV7 (PlayerAbilityData)  summary: description:增加 最大生命值
+aae70b5ca7663504eb9967182234dc6bPlayerAbilityData (Shennong) Max health LV8 (PlayerAbilityData)  summary: description:增加 最大生命值
+07274e0ddb6e91746adc0e583cddd430PlayerAbilityData (Shennong) Max health LV9 (PlayerAbilityData)  summary: description:增加 最大生命值
+5b0bac0f643f94309b894c4286db798fPlayerAbilityData (Ability) Jade System 玉系統 (PlayerAbilityData)  summary: description:玉系統
+cfef1ed9419664769969b5f270eb46fdJadeData (Jade Data) Foo Direct Jade 破掌玉 (JadeData)  summary: description:貼符時對敵人造成的內傷改為造成直接傷害
+3d4bba4f178b946f6a2249c6389aed7bJadeData (Jade Data) Foo Explode Kill Enhance 咒滅玉 (JadeData)  summary: description:加強 符爆殺敵的獎勵效果
+56e1fb5ee91d74bfb998303f4bacafa5JadeData __(Jade Data) Foo Injury Recover 內傷恢復玉 (JadeData)  summary: description:貼符 時，依照造成的傷害恢復內傷
+a0a2cb6d037ee4d80a74fd447a21682eJadeData (Jade Data) AttackChargedWhenParry Jade 借力玉 (JadeData)  summary: description:續力時格擋會讓續力瞬間完成，可立刻發動續力攻擊。
+1e635338961c24feb93798c36c07f128JadeData (Jade Data) DownDash 速落玉 (JadeData)  summary: description:在空中按下和閃躲可以 快速墜落
+8417398823dca444b924aa9e49e82385JadeData (Jade Data) Drug Jade 藥學玉 (JadeData)  summary: description:使用菸斗可以恢復更多生命值，但需要恢復時間。
+316728bf6fa814c8085a4ce094c6cabbJadeData (Jade Data) Fast Pipe 速藥玉 (JadeData)  summary: description:
+1e983ace0eb874a3a883c5f1f50e2926JadeData (Jade Data) Foo Freeze Jade 定身玉 (JadeData)  summary: description:對敵人使用符咒攻擊時，敵人會暫時被停止動作，定身時間會因敵人而異。
+45a17198c6bff4c42989f3e2d9cb583bJadeData (Jade Data) Foo Multi Attack 群咒玉 2 (JadeData)  summary: description:貼符攻擊可 以同時擊中的敵人數量增加一名
+fce2186e0ae684bde9548905d5ed5533JadeData (Jade Data) Less Knockback 卸力玉 (JadeData)  summary: description:=>精準格檔時， 能減少擊退的距離
+ef792d1867d1a4a9c8ec6cd721ee5cb3JadeData (Jade Data) MultiCounter 神手玉 (JadeData)  summary: description:太極格擋短時間內 可擋住複數攻擊
+ff5f58b8404514c11b7ec4166b294349JadeData (Jade Data) Part Damage with Internal Injury 化傷玉 (JadeData)  summary: description:受到傷害時一部分的傷害轉換成內傷。
+562375e7a68ec42b28f3bdd5f45d7b72JadeData (Jade Data) Pull Item Jade 收金玉 (JadeData)  summary: description:增加吸收金的範 圍。
+b4c7da472cfba425ba5d0b0309dc4f17JadeData (Jade Data) Quick Attack 快攻玉 (JadeData)  summary: description:攻擊速度加快，但 每攻擊一次會增加自身少許內傷
+3411e0d523aec41f9be4e24ff81b6293JadeData (Jade Data) Rage Jade 背水玉 (JadeData)  summary: description:生命值低於25%時，傷 害提升。
+e6f162e19282346db96145ee80b5ccc1JadeData (Jade Data) Recover Internal Injury Jade 恢復玉 (JadeData)  summary: description: 內傷回復速度加快。
+3ddbef7a7a579497b82fe3712177c089JadeData (Jade Data) Recover Internal Injury withAttak Jade 調息玉 (JadeData)  summary: description:劍氣攻擊可恢復少許內傷
+
+dbda764ac569f4d6b871fb6c82f11adeJadeData (Jade Data) Reflect Projectile 反彈玉 (JadeData)  summary: description:不精準格擋 也能將子彈反彈（需要彈反技能）
+987349e8a21844d28a86853bb0e5de09JadeData (Jade Data) Revive Jade 替死玉 (JadeData)  summary: description:生命值歸零時，可獲得一次性復活機會（生命值恢復25%）
+468a3373787c2443794e57f101b5f794JadeData (Jade Data) Soul Life Back 奪魂玉 (JadeData)  summary: description:
+1796f5882076b4c7c859bc4b0747d8bbJadeData (Jade Data) steal life 竊命玉 (JadeData)  summary: description:背刺成功回復些許生 命值。
+111a1eb49b6d0476488eba696f991e19JadeData (Jade Data) TradePowerWithInternalInjuryJade 七傷玉 (JadeData)  summary: description:精準格檔時獲得額外的內力，精準格檔依然會受到內傷。
+589b90f2463944b95aeb6821385b3be6JadeData (Jade Data) TransferInternalDamage 奉還玉 (JadeData)  summary: description:使用太 極反可將部分內傷轉移回敵人。
+cfcd9f0d330344e628e7d8742955c172JadeData (Jade Data) 修煉玉 (JadeData)  summary: description:增加殺敵獲得經驗值。
+88263fdff21bc8b4da3977c47ab02f03JadeData (Jade Data) 貪金玉 (JadeData)  summary: description:殺敵取得的金增加。
+7e52ba8ef1da6e946806ba1791d92791PlayerAbilityData (Jade) 算力升級 LV1_蚩尤商店 (PlayerAbilityData)  summary: description:玉格數加1
+5df7e883274aabc489885525a490b5c3PlayerAbilityData (Jade) 算力升級 LV2_蚩尤商店 (PlayerAbilityData)  summary: description:玉格數加1
+d5b834eb32c40e64f9ce89f5033162c8PlayerAbilityData (Jade) 算力升級 LV3_蚩尤商店 (PlayerAbilityData)  summary: description:玉格數加1
+d6dc79cb7147ff14aa68f5658a285f22PlayerAbilityData (Jade) 算力升級 LV4_蚩尤商店 (PlayerAbilityData)  summary: description:玉格數加1
+07577e5ef6cbe394db65f58dfc8f7908PlayerAbilityData (Jade) 算力升級 LV5_A2S2_長槍小王 (PlayerAbilityData)  summary: description:玉格數加1
+df57aee56d7eec1459ffe946cac8523ePlayerAbilityData (Jade) 算力升級 LV6_AGS2_兩個肥料大樹 (PlayerAbilityData)  summary: description:玉格數加1
+cd52a0bd3cef5634bb0083c19c77e8f3PlayerAbilityData (Jade) 算力升級 LV7_A9S3_盜寶哥布林 (PlayerAbilityData)  summary: description:玉格數加1
+c191c1bc2afb8d84c870e1858b7ee156PlayerAbilityData (Jade) 算力升級 LV8_A10S4_大寶箱 (PlayerAbilityData)  summary: description:玉格數加1
+24d8fa84e919c406e8ab9f7d816c8039JadeData __Depre_(Jade Data) 精準格擋延長 (JadeData)  summary: description:格擋時，更容易做到精準格擋
+ed0b75bbcb87547f6b786c8b0250eb66PlayerAbilityData (Debuff) OverCharge 超頻 1 (PlayerAbilityData)  summary: description:
+aa791d6a272ec4bea91d609a2d17c686PlayerAbilityData (Debuff) OverCharge 超頻 2 (PlayerAbilityData)  summary: description:
+757fe4121b2cb458697b57993cef3af9PlayerAbilityData (Debuff) OverCharge 超頻 3 (PlayerAbilityData)  summary: description:
+fad3bb2850cf240008129368649d7f3aSkillNodeData __depre(Skill) 1_識破造成傷害 (SkillNodeData)  summary: description:識破造成 傷害
+b995c44c3d56643b69cc64c28dd3022dSkillNodeData __depre (Skill) 3_牆上閃避 (SkillNodeData)  summary: description:
+b92a21a61c16b4ba2822b4f4ab2682c5SkillNodeData __depre (Skill) DeadDrop Power 迴息 (SkillNodeData)  summary: description:
+becaecef71610439ca1fafa625506cdbSkillNodeData __depre (Skill) 下落閃避 (SkillNodeData)  summary: description:
+3b894c141163441a7bd1efdc7e18ade1SkillNodeData __Depre_(Skill) 4_ParryCounterPrepare Injury Recover 大反加速回內傷 (SkillNodeData)  summary: description:
+9c8b7eb629b704705b6306a87b53768cSkillNodeData __Depre_(Skill) ParryCounterReflect Dmg Lv2 (SkillNodeData)  summary: description:太極反擊成功時反彈的傷害增加
+9f05ad4510c4f4526bcf9facc75e1370SkillNodeData Depre_(Skill) 0_輕功 (SkillNodeData)  summary: description:
+d57a70d600fb34edbbfa503acf81b85eSkillNodeData Depre_(Skill) 0_輕功招式 (SkillNodeData)  summary: description:
+947b05668b9b3406abc19c29b6a2ee37SkillNodeData __(Skill) 解鎖符爆效果 2_FooKillGainPower 咒滅化息 (SkillNodeData)  summary: description:
+93628e9fcc3d24ef9bbc303266866517SkillNodeData (Skill) NormalAttackHitRecoverInternalInjury 第三刀回內傷 (SkillNodeData)  summary: description:
+7ce746972efda4601b7605291ca8fb63SkillNodeData __depre_(Skill) ChargedAttackHitRecoverInternalInjury 蓄力回內傷 (SkillNodeData)  summary: description:
+a7540ff18524f4128895fc6d0073cd11SkillNodeData __Depre(Skill) 背襲撿屍 (SkillNodeData)  summary: description:背襲撿屍
+d307d1b9d6ed64e7cb42ab1be8e80a69SkillNodeData (Skill) BackStab GainMoreHealth (SkillNodeData)  summary: description:暗殺回 血
+050b11ec2ea6e453ba239fba3d273b4fSkillNodeData (Skill) Defence LV2 (SkillNodeData)  summary: description:防禦力增加
+e75e86d6bf92a46f7ba1e1adb31b878bSkillNodeData (Skill) Defence LV3 (SkillNodeData)  summary: description:防禦力增加
+3da5f684bbe284a408f06f4d5a8b3184SkillNodeData (Skill) Defence LV4 (SkillNodeData)  summary: description:防禦力增加
+bcd36aff49954408db2b6c1b2ec9a4c0SkillNodeData (Skill) Defence LV5 (SkillNodeData)  summary: description:防禦力增加
+c3f9294c9ac1c4e11ab0d835011e17a8SkillNodeData (Skill) Defence Rate (SkillNodeData)  summary: description:受到傷害降低 10%
+62d1ff2abc62449c8bf20644daa7f697SkillNodeData (Skill) Foo Explode Damage LV1 (SkillNodeData)  summary: description:符咒爆破傷害增加
+34a5dceaf5ea64248b78ccce7be75896SkillNodeData (Skill) Foo Explode Damage LV2 (SkillNodeData)  summary: description:符咒爆破傷害增加
+dcf8be9509d46468891edd6cda0b2f62SkillNodeData (Skill) Foo Explode Damage LV3 (SkillNodeData)  summary: description:符咒爆破傷害增加
+47059128ad5e7431aae3180d10791c49SkillNodeData (Skill) Foo Hit Damage LV2 (SkillNodeData)  summary: description:貼符擊中的傷害增加
+c34ba86e40c0d4f9daa518754743f8a3SkillNodeData (Skill) Foo Hit Damage LV3 (SkillNodeData)  summary: description:貼符擊中的傷害增加
+0e236a4af97964fb6b461252e5a8692aSkillNodeData (Skill) Last Two Foo Explode Damage (SkillNodeData)  summary: description:第 四第五兩個符爆傷害加+4
+0fb7af2e3f2864cbfba545b6c969d94aSkillNodeData (Skill) ChipDamageRecoveryIncrease LV1 (SkillNodeData)  summary: description:增加攻擊時修復的內傷
+3863681587cc8814cbb424bd68369b35SkillNodeData (Skill) ChipDamageRecoveryIncrease LV2 (SkillNodeData)  summary: description:增加攻擊時修復的內傷
+bb8c9a2d465928a469cbd30621f19cf6SkillNodeData (Skill) ChipDamageReduce LV1 (SkillNodeData)  summary: description:減少不精準格擋時所受到的內傷
+b48d092bcb4894108956893d6015a895SkillNodeData (Skill) ChipDamageReduce LV2 (SkillNodeData)  summary: description:減少不精準格擋時所受到的內傷
+2addf2fa771194a819d9b78f7e89bff5SkillNodeData (Skill) FooExplodeRecoverChipDamage (SkillNodeData)  summary: description:使 符咒爆破也能修復內傷
+b5bf75b68a9d2422d85f0c901f01ae5dSkillNodeData (Skill) NonAccurateParryFrame (SkillNodeData)  summary: description:增加格擋 容許時間
+9b40e4b8fef6d4e0b8730d78e3c67268SkillNodeData (Skill) Potion Recover chip damage (SkillNodeData)  summary: description:使用煙壺時可以修復內傷
+d842c83be51ce4cfc880fb84f0664536SkillNodeData (Skill) RollDodge Accurate Danger Gain Power (SkillNodeData)  summary: description:精準閃避獲得能量
+eb5ef12f4ef9e46eeb09809070d21db4PlayerAbilityData (KuaFoo) MaxAmmo Lv1 (PlayerAbilityData)  summary: description:增加蒼砂最大容量
+072576f6cb93e4921b287b4c50140e22PlayerAbilityData (KuaFoo) MaxAmmo Lv3 (PlayerAbilityData)  summary: description:增加蒼砂最大容量
+c3e9631e6805c704f8c3fb1d1d60d78fPlayerAbilityData (KuaFoo) Potion value LV1 (PlayerAbilityData)  summary: description:小幅 增加藥斗治療效果
+960072fcea97cb8438297365d3db963cPlayerAbilityData (KuaFoo) Potion value LV2 (PlayerAbilityData)  summary: description:
+cb11b23d6a0659f418937331d46de6fcPlayerAbilityData (KuaFoo) Potion value LV3 (PlayerAbilityData)  summary: description:
+075eabd7421b58e43af25cc1c57e79e3PlayerAbilityData (KuaFoo) Potion value LV6 (PlayerAbilityData)  summary: description:
+cf5080950d381d843b000c91175434bfPlayerAbilityData (KuaFoo) Potion value LV7 (PlayerAbilityData)  summary: description:
+05b87ad6d7c226245b6e917ec21d3416PlayerAbilityData (KuaFoo) Potion value LV8 (PlayerAbilityData)  summary: description:
+41c960dfcaaf7a14f813342db16f0481PlayerAbilityData (升級) 煙斗使用次數_A3SG4日昇樓內 (PlayerAbilityData)  summary: description:
+ce7166af4ef39d7468c4ccc464fd90b9PlayerAbilityData (升級) 煙斗使用次數_AG_SG1 (PlayerAbilityData)  summary: description:
+5c864e36f2cef9d4f8c24c0aa84010bePlayerAbilityData (升級) 煙斗使用次數_Lv1_議會販賣機 (PlayerAbilityData)  summary: description:
+3f6040257515a41499d36e910a4a6e79PlayerAbilityData (升級) 煙斗使用次數_Lv2_議會販賣機 (PlayerAbilityData)  summary: description:增加煙管使用次數 1 次
+950f8f3273611424d9b42ab209e8cac8PlayerAbilityData (Ability) 神遊系統 (PlayerAbilityData)  summary: description:神遊
+2702ca48f56364ee2a064561f353378dPlayerAbilityData (Ability) 死亡處罰豁免 (PlayerAbilityData)  summary: description:玉系統
+0283785f132a24184baf00e4769b7e2dPlayerAbilityData (Ability) DodgeThirdAttack 閃避第三刀 (PlayerAbilityData)  summary: description:
+aa5909c8bd243429dbb8a1708221cf36PlayerAbilityData __(FooExplodeKill) CorpseExplode (PlayerAbilityData)  summary: description:炸死敵人後地上爆炸
+e4b24e5f1ec4847758826db6e57d7b98PlayerAbilityData __(FooExplodeKill) Drone (PlayerAbilityData)  summary: description:炸死敵人後獲得能量，接近敵人自動消耗能量攻擊
+36ea2bcb0a63041a2b68dad12d1ebdccPlayerAbilityData Deprecated (FooStyle) 2_AutoExplode 行雲流水 (PlayerAbilityData)  summary: description:
+f4396894cedda4ae7a224743a37edc90PlayerAbilityData Deprecated_(FooStyle) 3_Controlled Explode 收放自如 (PlayerAbilityData)  summary: description:引爆符咒時能透過施咒的時間長短控制消耗的能量（氣）以調整威力大小
+4a1c13d8305d942248d840b79eb140a4PlayerAbilityData Dpre(FooStyle) 1_HoldExplodeAll 一氣貫通 (PlayerAbilityData)  summary: description:一次引爆所有能量
+3f97a4d7ef670e742ae9979589e02051AchievementData Ach_Col_All_Item (AchievementData)  summary: description:
+8d7eb9b42c52d6e43b8dd826dbf7e472AchievementData Ach_Col_All_Miniboss (AchievementData)  summary: description:
+44afdea57f0f04079bd35463d89f2ed6AchievementData Ach_Main_A1_Finished (AchievementData)  summary: description:
+db2e9d55ec48a7649a194862946adfc0AchievementData Ach_Main_A2_Finished (AchievementData)  summary: description:
+4e0915911927c5d4d935cc2858de83bcAchievementData Ach_Main_A3_Finished (AchievementData)  summary: description:
+a4c83e6573b96d44da802cac21c96ce3AchievementData Ach_Main_A4_Finished (AchievementData)  summary: description:
+f32ae11d4253a0541ac201f813836b9eAchievementData Ach_Main_A7_Finished (AchievementData)  summary: description:
+5c7cdf6c49cdee743bcf447cfd3e23a8AchievementData Ach_Main_A9_Finished (AchievementData)  summary: description:
+b30ef29cf9a1ea14fbcc707891952021AchievementData Ach_Main_A10_Finished (AchievementData)  summary: description:
+12dde04b5ce13b24e8d7bc1021f98bf9AchievementData Ach_Main_Bad_End (AchievementData)  summary: description:
+c724f50979017514aa8663e4c2030311AchievementData Ach_Main_Good_End (AchievementData)  summary: description:
+fd284be1a58ce544d90dc9fb54101170AchievementData Ach_Main_Jail_Finished (AchievementData)  summary: description:
+a3cf7bbb62331c94e960ba1e1e75e95aAchievementData Ach_Main_NormalMode_Finished (AchievementData)  summary: description:
+73a4ab79816bd5f429b55ea047187da9AchievementData Ach_Misc_Coin_Sold (AchievementData)  summary: description:
+b3455a35f33e8e64daf243e923dfd5f0AchievementData Ach_Misc_Fish_Killed (AchievementData)  summary: description:
+919391ac66603a441843307c3c1d78a7AchievementData Ach_Misc_Pot_Breaked (AchievementData)  summary: description:
+aff9ab3bc1857ea4d9caba182bbbba4eAchievementData Ach_Misc_RoboFight (AchievementData)  summary: description:
+29b593c15fe754a4284653af0ac9b32bAchievementData Ach_Op_9000_Finished (AchievementData)  summary: description:
+0155af74cb4577f47a45ee943fc8ca5fAchievementData Ach_Op_A3MusicBell_Finished (AchievementData)  summary: description:
+a90e3ce7c2048a24daf83e5cad4e852eAchievementData Ach_Op_A9MusicBell_Finished (AchievementData)  summary: description:
+bc1731dadc15efa4d9e81f02af8ae168AchievementData Ach_Op_AllFish_Saved (AchievementData)  summary: description:
+cd33d463ca02a8c4f8273c2b4a1c5bfcAchievementData Ach_Op_Cat_Founded (AchievementData)  summary: description:
+4b9bad5318a60194da9268e1749f46b5AchievementData Ach_Op_ChiYou_Finished (AchievementData)  summary: description:
+4ca190076c45a2145a2409a436edb5afAchievementData Ach_Op_Lear_Finished (AchievementData)  summary: description:
+0913a028109f338429c78a383b4b5e5cAchievementData Ach_Op_MagicalBean_Finished (AchievementData)  summary: description:
+ca0c802482badb44982678d257774b2fAchievementData Ach_Op_Save_Village (AchievementData)  summary: description:
+e474d8d4a45d85c48bbb2e090aa823f4AchievementData Ach_Op_Shennong_Finished (AchievementData)  summary: description:
+7e2593e930221b94d837ba7399b0d0ccAchievementData Ach_Op_XuanXuan_Finished (AchievementData)  summary: description:
+468f5b44c6bba4071b30245f27eb7813ChallengeData (舊規格)Challenge_GiantSword (ChallengeData)  summary: description:大劍兵
+4b4b4ca193a9c4e85b30f7ebc8bf57f4ChallengeData (舊規格)Challenge_SpearHorseMan (ChallengeData)  summary: description:重新挑 戰英招魔王戰
+e257d29e395fd438eb4c14248978f27dChallengeData 2_Challenge_G8 (ChallengeData)  summary: description:重新挑戰英招魔王戰
+da699f54c67d740139fa91830b94daa6ItemData Drug Material Base A (ItemData)  summary: description:狗狗起起
+6da78e46e84004a608034aa902fae4b9DrugData Drug Default (DrugData)  summary: description:回復生命值
+1ef282cf316174fc1af6dc8211c02e2dDrugData DrugOil_HornDrug _Test (DrugData)  summary: description:強身健體
+f5e7051f307dcf448a40d1f36e99a63dEncyclopediaItem 0_Yee (EncyclopediaItem)  summary: description:
+c43bc653acf552347acb74d53e36f1f3EncyclopediaItem 2_ShenNong (EncyclopediaItem)  summary: description:
+4836fa6e9e0c66c4c8238a9c50885468EncyclopediaItem 3_AI (EncyclopediaItem)  summary: description:
+3d369fe813678e24a8d91c175a49505eEncyclopediaItem 3_AI_二階 (EncyclopediaItem)  summary: description:
+815214d30d5b64c40b1184883bbddaa7EncyclopediaItem 5_ChiYou (EncyclopediaItem)  summary: description:
+c478d9b800c7cfb4dabb584e51a95093EncyclopediaItem 5_ChiYou_二階 (EncyclopediaItem)  summary: description:
+478420773cf1ab84dbb99aef2df8653eEncyclopediaItem 6_KuaFu (EncyclopediaItem)  summary: description:
+72e94c0a930bb5a48a3de2e684cf3b81EncyclopediaItem 6_KuaFu_二階 (EncyclopediaItem)  summary: description:
+93a029bbcf4fd9b4ea61eb53931fbe3bEncyclopediaItem 7_GouMang (EncyclopediaItem)  summary: description:
+43e2a7c28741eb246adc04e3c2ac2137EncyclopediaItem 7_GouMang_二階 (EncyclopediaItem)  summary: description:
+e06a0508c554e2c4aa698e66b40c0a18EncyclopediaItem 8_TaoChang (EncyclopediaItem)  summary: description:
+2577d0caf88cf6d4daf729f1bde7e62cEncyclopediaItem 8_TaoChang_二階 (EncyclopediaItem)  summary: description:
+76d0ee9d9d884a844aeacf8fe02201c9EncyclopediaItem 9_JieChuan (EncyclopediaItem)  summary: description:
+45775bae9f4689746b9be23a6c8b1348EncyclopediaItem 9_JieChuan_二階 (EncyclopediaItem)  summary: description:
+4d5149d638b88a647a274d8c8f745884EncyclopediaItem 10_FuDie (EncyclopediaItem)  summary: description:
+e96389eb25422b84b8fd73c354700597EncyclopediaItem 10_FuDie_二階 (EncyclopediaItem)  summary: description:
+f3e032790926ac745ace8376465bf3e7EncyclopediaItem 11_Jee (EncyclopediaItem)  summary: description:
+1b9040c1f1b414949a1e2a1d2b8f500cEncyclopediaItem 12_FuXie (EncyclopediaItem)  summary: description:
+bcd7ab8fcb04fc14f8f95fe309dc6ffeEncyclopediaItem 13_NvWa (EncyclopediaItem)  summary: description:
+cbaf77d66f16c0543bd57fbca88afcf4EncyclopediaItem 13_NvWa_二階 (EncyclopediaItem)  summary: description:
+bcc8d5ccfad899043b0f7147ebe7a623EncyclopediaItem 15_YiGong (EncyclopediaItem)  summary: description:
+cfe769d63ebe1a3429f1838e2c401d1cEncyclopediaItem 15_YiGong_二階 (EncyclopediaItem)  summary: description:
+25ef42e93c6960741bd29655842bd29aEncyclopediaItem 16_Heng (EncyclopediaItem)  summary: description:
+bc264e4251045a7448f9372881ec5904EncyclopediaItem Pedia_ApronLocked (EncyclopediaItem)  summary: description:
+acac1f4618ae7094abf473ccc49062adEncyclopediaItem Pedia_BargeTechnology (EncyclopediaItem)  summary: description:母星蓬萊是 一顆高含水星球，海洋面積高達９５％。無論是遠洋航運或短距離移動，都是重要的基礎民生需求。
+在文明相當早期的階段，太陽人就建立了發達的駁船技術，包含跨海的自動循環移動平台，或運用生物動能的龍船等等。
+9c09a652a27c96944ab94c2c34b1ca8fEncyclopediaItem Pedia_Cinnabar (EncyclopediaItem)  summary: description:硃砂作為古樹能量最良好的介質，被大量使用於電子元件的開發。無論何種器械，只要與電機工程學掛勾，皆須使用這種奈米金屬對電路進行橋接。在戰爭時期或貨幣不統一的地區，硃砂的原料甚至能被當成貨幣以物易物。
+7ca9186639224034e9bde83cb8e29cb7EncyclopediaItem Pedia_Coffin (EncyclopediaItem)  summary: description:靈樞是太陽人為長途旅行設計的休眠艙，在極低溫狀態下暫停細胞的活性，使身體進入冷凍睡眠狀態，暫停老化、生理病況等一切生理變化。
+5f1716e3131f0a244a690030c64dce1fEncyclopediaItem Pedia_DragonBoat (EncyclopediaItem)  summary: description:龍舟是蓬萊早期的水域交通工具，透過插入應龍腦中樞的龍叉，可透過神經傳導下達指令控制應龍來使其載舟。即使速度稍慢，一隻成年應龍的載重可達自身重量的五百倍之多。
+混元紀後，龍船因人道理由受到無為主義者抵制，逐漸廢棄。但在「永生爐計畫」中為因應前期建設運輸需求，於瑤池中重新培育應龍並建置龍舟碼頭。
+37bfd7cdda309a5478c7ac861224e09cEncyclopediaItem Pedia_EnergyBelief (EncyclopediaItem)  summary: description:千年思辨時期，大部分對神話的想像被社會自然淘汰，無神論者在太陽人中佔了最大的比例。這不代表信仰不存在，對力量的崇拜普遍深植於工程師群體中。
+即使是純然功能性的產品，在可視化投影古樹能量時，也會約定俗成地繪製成飛行生物，還原早期不善保存能源的時代，太陽人對能接近太陽的鳥獸所描繪的美妙想像。
+c8482e6f5a5d8d54fa09cc36b77d7651EncyclopediaItem Pedia_GMF (EncyclopediaItem)  summary: description:為養活快速增長的人口， 太陽人對農作物進行最佳化基改研究，研發出了數種菁英基改作物，能在最短的生長週期內製造最大量的營養。
+這些蓬萊植物生長力卓越，在各種介質下都能生根。
+c1bbe44fcddec714cb2e5ba98f49b737EncyclopediaItem Pedia_HardwareEngineer (EncyclopediaItem)  summary: description:發展途中為止，太陽人社會都奉實力主義為圭臬。百姓崇尚思辨與創造，國家領導人之位皆由工程師或科學家擔任。
+戰事結束後，休生養息論蔚為主流，科學被視作紛亂的元凶，智者們一夕之間被拉下舞台。
+即使如此求知的腳步不會停止，即使對政權不感興趣，科學家們對文明的停滯也深感不滿，不少人組成祕密結社私下籌措資金活動。
+55685f846a529034d95e252a22936035EncyclopediaItem Pedia_ImmigrationPlan (EncyclopediaItem)  summary: description:道長一派以 文物犧牲載客空間的決定受到詬病，但事實上天倉地庫所保管的文物皆能作為日常使用，寶物庫內也包含挖土機等建設機具，隱含道長在生命盡頭之時，期望能在天禍受到治癒後，帶著族人開闢新地移居的夢想。
+fcaab3cd177e6c441a76ff5b5b1f5717EncyclopediaItem Pedia_IrrigationSystem (EncyclopediaItem)  summary: description:灌溉農產區的是高濃度的營養液，這些液體的原料包含複合糞便、化學物質及來自新蓬萊養殖所的生物廢料，能加速基改作物的生長。
+農產區的作物收成後，將由自動化系統加工製作成流質營養素、輸送往靈樞內，定時灌入人體以供應休眠期間的熱量燃燒。
+59cee30e6912bcd468596f888d2ef331EncyclopediaItem Pedia_Ore (EncyclopediaItem)  summary: description:稀有金屬赤晶原產於蓬萊 ，是硃砂的原料。赤晶礦區通常原生於深海地層之中，且礦體含有高度放射性，需經由特殊技術開採、打磨，才可加工製成奈米金屬硃砂。
+19fb57c8c98e73644ae2661e168a3da1EncyclopediaItem Pedia_Pyramid (EncyclopediaItem)  summary: description:玲瓏寶塔是蓄能井區 的中央控制中心，同時也囊跨其他所有區域的能源控制權。
+「永生爐計畫」開始後，新崑崙各區只剩下環境維護機器在運作，不再有人員進出的需求，因此各區配電切換至低運轉狀態，節省能源成本以利環境的永續。
+f0d1fcc7580ec754e998182fbee387a7EncyclopediaItem Pedia_SolarMonitorMachine (EncyclopediaItem)  summary: description:母星「 蓬萊」的地基由食光植物古樹組成。
+古樹吸收光線中的輻射與熱能，將巨大的能源儲存於其細胞組織。
+文明初期，太陽人就研發出能源的主動式轉化技術，將古樹能量發展成穩定的可再生能源。
+能源技術奠定了太陽人文明的高度發展，造就出其自古以來逐光而居的生活型態。
+5b4bf19ffe3a93a48b92a708691e3a25EncyclopediaItem Pedia_SpeciesLaboratory (EncyclopediaItem)  summary: description:運用來自 母星的物質，農產區的生物學家模擬出了最接近蓬萊的大氣環境，將蓬萊最具代表性，或最珍稀的物種以自動化灌溉系統培育繁衍。
+終有一天天禍危機解除後，太陽人將降落在適當的宜居星球。
+屆時方能釋放農產區所設的生長限度，使蓬萊植物覆寫當地的原生種，替族群的復興備妥環境。
+e46ce9fb64e2af14caa1678386309331EncyclopediaItem Pedia_SpeculativeCulture (EncyclopediaItem)  summary: description:圓樓式建築簍空的設計適合賞月，早期是觀景聚會場所。
+混元紀末，太陽人對無止盡的戰亂感到厭倦，資源也瀕臨耗竭，無論人心與星球本身皆瀕臨崩潰。伴著少數國家的停戰協議，各種哲學派別與宗教思潮紛紛出現，漫長的「千年思辨」時代展開。
+由於適合聚會的特性，圓樓成為了哲學思辨的場所，在流行當下被廣為設立，成為後世隨處可見的建築物。
+45f14a83076c7534995c034d14b67a7eEncyclopediaItem Pedia_Storage (EncyclopediaItem)  summary: description:新崑崙存在的主旨為 服務太陽人，耗費過多空間存放無機物將使本末倒置，儲物需求需要在有限的範圍內被消化。
+倉庫區的所有貨匣皆為統一規格，且透過反重力技術排序整理，在立體空間堆疊，最大化運用有限的空間資源。
+8e04e06f9bcf2ff41b7b2461baca7a65EncyclopediaItem Pedia_TaiChuJì (EncyclopediaItem)  summary: description:進入太初紀後，由 於國界與權威結構的模糊，主流社會的太陽人對資產不分公私，樂於共同養育新生兒，各地或快或慢逐漸邁向均富。
+然而少數人存有異議，認為資產共有雖使百姓普遍豐饒，卻因缺少競爭而使文明發展止步不前。個人主義者在私有地設立蟾蜍像，以其之於財富的聯想，象徵重視個體自由更甚集體的精神。
+601055a65c2e96f4aa6488a1bc257f8eEncyclopediaItem Pedia_TransportationSystem (EncyclopediaItem)  summary: description:新崑崙的物流皆為全自動運行，輸送管路如血管般遍布全區，二十四小時活絡流動。
+低運轉期間，損壞的基改衛兵、新蓬萊養殖所產生的人體廢料等生物材料容易過度囤積，雖可回收但供過於求，為降低細菌滋生風險，貨匣每日都會自動將超過保存期限的內容物運至煉丹爐區進行焚燒。
+62dc1fc70ee1cd94292a04a7f9c1ca10EncyclopediaItem Pedia_TreasureHouse (EncyclopediaItem)  summary: description:「永生爐計劃 」資源有限，規劃當初，議座之間在空間分配上曾起過爭執。一派觀點認為金子在生死之際不具價值，與其讓貨物占空間，能多帶上一人是一人。以道長為首的資產保存派則認為藝術與文化是民族的一部份，傳承母星的有形文化，與人命同等重要。最終議會決定割捨約百人份的靈樞空間，建置封存寶物的天倉地庫。
+17da5cb62e7d22b4f889d0258752e130EncyclopediaItem Pedia_WaterAndOxygen (EncyclopediaItem)  summary: description:造水造氧系統位於農產區下層，同為新崑崙生命保障系統的一環。營養使用完後產生的有毒廢水會排至此處，透過豬瀝葉還原成淨水，配合基改藻類產生大量氧氣。淨化後的空氣與水會再分配至新崑崙全境，維持全體旅客及基改衛兵的代謝需求。同時形成生態的永續循環。
+13b7f1e743d4343c893dd21cb58af4aeEncyclopediaItem Pedia_YellowWaterReport (EncyclopediaItem)  summary: description:
+3d8cde829d3a2c447b2aaee6b3775ea1EncyclopediaItem Pedia_Enemy_Elite (EncyclopediaItem)  summary: description:赤虎師高階的劍 兵，力量變大，也學會了新的劍招，常常是區域的守衛者。
+0665c09ad64e3aa408c48ca2dd45cc72EncyclopediaItem Pedia_Enemy_Gunboy (EncyclopediaItem)  summary: description:赤虎師底層的持弩士兵，躲在同伴的掩護後發射暗箭，非常卑鄙。要小心不要被踹。
+27db3b398e7694f47a8d8cca73ff7405EncyclopediaItem Pedia_Enemy_Minion (EncyclopediaItem)  summary: description:赤虎師最低階級的持劍士兵，只會依照幾個簡單的指令行動。
+316524c1fa7af9046a11f291dab10c81EncyclopediaItem Pedia_Enemy_Spearman (EncyclopediaItem)  summary: description:赤虎師的持矛士兵，已經學會稍微冷靜觀察敵人動向，有時會閃避到敵人後方進行攻擊。
+baaef97de0f4c294080224ebb9b1108eItemData (重要道具)02_仙人圖題畫詩 (ItemData)  summary: description:
+b6b928329a5ae114ca7ab0935bb6427cItemData (重要道具)06_斷魂刃(TBD) (ItemData)  summary: description:
+a3dd1abd74d68304687da6ad5ff3fe56ItemData (重要道具)07_風火環(TBD) (ItemData)  summary: description:
+54fa2de19e7780448b773554d0229750ItemData (重要道具)08_龍蛇毒囊 (ItemData)  summary: description:
+80dca009f7f94024b9567c9acc857fd6ItemData (重要道具)09_龍蛇藥酒 (ItemData)  summary: description:
+8b04356645160f24ab172496244c34c2ItemData (重要道具)14_元能彈 (ItemData)  summary: description:
+40c579b4aaf773b4a9a9078633b1d7fbItemData (重要道具)15_元能箭 (ItemData)  summary: description:
+a3960b34a56b2ad4998b5538bef3ce0bItemData (重要道具)17_小倩照片 (ItemData)  summary: description:
+fffba9432e5a1c64a84d8e87c4d2fb6fItemData Sunflower 雙生道果 (ItemData)  summary: description:
+26ee16f6dab31d544aa70ab3ccd74c27ItemData (Money)04_軒軒紀念幣 (ItemData)  summary: description:
+984057d55ad9a114b8f70d789f51a94aItemData (Money)05_扶桑牌金牌 (ItemData)  summary: description:
+9e4262f433d0f71488554605fd049696ItemData (Money)06_乘客令牌 3 (ItemData)  summary: description:
+fe61f446873eb224bbf1f579e422bd7aItemData (Money)06_乘客令牌 4 (ItemData)  summary: description:
+8f37452c73abd62439d7b19bb04704ceItemData (Money)06_乘客令牌 5 (ItemData)  summary: description:
+e235b00504a9145ed81edf6c2a2e0091ItemData (Money)06_乘客令牌 7 (ItemData)  summary: description:
+9d0a49e76ce762c47844dbd20e21c737ItemData 裝備_異變體破壞王 (ItemData)  summary: description:
+19602a0ba57f2a541bf2c07bd0e789acMerchandiseData (販賣)3_古老戒指 (MerchandiseData)  summary: description:
+4224b3fbf38966447bfeb603cf7515fdMerchandiseData (販賣)3_基因消除劑 (MerchandiseData)  summary: description:
+9cfa5d340e0968448a27e59483d8418dMerchandiseData (販賣)3_軒軒紀念幣 (MerchandiseData)  summary: description:
+f0f5eef8a7700a04aaee9e5b41eec7d1MerchandiseData (販賣)4_乘客令牌 1 (MerchandiseData)  summary: description:
+98511cd8d2483fb438bff829891946b7MerchandiseData (販賣)4_乘客令牌 2 (MerchandiseData)  summary: description:
+857d3458c9d0e444a8000d18bb857aafMerchandiseData (販賣)4_乘客令牌 3 (MerchandiseData)  summary: description:
+bed0748eddca8024a9b080bc8ee36fa9MerchandiseData (販賣)4_乘客令牌 4 (MerchandiseData)  summary: description:
+1f7c895323d160445ba30eaf88e9addaMerchandiseData (販賣)4_乘客令牌 5 (MerchandiseData)  summary: description:
+06aad5daf2b12fa49b47f1d7df9caf29MerchandiseData (販賣)4_乘客令牌 7 (MerchandiseData)  summary: description:
+980d8524421aec147a4e791e0ab9feb4MerchandiseData Merchandise_A6_S3_CaveKey 礦坑 (MerchandiseData)  summary: description:
+83b602fbe5e6c48d994192e80505dee8MerchandiseData Merchandise_HideInCrate (MerchandiseData)  summary: description:
+f0ed32767635549639e51b2c55c40031MerchandiseData Merchandise_修復地圖魚 (MerchandiseData)  summary: description:
+713c3fc7f946f744fb0633eb5e6bdf6cMerchandiseData (地圖魚商品)_MemoryA2 (MerchandiseData)  summary: description:
+7553ee94d92d16146a5e5b9c155fb378MerchandiseData (地圖魚商品)_MemoryA3 (MerchandiseData)  summary: description:
+f562c6a7b8c2b744892f3ce989de30f3MerchandiseData (地圖魚商品)_MemoryA4 (MerchandiseData)  summary: description:
+a2d0171cd03e0134a887230311af0ddeMerchandiseData (地圖魚商品)_MemoryA7 (MerchandiseData)  summary: description:
+7f71114674bc91b42b0b4eeb59b6ab7fMerchandiseData (地圖魚商品)_MemoryA9 (MerchandiseData)  summary: description:
+c3c68a56fa4017f4a88245c04a853cedMerchandiseData (地圖魚商品)_MemoryA10 (MerchandiseData)  summary: description:
+5cf6c13ccb41b034e916b68438d09778MerchandiseData (商品)0_蚩尤一階_速藥玉 (MerchandiseData)  summary: description:
+8afe571c70b1f2744ac12ed7e958bc6fMerchandiseData (商品)0_蚩尤二階_奉還玉 (MerchandiseData)  summary: description:
+5a2fb49c5eabd754ea3499cf6c898685MerchandiseData (商品)議會販賣機_1_藥斗數量 2 (MerchandiseData)  summary: description:
+21af074f92f89f54c980b56d5ae182dfMerchandiseData (商品)議會販賣機_2_軒軒紀念幣 (MerchandiseData)  summary: description:
+729293743a6ec4677a0873d49d2e8751ReceiveItemData ReceiveItemData_GuideFish9000_AG_Memory_議會地圖魚開機 (ReceiveItemData)  summary: description:
+c3f41c75754aab74e8694e0b5d655cc3ReceiveItemData ReceiveItemData_Shan_破損扶桑牌 (ReceiveItemData)  summary: description:
+5df1cdb742ce58443bd39923de27af2eReceiveItemData 卜巫_收到龍蛇解藥 (ReceiveItemData)  summary: description:
+a68fe303d0077264aa66218d3900f0edItemData 狀態欄_蒼弓 (ItemData)  summary: description:相傳為有窮氏后羿所有，具有九連射之奇 技，威力四射，即便無箭亦能傷人，流傳至今，不知所蹤。
+
+《淮南》言堯時十日並出，草木焦枯，堯命羿仰射十日，中其九日，日中九烏皆死，墜其羽翼，故留其一日也。
+b7a97935c391a324b803dc1fa542b769ItemData 狀態欄_藥斗 (ItemData)  summary: description:方向鍵上可以使用消耗菸油回復體力。
+3f4604f810c9e9a469f01d352d8035b9TeleportPointData A0_S10_SpaceshipYard (TeleportPointData)  summary: description:
+2acc3bde8c965465bbb04a339abbbb16TeleportPointData AG_S2_YiBase_Prefab_TeleportPoint_VRExit (TeleportPointData)  summary: description:
+9115d3446fcc24abab2c0030d55abd1eTeleportPointData AG_S2_YiBase_TeleportPoint 議會基地 (TeleportPointData)  summary: description:
+b3cf5264bd5d54b06975638acac58b2aTeleportPointData 1_A1_S1_HumanDisposal_Room_TeleportPoint人體處理廠 (TeleportPointData)  summary: description:
+113385c61a2544446925e7516fea6016TeleportPointData 2_A1_S2_ConnectionToElevator_Prefab_Start_TeleportPoint人體處理廠深處1 (TeleportPointData)  summary: description:
+2ee85cc763a3d413f9b6e18e7e1fee67TeleportPointData 3_A1_S2_ConnectionToElevator_Prefab_Deep_TeleportPoint人體處理廠深處2 (TeleportPointData)  summary: description:
+b9e8a5c6d9f6e4812bf9cc30810faadbTeleportPointData 4_A1_S3_SavePoint_BindingTeleportPointTeleportPoint人體處理廠深處3 (TeleportPointData)  summary: description:
+b3310817230814fa09f5fa3b12cb6293TeleportPointData A2_S5_SavePoint_BindingTeleportPointTeleportPoint_玲瓏寶塔內部 (TeleportPointData)  summary: description:
+e5246ef15ff2a41ae884071b014351f4TeleportPointData A2_S6_SavePoint_6224_-7664BindingTeleportPointTeleportPoint_運輸樞紐 (TeleportPointData)  summary: description:
+07215bbc4dc4247aeb7a980bf4910bf9TeleportPointData A3_S1_SavePoint_BindingTeleportPointTeleportPoint_遺跡花園 (TeleportPointData)  summary: description:
+126a7caa6701e4f0a9059b603a309c3fTeleportPointData A3_S2_SavePoint_BindingTeleportPointTeleportPoint_養殖園 (TeleportPointData)  summary: description:
+685eb4dc303abbd43a67a07cf0459c64TeleportPointData A3_S7_BindingTeleportPointTeleportPoint_應龍水道 (TeleportPointData)  summary: description:
+afbe61da78699487faccd6f0ae1d9667TeleportPointData A4_S1_NewBridgeToWarehouse_Room_TeleportPoint_Right (TeleportPointData)  summary: description:
+2c8de8a9dfacf4f65a0fa1e60a16f852TeleportPointData A4_S2_RouteToControlRoom_Gameplay3_TeleportPoint (TeleportPointData)  summary: description:
+242132789f3c9e94bbabb096bad651a5TeleportPointData A4_S3_ControlRoom_Prefab_TeleportPoint (TeleportPointData)  summary: description:MinimapTitle/A4_S2_RouteToControlRoom
+c748d8c36b73c464fa38d9b156c0b0bcTeleportPointData A5_S1_CastleHub_Prefab_TeleportPoint (TeleportPointData)  summary: description:MinimapTitle/A5_S1_CastleHub
+28a1908d9e21d4136b8c903e2b92b0afTeleportPointData A5_S2_SavePoint_監獄上方存擋點 (TeleportPointData)  summary: description:
+4970d157835c54adbb55bb4f8e245fdfTeleportPointData A5_S3_UnderCastle_Remake_4wei_SavePoint (TeleportPointData)  summary: description:
+7a581656cd08345b793d7ad2b14e9943TeleportPointData A5_S4_CastleMid_A5_S4_TeleportPoint (TeleportPointData)  summary: description:MinimapTitle/A5_S1_CastleHub
+f1e11be280022400caf9c8593ead7d43TeleportPointData A6_S1_AbandonMine_Remake_4wei_SavePoint (TeleportPointData)  summary: description:
+3b7b8da692cb64d298142612c02daa4cTeleportPointData A6_S3_Tutorial_And_SecretBoss_Remake_SavePoint (TeleportPointData)  summary: description:
+c971454704bfa480880660b06e4af2c7TeleportPointData A7_S1_SavePoint_腦室 (TeleportPointData)  summary: description:
+8e915ab1790ef69468d4d49d4f338db2TeleportPointData A9_S1_Remake_4wei_SavePoint (TeleportPointData)  summary: description:
+ba5ec4c4a702ba84baec1326a803b2b6TeleportPointData A9_S3_SavePoint (TeleportPointData)  summary: description:
+32bafafe1cacf5c49af2f7c9e45fe511TeleportPointData A9_S4_Prefab_TeleportPoint (TeleportPointData)  summary: description:
+1b81567d30abe194d845d3f08beae8fdTeleportPointData A10_S3_HistoryTomb_Right_SavePoint (TeleportPointData)  summary: description:
+0185245fd8c76dc4aa64da1802a27b2eTeleportPointData A10_S3_SavePoint_2849.516_-2031.618BindingTeleportPointTeleportPoint (TeleportPointData)  summary: description:
+fbaf57e3f6bea904ea8c150e5915bcf4TeleportPointData A10_S4_HistoryTomb_Left_SavePoint (TeleportPointData)  summary: description:
+5c30ad493bbdebc40a2370664d46b830TeleportPointData A11_S1_Hospital_remake_SavePoint_View (TeleportPointData)  summary: description:
+473d9c581cd574f62a36519ae3d451ebTeleportPointData A11_S2_Laboratory_remake_SavePoint_View (TeleportPointData)  summary: description:
+16e0b5ebdc56d4199b94d7ec1e9d9cd9TeleportPointData AG_S1_Prefab_TeleportPoint (TeleportPointData)  summary: description:
+da6613d2c8f7e4eb6ae1b4d0fe7fee93TeleportPointData AG_ST_Hub_SavePoint_Berserk (TeleportPointData)  summary: description:
+7e1821cd6000d41ea8a1e6abd9f8904bTeleportPointData A1_S2_Elevator_TeleportPoint_ShouldBeUnlocked (TeleportPointData)  summary: description:
+c593032c8a2db46e193bd1dc4ef4d76eTeleportPointData A2_S5_Elevator_Interactable (TeleportPointData)  summary: description:MinimapTitle/Elevator_A1_S2
+f490b4b264966fd448ede64dab4b18dfTeleportPointData A2_S6_Elevator_TeleportPoint (TeleportPointData)  summary: description:
+edb266787844a497e8ad93cd1ef9ad91TeleportPointData AG_S1_Elevator_Interactable_TeleportPoint (TeleportPointData)  summary: description:
+a496bae61d56e4afe9e8615ea986f638TeleportPointData A3_S5_(Set)ElevatorSet_0_0TeleportPoint (TeleportPointData)  summary: description:勾忙寢室
+7eec324652361429ba667758a68de115TeleportPointData Permission_Elevator_A3_S1 (TeleportPointData)  summary: description:
+134eedeeebd944c1fa7f412343cc3dadTeleportPointData Permission_Elevator_A9_S3 (TeleportPointData)  summary: description:
+0d0b6b63a01134090a3b2398643994dbTeleportPointData Permission_Elevator_A9_S4 (TeleportPointData)  summary: description:
+e93fc1ca573dc40e884d8984c5a3657eTeleportPointData Permission_Elevator_A11_S1 (TeleportPointData)  summary: description:
+969592a51307bb541b1470ed65f82e0bTeleportPointData A0_S4_Tutorial (TeleportPointData)  summary: description:
+dd72ab19343eb45a3a46e3bd0b599d59TeleportPointData A3_S2_GreenHouse_Remake_ClosedBeta_Start_Point (TeleportPointData)  summary: description:
+06c6f4878583f4ceaa0779f48c0ec090TeleportPointData AG_Tutorial_Lear_S1_Parry_Room_TeleportPoint (TeleportPointData)  summary: description:
+8d362ccef722e40ab97aff2843f86400GameFlagDescriptable (Skill) UnknownSkill 未知技能 (GameFlagDescriptable)  summary: description:
+0e15e03a7d6204bf3ac6197dec4d6084GameFlagDescriptable 3DprinterNothingToSell (GameFlagDescriptable)  summary: description:
+399f75166fe6744dca898b9c8e4d85c9GameFlagDescriptable Empty Descriptable 目前沒有內容 (GameFlagDescriptable)  summary: description:
+9f3af01ac987041bb815fb1d3b2f3243GameFlagDescriptable KuaFooNothingToModify (GameFlagDescriptable)  summary: description:
+a9cdaa6dbcfc56a40886d899a44aa242GameFlagDescriptable LockedDescriptable 未解鎖此系統 (GameFlagDescriptable)  summary: description:
+27cca991514ba194fb26d3f131251595GameFlagDescriptable NotAcquiredDescriptable 未取得物品 (GameFlagDescriptable)  summary: description:
+6f201a3855ba0254e97481ba699630ddGameFlagDescriptable NotEquippedDescriptable 未設定裝備 (GameFlagDescriptable)  summary: description:
+bcaf5a2a7b979491ea2ff6465afbf149EncyclopediaItem Unknown Pedia Item (EncyclopediaItem)  summary: description:
+5ae13ad5cc8cb42bdba69dd998313143GameFlagDescriptable UnknownChallenge (GameFlagDescriptable)  summary: description:
+ad5db5ec9702148528aa5e32ff84f542MerchandiseData Merchandise_贈送蒼砂 (MerchandiseData)  summary: description:

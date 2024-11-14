@@ -261,6 +261,7 @@ namespace NineSolsPlugin
 
             //checkTeleportToSavePoint(teleportPointData);
             // Now the scene is loaded, run the appropriate method
+            GameCore.Instance.SetReviveSavePoint(teleportPointData);
             checkMultiplier();
             CheckGetAll();
         }
@@ -968,7 +969,45 @@ namespace NineSolsPlugin
                         }   
                         if (GUILayout.Button(localizationManager.GetString("Test"), buttonStyle))
                         {
-                            Logger.LogInfo(Traverse.Create(Player.i.potion.potionMaxCountData.Stat).Field("BaseValue").GetValue());
+                            GameFlagBase gameFlagBase = null;
+                            //key: c4a79371b6ba3ce47bbdda684236f7b5ItemData value:$(重要道具)04_截全毒藥(ItemData)
+                            SaveManager.Instance.allFlags.flagDict.TryGetValue("c57a121df65b847a7873d7eb644a80d0ReceiveItemData", out gameFlagBase);
+
+
+                            var data = gameFlagBase as GameFlagDescriptable;
+                            
+                            //Logger.LogInfo(gameFlagBase);
+                            foreach (var gameFlagDescriptable in Resources.FindObjectsOfTypeAll<GameFlagDescriptable>())
+                            {
+                                Logger.LogInfo(gameFlagDescriptable);
+                                //Logger.LogInfo($"{x.FinalSaveID} {x} summary:{Traverse.Create(x).Field("summary").GetValue<string>()} description:{Traverse.Create(x).Field("description").GetValue<string>()}");
+                                //if(Traverse.Create(x).Field("summary").GetValue<string>() != "" && Traverse.Create(x).Field("description").GetValue<string>() != "")
+                                if (gameFlagDescriptable.promptViewed.CurrentValue || gameFlagDescriptable.IsImportantObject)
+                                {
+                                    SingletonBehaviour<UIManager>.Instance.ShowGetDescriptablePrompt(gameFlagDescriptable);
+                                }
+                                else if (true)
+                                {
+                                    if (gameFlagDescriptable is ItemData)
+                                    {
+                                        SingletonBehaviour<UIManager>.Instance.ShowDescriptableNitification(gameFlagDescriptable);
+                                    }
+                                    else
+                                    {
+                                        SingletonBehaviour<UIManager>.Instance.ShowGetDescriptablePrompt(gameFlagDescriptable);
+                                    }
+                                }
+                            }
+
+                            //SingletonBehaviour<UIManager>.Instance.ShowGetDescriptablePrompt(data);
+
+                            //Logger.LogInfo(GameObject.Find("AG_S2/Room/Prefab/Treasure Chests 寶箱/LootProvider 刺蝟玉/0_DropPickable Bag FSM/ItemProvider/DropPickable FSM Prototype/--[States]/FSM/[State] Picking/[Action] GetItem"));
+                            //var pickItemData = GameObject.Find("AG_S2/Room/Prefab/Treasure Chests 寶箱/LootProvider 刺蝟玉/0_DropPickable Bag FSM/ItemProvider/DropPickable FSM Prototype/--[States]/FSM/[State] Picking/[Action] GetItem").GetComponent<PickItemAction>();
+                            //pickItemData.pickItemData = data;
+                            //Traverse.Create(pickItemData).Field("itemProvider").Field("item").SetValue(data);
+                            //Traverse.Create(GameObject.Find("AG_S2/Room/Prefab/Treasure Chests 寶箱/LootProvider 刺蝟玉/0_DropPickable Bag FSM/ItemProvider/DropPickable FSM Prototype/--[States]/FSM/[State] Picking/[Action] GetItem").GetComponent<PickItemAction>()).Field("itemProvider").Field("item").SetValue(itemData);
+
+                            //Logger.LogInfo(Traverse.Create(Player.i.potion.potionMaxCountData.Stat).Field("BaseValue").GetValue());
                             //ModifyFlag("23168073bb271184b86dc9601f989db3MerchandiseData", 1); //咒滅化緣
                             //ModifyFlag("8ff1633b861daf549b6ceefe7c2c7a1cMerchandiseData", 1); //咒滅化生
                             //ModifyFlag("ab52d2383f0a50c40913616dbd0efe94MerchandiseData", 1); //咒滅化息_二階
@@ -1414,6 +1453,7 @@ namespace NineSolsPlugin
                         {
                             //GameCore.Instance.TeleportToSavePoint(teleportPointData);
                             checkTeleportToSavePoint(teleportPointData);
+                            GameCore.Instance.SetReviveSavePoint(teleportPointData);
                         }
                         GameCore.Instance.DiscardUnsavedFlagsAndReset();
                         checkMultiplier();
